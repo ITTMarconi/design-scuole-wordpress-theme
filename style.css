@@ -10,3 +10,13 @@ Text Domain: design_scuole_italia
 /** immagini e allineamenti wp **/
 /* =WordPress Core
 -------------------------------------------------------------- */
+li.flag-it a {
+	background-image: url(/wp-content/uploads/assets/images/flag-it-jpg.webp);
+	background-repeat: no-repeat;
+	background-size: 9%;
+	background-position: left; 
+	padding-left: 24px !important; 
+	font-weight: 400;
+}
+
+.pubbl {margin-right: 16px;}
