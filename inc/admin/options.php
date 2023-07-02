@@ -1633,7 +1633,7 @@ function dsi_register_main_options_metabox() {
 	}
 
 	$setup_options = new_cmb2_box( $args );
-    
+
     $setup_options->add_field( array(
         'id' => $prefix . 'argomenti_options',
         'name'        => __( 'Argomenti', 'design_scuole_italia' ),
@@ -1728,7 +1728,7 @@ function dsi_register_main_options_metabox() {
         'sanitization_cb' => 'dsi_sanitize_int',
         'escape_cb'       => 'dsi_sanitize_int',
     ) );
-	
+
 $setup_options->add_field(array(
         'id' => $prefix . 'show_contatore_commenti',
         'name' => __('Mostra il contatore dei commenti', 'design_scuole_italia'),
@@ -1739,7 +1739,7 @@ $setup_options->add_field(array(
             'true' => __('Si', 'design_scuole_italia'),
             'false' => __('No', 'design_scuole_italia'),
         ),
-    ));	
+    ));
 
 }
 add_action( 'cmb2_admin_init', 'dsi_register_main_options_metabox' );
