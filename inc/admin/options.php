@@ -307,6 +307,69 @@ function dsi_register_main_options_metabox() {
         'type' => 'text_url',
     ) );
 
+// Pulsanti Home Page INIZIO
+    $home_options->add_field( array(
+        'id' => $prefix . 'home_istruzioni_pulsanti',
+        'name'        => __( 'Sezione Pulsanti', 'design_scuole_italia' ),
+        'desc' => __( 'Gestione sezione Pulsanti (opzionale) mostrata in home page' , 'design_scuole_italia' ),
+        'type' => 'title',
+    ) );
+
+    $home_options->add_field(  array(
+        'id' => $prefix.'visualizza_pulsanti',
+        'name'    => __( 'Visualizza la fascia pulsanti', 'design_scuole_italia' ),
+        'type'    => 'radio_inline',
+        'options' => array(
+            'si' => __( 'Si', 'design_scuole_italia' ),
+            'no'   => __( 'No', 'design_scuole_italia' ),
+        ),
+        'default' => "no"
+    ) );
+
+
+    $pulsanti_group_id = $home_options->add_field( array(
+        'id'          =>  $prefix . 'pulsanti_group',
+        'type'        => 'group',
+        'repeatable'  => true,
+        'options'     => array(
+            'group_title'   => 'Pulsante {#}',
+            'add_button'    => 'Aggiungi un nuovo pulsante',
+            'remove_button' => 'Rimuovi Pulsante',
+            'closed'        => true,  // Repeater fields closed by default - neat & compact.
+            'sortable'      => true,  // Allow changing the order of repeated groups.
+        ),
+    ) );
+
+   $home_options->add_group_field( $pulsanti_group_id, array(
+        'name' => 'Testo del pulsante',
+        'desc' => 'Testo del pulsante',
+        'id'   => 'label',
+        'type' => 'text',
+    ) );
+
+    $home_options->add_group_field( $pulsanti_group_id, array(
+        'name' => 'Url di destinazione',
+        'desc' => 'Url di destinazione (lasciare vuoto se non necessario)',
+        'id'   => 'url',
+        'type' => 'text_url',
+    ) );
+
+    $home_options->add_group_field( $pulsanti_group_id, array(
+        'name' => 'Icona del pulsante',
+        'desc' => 'Icona del pulsante inserire la classe font awesome (es. fa-list-alt)',
+        'id'   => 'icon',
+        'type' => 'text',
+    ) );
+
+    $home_options->add_group_field( $pulsanti_group_id, array(
+        'name' => 'Classe css del pulsante',
+        'desc' => 'Inserire la classe personalizzata per il pulsante (lasciare vuoto se non necessario)',
+        'id'   => 'class',
+        'type' => 'text',
+    ) );
+
+// Buttons Home Page FINE
+
     $home_options->add_field( array(
         'id' => $prefix . 'home_istruzioni_2',
         'name'        => __( 'Sezione Servizi', 'design_scuole_italia' ),
@@ -1251,7 +1314,7 @@ function dsi_register_main_options_metabox() {
         'name' => 'Youtube',
         'type' => 'text_url',
     ) );
-    
+
     $social_options->add_field( array(
         'id' => $prefix . 'instagram',
         'name' => 'Instagram',

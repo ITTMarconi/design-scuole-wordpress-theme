@@ -21,6 +21,8 @@ get_header();
 
             get_template_part("template-parts/home/banner");
 
+            get_template_part("template-parts/home/pulsanti");
+
             $home_is_selezione_automatica = dsi_get_option("home_is_selezione_automatica", "homepage");
             if($home_is_selezione_automatica == "false"){
                 get_template_part("template-parts/home/articoli", "manuali");
