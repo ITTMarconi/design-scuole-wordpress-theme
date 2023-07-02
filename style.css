@@ -10,13 +10,185 @@ Text Domain: design_scuole_italia
 /** immagini e allineamenti wp **/
 /* =WordPress Core
 -------------------------------------------------------------- */
-li.flag-it a {
-	background-image: url(/wp-content/uploads/assets/images/flag-it-jpg.webp);
-	background-repeat: no-repeat;
-	background-size: 9%;
-	background-position: left; 
-	padding-left: 24px !important; 
-	font-weight: 400;
+:root {
+  --menu-redbrown: #d1344c;
+  --menu-redbrown-hover: #6d1b27;
+  --menu-purplelight: #b21dd0;
+  --menu-purplelight-hover: #6b107d;
+  --menu-greendark: #0c865c;
+  --menu-greendark-hover: #084932;
+  --menu-blueletric: #0d00ff;
+  --menu-blueletric-hover: #130f51;
 }
 
-.pubbl {margin-right: 16px;}
+.title-section .h2 {
+  color: rgb(75, 0, 130);
+  font-size: 2.5rem;
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 1.5rem;
+  margin-top: 0;
+  text-align: center;
+}
+
+.section-hero-left .hero-img {
+  display: none !important;
+}
+
+.section-hero-left::before {
+  background-image: none !important;
+  opacity: 0.5;
+  background-color: #000;
+}
+
+@media (max-width: 767.98px) {
+  .section-hero-left .hero-img {
+    display: none !important;
+  }
+
+  .section-hero-left::before {
+    background-image: none !important;
+    opacity: 0.5;
+    background-color: #000;
+  }
+}
+
+.pulsanti-group {
+  opacity: 1;
+  animation-name: fadeIn;
+  -webkit-animation-name: fadeIn;
+  animation-duration: 1.5s;
+  -webkit-animation-duration: 1.5s;
+  animation-timing-function: ease-in-out;
+  -webkit-animation-timing-function: ease-in-out;
+  visibility: visible !important;
+}
+
+.pulsanti-group a:hover {
+  text-decoration: none;
+}
+
+.pulsanti-group > div {
+  flex-wrap: wrap;
+  gap: 2px;
+}
+
+.beautiful-button {
+  display: inline-block;
+  flex: 1 1 0;
+  min-width: max-content;
+  margin-top: 2px;
+  background-color: #cc334a;
+  color: #ffffff;
+  text-align: center;
+  font-size: 1rem;
+  font-weight: 700;
+  padding: 0.5em 0.5em;
+  text-decoration: none;
+  cursor: pointer;
+  border-radius: 0.2em;
+  transition: background-color 0.3s ease;
+}
+
+.beautiful-button:hover,
+.beautiful-button:focus {
+  background-color: #ad0000;
+  color: #ddd;
+  transform: scale(1.03);
+  box-shadow: 0 0 10px rgba(0, 0, e 0, 0.5) !important;
+}
+
+.beautiful-button i {
+  margin-right: 8px; /* This adds some space between the icon and the text */
+}
+
+.beautiful-button:hover {
+  transform: scale(1.03);
+  box-shadow: 0 0 10px rgba(0, 0, e 0, 0.5) !important;
+}
+
+.beautiful-button {
+  transition: transform 0.3s ease;
+}
+
+.bg-menu-blueletric {
+  background-color: var(--menu-blueletric);
+}
+
+.bg-menu-blueletric:hover, .bg-menu-blueletric:focus {
+  background-color: var(--menu-blueletric-hover);
+}
+
+.bg-menu-redbrown {
+  background-color: var(--menu-redbrown);
+}
+
+.bg-menu-redbrown:hover, .bg-menu-redbrown:focus {
+  background-color: var(--menu-redbrown-hover);
+}
+
+.bg-menu-purplelight {
+  background-color: var(--menu-purplelight);
+}
+
+.bg-menu-purplelight:hover, .bg-menu-purplelight:focus {
+  background-color: var(--menu-purplelight-hover);
+}
+
+.bg-menu-greendark {
+  background-color: var(--menu-greendark);
+}
+
+.bg-menu-greendark:hover, .bg-menu-greendark:focus {
+  background-color: var(--menu-greendark-hover);
+}
+
+li.flag-it a {
+  background-image: url(/wp-content/uploads/assets/images/flag-it-jpg.webp);
+  background-repeat: no-repeat;
+  background-size: 9%;
+  background-position: left;
+  padding-left: 24px !important;
+  font-weight: 400;
+}
+
+.pubbl {
+  margin-right: 16px;
+}
+
+/* Animation styles */
+@keyframes fadeIn {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+  60% {
+    transform: scale(1.1);
+  }
+  80% {
+    transform: scale(0.9);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes fadeIn {
+  0% {
+    -webkit-transform: scale(0);
+    opacity: 0;
+  }
+  60% {
+    -webkit-transform: scale(1.1);
+  }
+  80% {
+    -webkit-transform: scale(0.9);
+    opacity: 1;
+  }
+  100% {
+    -webkit-transform: scale(1);
+    opacity: 1;
+  }
+}
