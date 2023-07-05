@@ -23,6 +23,8 @@ get_header();
 
             get_template_part("template-parts/home/pulsanti");
 
+            get_template_part("template-parts/home/highlights");
+
             $home_is_selezione_automatica = dsi_get_option("home_is_selezione_automatica", "homepage");
             if($home_is_selezione_automatica == "false"){
                 get_template_part("template-parts/home/articoli", "manuali");

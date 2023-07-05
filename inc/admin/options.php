@@ -384,7 +384,7 @@ function dsi_register_main_options_metabox() {
         'type' => 'text_url',
     ) );
 
-// Pulsanti Home Page INIZIO
+    // Pulsanti Home Page INIZIO
     $home_options->add_field( array(
         'id' => $prefix . 'home_istruzioni_pulsanti',
         'name'        => __( 'Sezione Pulsanti', 'design_scuole_italia' ),
@@ -444,8 +444,115 @@ function dsi_register_main_options_metabox() {
         'id'   => 'class',
         'type' => 'text',
     ) );
+    // Pulsanti Home Page FINE
 
-// Buttons Home Page FINE
+    // Highlights Home Page INIZIO
+    $home_options->add_field(
+        array(
+            'id' => $prefix . 'home_istruzioni_highlights',
+            'name' => __('Sezione Pulsanti', 'design_scuole_italia'),
+            'desc' => __('Gestione sezione Pulsanti (opzionale) mostrata in home page', 'design_scuole_italia'),
+            'type' => 'title',
+        )
+    );
+
+    $home_options->add_field(
+        array(
+            'id' => $prefix . 'visualizza_highlights',
+            'name' => __('Visualizza la fascia highlights', 'design_scuole_italia'),
+            'type' => 'radio_inline',
+            'options' => array(
+                'si' => __('Si', 'design_scuole_italia'),
+                'no' => __('No', 'design_scuole_italia'),
+            ),
+            'default' => "no"
+        )
+    );
+
+
+    $highlights_group_id = $home_options->add_field(
+        array(
+            'id' => $prefix . 'highlights_group',
+            'type' => 'group',
+            'repeatable' => true,
+            'options' => array(
+                'group_title' => 'Highlight {#}',
+                'add_button' => 'Aggiungi un nuovo highlight',
+                'remove_button' => 'Rimuovi Highlight',
+                'closed' => true,
+                // Repeater fields closed by default - neat & compact.
+                'sortable' => true,
+                // Allow changing the order of repeated groups.
+            ),
+        )
+    );
+
+    $home_options->add_group_field($highlights_group_id, array(
+        'name' => 'Sorgente del video incorporato',
+        'desc' => 'Sorgente del video incorporato (lasciare vuoto se non necessario)',
+        'id' => 'video_type',
+        'type' => 'radio_inline',
+        'options' => array(
+            'youtube' => __('Youtube', 'design_scuole_italia'),
+            'vimeo' => __('Vimeo', 'design_scuole_italia'),
+            'local' => __('Sul server', 'design_scuole_italia'),
+        ),
+        'default' => "local"
+    )
+    );
+
+    $home_options->add_group_field($highlights_group_id, array(
+        'name' => 'oEmbed',
+        'desc' => 'Enter a youtube, twitter, or instagram URL. Supports services listed at <a href="https://wordpress.org/documentation/article/embeds/">https://wordpress.org/documentation/article/embeds/</a>.',
+        'id' => 'video_embed',
+        'type' => 'oembed',
+    )
+    );
+
+    $home_options->add_group_field($highlights_group_id, array(
+        'name' => 'Video locale',
+        'id' => 'video_local',
+        'type' => 'file',
+        'options' => array(
+            'url' => false,
+            // Hide the text input for the url
+        ),
+        'text' => array(
+            'add_upload_file_text' => 'Aggiungi video' // Change upload button text. Default: "Add or Upload File"
+        ),
+        'query_args' => array(
+            'type' => array(
+                'video/mp4',
+                'video/qicktime',
+                'video/x-msvideo',
+            ),
+        ),
+        'preview_size' => 'large', // Image size to use when previewing in the admin.   Default: 'medium'
+    )
+    );
+
+    $home_options->add_group_field($highlights_group_id, array(
+        'name' => 'Cover del video',
+        'id' => 'video_cover',
+        'type' => 'file',
+        'options' => array(
+            'url' => false,
+            // Hide the text input for the url
+        ),
+        'text' => array(
+            'add_upload_file_text' => 'Aggiungi cover' // Change upload button text. Default: "Add or Upload File"
+        ),
+        'query_args' => array(
+            'type' => array(
+                'image/gif',
+                'image/jpeg',
+                'image/png',
+            ),
+        ),
+        'preview_size' => 'large', // Image size to use when previewing in the admin.   Default: 'medium'
+    )
+    );
+    // Highlights Home Page FINE
 
     $home_options->add_field( array(
         'id' => $prefix . 'home_istruzioni_2',
