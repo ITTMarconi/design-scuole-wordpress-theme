@@ -26,4 +26,6 @@ nbproject
 Thumbs.db
 .vscode
 
+# Custom settings
 node_modules
+inc/admin/options-save.php
