@@ -34,20 +34,19 @@ if ($home_show_events == "false")
 if (is_array($tipologie_notizie) && count($tipologie_notizie)) {
     ?>
     <section class="section bg-white py-2 py-lg-3 py-xl-5">
-    <div class="container">
-    <div class="row variable-gutters">
-    <?php
-    foreach ( $tipologie_notizie as $id_tipologia_notizia ) {
+        <div class="container">
+            <div class="row variable-gutters">
+                <!-- NOTIZIE -->
+                <?php
+                foreach ($tipologie_notizie as $id_tipologia_notizia) {
+                    if ($ct >= $column)
+                        break;
 
         $tipologia_notizia = get_term_by("id", $id_tipologia_notizia, "tipologia-articolo");
 
         if($tipologia_notizia) {
             // se è selezionata solo una tipologia, pesco 2 elementi
-            $ppp=1;
-            if((count($tipologie_notizie) == 1) && ($home_show_events == "false")){
-                $ppp=2;
-                echo '<div class="row variable-gutters">';
-            }
+            $ppp = $home_numero_notizie;
             $args = array('post_type' => 'post',
                     'posts_per_page' => $ppp,
                     'tax_query' => array(
@@ -71,7 +70,9 @@ if (is_array($tipologie_notizie) && count($tipologie_notizie)) {
 
 				$args = array_merge($args,$filter);
 
+
             }
+
 
             $posts = get_posts($args);
 
@@ -84,7 +85,40 @@ if (is_array($tipologie_notizie) && count($tipologie_notizie)) {
                 <div class="title-section pb-4">
                     <h2><?php echo $tipologia_notizia->name; ?></h2>
                 </div><!-- /title-section -->
+                        $lg = 4;
+                        if (is_array($posts) && count($posts)) {
+                            ?>
+                            <div class="col-lg-<?php echo $lg; ?>">
+                                <div class="title-section pb-4">
+                                    <h2><?php echo $tipologia_notizia->name; ?></h2>
+                                </div><!-- /title-section -->
+                                <div id="carouselIndicators-<?php echo $ct; ?>" class="carousel slide" data-ride="carousel">
+                                    <ol class="carousel-indicators">
+                                        <?php foreach ($posts as $key => $post) { ?>
+                                            <li data-target="#carouselIndicators-<?php echo $ct; ?>"
+                                                data-slide-to="<?php echo $key; ?>" <?php echo $key === 0 ? 'class="active"' : ''; ?>></li>
+                                        <?php } ?>
+                                    </ol>
 
+                                    <div class="carousel-inner">
+                                        <?php foreach ($posts as $key => $post) { ?>
+                                            <div class="carousel-item <?php echo $key === 0 ? 'active' : ''; ?>"
+                                                 data-interval="<?php echo $home_notizie_carousel_speed ?>">
+                                                <?php get_template_part("template-parts/single/card", "vertical-thumb"); ?>
+                                            </div>
+                                        <?php } ?>
+                                    </div>
+                                </div><!-- /carousel -->
+                                <div class="py-4">
+                                    <a class="text-underline"
+                                       href="<?php echo get_term_link($tipologia_notizia); ?>"><strong><?php _e("Vedi tutti", "design_scuole_italia"); ?></strong></a>
+                                </div>
+                            </div><!-- /col-lg-4 PIPPO--> <!-- <?php echo $tipologia_notizia->name; ?> -->
+                            <?php
+                        }
+                    }
+                    $ct++;
+                }
                 <?php
                 if((count($tipologie_notizie) == 1) && ($home_show_events == "false"))
                     echo '<div class="row variable-gutters">';
