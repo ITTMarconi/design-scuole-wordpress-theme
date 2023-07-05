@@ -35,10 +35,16 @@ Text Domain: design_scuole_italia
   display: none !important;
 }
 
+.section-hero-left {
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
 .section-hero-left::before {
   background-image: none !important;
-  opacity: 0.5;
-  background-color: #000;
+  opacity: 0.5 !important;
+  background-color: #000 !important;
+  backdrop-filter: blur(2px);
 }
 
 @media (max-width: 767.98px) {
@@ -95,7 +101,7 @@ Text Domain: design_scuole_italia
   background-color: #ad0000;
   color: #ddd;
   transform: scale(1.03);
-  box-shadow: 0 0 10px rgba(0, 0, e 0, 0.5) !important;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5) !important;
 }
 
 .beautiful-button i {
@@ -104,13 +110,33 @@ Text Domain: design_scuole_italia
 
 .beautiful-button:hover {
   transform: scale(1.03);
-  box-shadow: 0 0 10px rgba(0, 0, e 0, 0.5) !important;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5) !important;
 }
 
 .beautiful-button {
   transition: transform 0.3s ease;
 }
 
+/* Bootstrap 4 Carousel */
+.carousel-item {
+  padding-bottom: 10px  !important;
+  padding-top: 10px !important;
+  width: 95% !important;
+}
+
+.carousel-indicators {
+  bottom: -40px !important;
+}
+
+.carousel-indicators li {
+  background-color: #5f6e82 !important;
+}
+
+.card-thumb-rounded {
+  left: 10px !important;
+}
+
+/* Utility classes */
 .bg-menu-blueletric {
   background-color: var(--menu-blueletric);
 }

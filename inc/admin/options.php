@@ -210,6 +210,56 @@ function dsi_register_main_options_metabox() {
         ),
     ));
 
+    // Se in selezione automatica visualizza i aggiuntivi per la configurazione del carousel delle notizie/circolarri
+    $home_options->add_field(array(
+        'id' => $prefix . 'home_numero_notizie',
+        'name' => __('Numero di notizie,etc...', 'design_scuole_italia'),
+        'desc' => __('Numero di notizie e rassegne stampa', 'design_scuole_italia'),
+        'type' => 'text_small',
+        'default' => '5',
+        'attributes' => array(
+            'data-conditional-id' => $prefix . 'home_is_selezione_automatica',
+            'data-conditional-value' => "true",
+        ),
+    ));
+
+    $home_options->add_field(array(
+        'id' => $prefix . 'home_notizie_carousel_speed',
+        'name' => __('Velocità per le notizie, etc...', 'design_scuole_italia'),
+        'desc' => __('Velocità di transizione tra una notizia, rassegna stampa e l\'altra (in millisecondi)', 'design_scuole_italia'),
+        'type' => 'text_small',
+        'default' => '5000',
+        'attributes' => array(
+            'data-conditional-id' => $prefix . 'home_is_selezione_automatica',
+            'data-conditional-value' => "true",
+        ),
+    ));
+
+    $home_options->add_field(array(
+        'id' => $prefix . 'home_numero_circolari',
+        'name' => __('Numero di circolari', 'design_scuole_italia'),
+        'desc' => __('Numero di circolari', 'design_scuole_italia'),
+        'type' => 'text_small',
+        'default' => '5',
+        'attributes' => array(
+            'data-conditional-id' => $prefix . 'home_is_selezione_automatica',
+            'data-conditional-value' => "true",
+        ),
+    ));
+
+    $home_options->add_field(array(
+        'id' => $prefix . 'home_circolari_carousel_speed',
+        'name' => __('Velocità', 'design_scuole_italia'),
+        'desc' => __('Velocità di transizione tra una circolare e l\'altra (in millisecondi)', 'design_scuole_italia'),
+        'type' => 'text_small',
+        'default' => '5000',
+        'attributes' => array(
+            'data-conditional-id' => $prefix . 'home_is_selezione_automatica',
+            'data-conditional-value' => "true",
+        ),
+    ));
+    // Fine dei campi aggiuntivi
+
     $home_options->add_field(array(
             'name' => __('Selezione articoli ', 'design_scuole_italia'),
             'desc' => __('Seleziona gli articoli da mostrare in Home Page. NB: Selezionane 3 o multipli di 3 per evitare buchi nell\'impaginazione.  ', 'design_scuole_italia'),
