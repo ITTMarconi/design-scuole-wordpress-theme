@@ -4,6 +4,8 @@
 
 $tipologie_notizie = dsi_get_option("tipologie_notizie", "notizie");
 $home_show_events = dsi_get_option("home_show_events", "homepage");
+$giorni_per_filtro = dsi_get_option("giorni_per_filtro", "homepage");
+$data_limite_filtro = strtotime("-". $giorni_per_filtro . " day");
 
 $home_circolari_carousel_speed = dsi_get_option("home_circolari_carousel_speed", "homepage");
 $home_circolari_carousel_speed = intval($home_circolari_carousel_speed);
@@ -32,15 +34,13 @@ if ($home_show_events == "false")
 if (is_array($tipologie_notizie) && count($tipologie_notizie)) {
     ?>
     <section class="section bg-white py-2 py-lg-3 py-xl-5">
-        <div class="container">
-            <div class="row variable-gutters">
-                <!-- NOTIZIE -->
-                <?php
-                foreach ($tipologie_notizie as $id_tipologia_notizia) {
-                    if ($ct >= $column)
-                        break;
+    <div class="container">
+    <div class="row variable-gutters">
+    <?php
+    foreach ( $tipologie_notizie as $id_tipologia_notizia ) {
 
         $tipologia_notizia = get_term_by("id", $id_tipologia_notizia, "tipologia-articolo");
+
         if($tipologia_notizia) {
             // se è selezionata solo una tipologia, pesco 2 elementi
             $ppp=1;
@@ -56,8 +56,23 @@ if (is_array($tipologie_notizie) && count($tipologie_notizie)) {
                             'field' => 'term_id',
                             'terms' => $tipologia_notizia->term_id,
                         ),
-                    ),
-                );
+                	),
+            );
+
+        	if($giorni_per_filtro != "" || $giorni_per_filtro > 0) {
+            	$filter = array(
+                		'date_query' => array(
+            				array(
+								'after' => '-'. $giorni_per_filtro . ' day',
+                				'inclusive' => true,
+            				),
+            			),
+        		);
+
+				$args = array_merge($args,$filter);
+
+            }
+
             $posts = get_posts($args);
 
             $lg = 4;
