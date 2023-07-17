@@ -38,24 +38,23 @@ Text Domain: design_scuole_italia
 .section-hero-left {
   background-repeat: no-repeat;
   background-size: cover;
+  background-position: center !important;
+}
+
+.section-hero-left .decoration-01 {
+	display: none !important;
 }
 
 .section-hero-left::before {
   background-image: none !important;
-  opacity: 0.5 !important;
+  /* opacity: 0.5 !important; */
   background-color: #000 !important;
   backdrop-filter: blur(2px);
 }
 
 @media (max-width: 767.98px) {
-  .section-hero-left .hero-img {
-    display: none !important;
-  }
-
-  .section-hero-left::before {
-    background-image: none !important;
-    opacity: 0.5;
-    background-color: #000;
+  .section-hero-left {
+     min-height: 56vw !important;
   }
 }
 
