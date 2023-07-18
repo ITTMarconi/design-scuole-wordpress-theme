@@ -58,14 +58,19 @@ Text Domain: design_scuole_italia
   }
 }
 
-.section-hero-left .container {
-    background-color: #da344f;
-    opacity: 0.7;
+#hero-container {
+    background-color: var(--menu-redbrown);
+    opacity: 0.9;
     border-radius: 1em;
     padding-bottom: 1em;
     position: absolute;
     width: fit-content;
     left: 3rem;
+	transition: all 0.3s ease;
+}
+
+#hero-container .hero-title {
+	padding: 0;
 }
 
 .pulsanti-group {
@@ -197,7 +202,7 @@ li.flag-it a {
   left: 50% !important;
   transform: translateX(-50%) !important;
   top: 1rem;
-  padding: 1em !important;
+  padding: 2em !important;
 }
 
 @media (min-width: 768px) and (max-width:991.98px) {

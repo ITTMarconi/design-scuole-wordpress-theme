@@ -317,6 +317,6 @@ add_action( 'pre_get_posts', 'add_tags_to_all_content_types' );
  */
 function marconi_scripts() {
 	wp_enqueue_script('jquery');
-	wp_enqueue_script( 'marconi-js', get_template_directory_uri() . '/assets/js/marconi/marconi.js', array(), false, true);
+	wp_enqueue_script( 'marconi-js', get_template_directory_uri() . '/assets/js/marconi/marconi.js', array(), '0.3', true);
 }
 add_action( 'wp_enqueue_scripts', 'marconi_scripts' );
