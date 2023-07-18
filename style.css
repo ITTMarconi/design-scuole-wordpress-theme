@@ -58,6 +58,16 @@ Text Domain: design_scuole_italia
   }
 }
 
+.section-hero-left .container {
+    background-color: #da344f;
+    opacity: 0.7;
+    border-radius: 1em;
+    padding-bottom: 1em;
+    position: absolute;
+    width: fit-content;
+    left: 3rem;
+}
+
 .pulsanti-group {
   opacity: 1;
   animation-name: fadeIn;
@@ -169,7 +179,7 @@ Text Domain: design_scuole_italia
 }
 
 li.flag-it a {
-  background-image: url(/wp-content/uploads/assets/images/flag-it-jpg.webp);
+  background-image: url(/wp-content/uploads/assets/images/logos/flag-it-jpg.webp);
   background-repeat: no-repeat;
   background-size: 9%;
   background-position: left;
@@ -180,6 +190,41 @@ li.flag-it a {
 .pubbl {
   margin-right: 16px;
 }
+
+/* Utility */
+.absolute-orizontal-position {
+  position: absolute !important;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+  top: 1rem;
+  padding: 1em !important;
+}
+
+@media (min-width: 768px) and (max-width:991.98px) {
+  .absolute-orizontal-position {
+    position: absolute !important;
+    left: 30% !important;
+    transform: translateX(-30%) !important;
+  }
+}
+
+@media (min-width: 992px) and (max-width:1199.98px) {
+  .absolute-orizontal-position {
+    position: absolute !important;
+    left: 30% !important;
+    transform: translateX(-30%) !important;
+    }
+}
+
+@media (min-width: 1200px) {
+  .absolute-orizontal-position {
+    position: absolute !important;
+    left: 30% !important;
+    transform: translateX(-30%) !important;
+  }
+}
+
+
 
 /* Animation styles */
 @keyframes fadeIn {
