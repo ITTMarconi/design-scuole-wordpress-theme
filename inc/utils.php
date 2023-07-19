@@ -1118,7 +1118,11 @@ if(!function_exists("dsi_get_img_from_id_url")) {
         }
         $img = '<img src="'.$url.'" ';
         if ($classes) $img .= 'class="'.$classes.'" ';
-        if ($image_alt) $img .= 'alt="'.$image_alt.'" ';
+        if ($image_alt) {
+          $img .= 'alt="'.$image_alt.'" ';
+        } else {
+          $img .= 'alt="Immagine Sconosciuta" ';
+        }
         if ($image_title && $show_title) $img .= 'title="'.$image_title.'" ';
         $img .= '/>';
 
