@@ -107,7 +107,7 @@ if(is_array($indirizzi_didattica) && count($indirizzi_didattica)>0) {
                                                             if ($count_indirizzi_in_percorso_selezionato == 0) { ?>
                                                                 <div class="col-lg-6 d-flex">
 
-                                                                    <a href="<?php echo get_permalink($struttura); ?>" class="btn btn-bluelectric" style="background-color:#0a00cb; text-decoration:none;"><?php _e("Per saperne di più", "design_scuole_italia"); ?></a>
+                                                                    <a href="<?php echo get_permalink($struttura); ?>" class="btn btn-redbrown"><?php _e("Per saperne di più", "design_scuole_italia"); ?></a>
                                                                 </div>
 
                                                             <?php }

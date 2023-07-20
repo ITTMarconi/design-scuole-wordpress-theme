@@ -64,8 +64,7 @@ if(is_array($scuole_didattica) && count($scuole_didattica)>0) {
                                                     <div tabindex="0" class="accordion-large-content accordion-content">
                                                         <?php echo wpautop($descrizione); ?>
                                                         <p><a href="<?php echo get_permalink($indirizzo); ?>"
-                                                              class="btn btn-bluelectric"
-                                                              style="background-color:#0a00cb; text-decoration:none;"><?php _e("Per saperne di più", "design_scuole_italia"); ?></a>
+                                                              class="btn btn-bluelectric"><?php _e("Per saperne di più", "design_scuole_italia"); ?></a>
                                                         </p>
                                                     </div><!-- /accordion-large-content -->
 

@@ -10,16 +10,6 @@ Text Domain: design_scuole_italia
 /** immagini e allineamenti wp **/
 /* =WordPress Core
 -------------------------------------------------------------- */
-:root {
-  --menu-redbrown: #d1344c;
-  --menu-redbrown-hover: #6d1b27;
-  --menu-purplelight: #b21dd0;
-  --menu-purplelight-hover: #6b107d;
-  --menu-greendark: #0c865c;
-  --menu-greendark-hover: #084932;
-  --menu-blueletric: #0d00ff;
-  --menu-blueletric-hover: #130f51;
-}
 
 .title-section .h2 {
   color: rgb(75, 0, 130);
@@ -36,8 +26,8 @@ Text Domain: design_scuole_italia
 }
 
 .section-hero-left {
-  background-repeat: no-repeat;
-  background-size: cover;
+  background-repeat: no-repeat !important;
+  background-size: cover !important;
   background-position: center !important;
 }
 
@@ -60,17 +50,32 @@ Text Domain: design_scuole_italia
 
 #hero-container {
     background-color: var(--menu-redbrown);
-    opacity: 0.9;
+    opacity: 1;
     border-radius: 1em;
     padding-bottom: 1em;
     position: absolute;
     width: fit-content;
     left: 3rem;
 	transition: all 0.3s ease;
+	box-shadow: rgb(0 0 0 / 88%) 2px 3px 20px 1px;
 }
 
 #hero-container .hero-title {
+	color: white !important;
 	padding: 0;
+}
+
+#hero-container .btn {
+    background-color: white;
+    color: var(--menu-redbrown);
+    box-shadow: rgb(0 0 0 / 88%) 1px 1px 4px 0px;
+    transition: transform 0.3s ease;
+}
+
+#hero-container .btn:hover,
+#hero-container .btn:focus {
+    color: var(--menu-redbrown-hover);
+	transform: scale(1.03);
 }
 
 .pulsanti-group {
