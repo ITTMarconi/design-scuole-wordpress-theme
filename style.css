@@ -10,73 +10,37 @@ Text Domain: design_scuole_italia
 /** immagini e allineamenti wp **/
 /* =WordPress Core
 -------------------------------------------------------------- */
+/*
 
-.title-section .h2 {
-  color: rgb(75, 0, 130);
-  font-size: 2.5rem;
-  font-weight: 700;
-  line-height: 1.2;
-  margin-bottom: 1.5rem;
-  margin-top: 0;
-  text-align: center;
+// X-Small devices (portrait phones, less than 576px)
+// No media query for `xs` since this is the default in Bootstrap
+
+// Small devices (landscape phones, 576px and up)
+@media (min-width: 576px) { 
+... 
 }
 
-.section-hero-left .hero-img {
-  display: none !important;
+// Medium devices (tablets, 768px and up)
+@media (min-width: 768px) {
+...
 }
 
-.section-hero-left {
-  background-repeat: no-repeat !important;
-  background-size: cover !important;
-  background-position: center !important;
+// Large devices (desktops, 992px and up)
+@media (min-width: 992px) {
+...
 }
 
-.section-hero-left .decoration-01 {
-	display: none !important;
+// X-Large devices (large desktops, 1200px and up)
+@media (min-width: 1200px) {
+...
 }
 
-.section-hero-left::before {
-  background-image: none !important;
-  /* opacity: 0.5 !important; */
-  background-color: #000 !important;
-  backdrop-filter: blur(2px);
+// XX-Large devices (larger desktops, 1400px and up)
+@media (min-width: 1400px) { 
+...
 }
 
-@media (max-width: 767.98px) {
-  .section-hero-left {
-     min-height: 56vw !important;
-  }
-}
-
-#hero-container {
-    background-color: var(--menu-redbrown);
-    opacity: 1;
-    border-radius: 1em;
-    padding-bottom: 1em;
-    position: absolute;
-    width: fit-content;
-    left: 3rem;
-	transition: all 0.3s ease;
-	box-shadow: rgb(0 0 0 / 88%) 2px 3px 20px 1px;
-}
-
-#hero-container .hero-title {
-	color: white !important;
-	padding: 0;
-}
-
-#hero-container .btn {
-    background-color: white;
-    color: var(--menu-redbrown);
-    box-shadow: rgb(0 0 0 / 88%) 1px 1px 4px 0px;
-    transition: transform 0.3s ease;
-}
-
-#hero-container .btn:hover,
-#hero-container .btn:focus {
-    color: var(--menu-redbrown-hover);
-	transform: scale(1.03);
-}
+ */ 
 
 .pulsanti-group {
   opacity: 1;
@@ -137,6 +101,16 @@ Text Domain: design_scuole_italia
 }
 
 /* Bootstrap 4 Carousel */
+.title-section .h2 {
+  color: rgb(75, 0, 130);
+  font-size: 2.5rem;
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 1.5rem;
+  margin-top: 0;
+  text-align: center;
+}
+
 .carousel-item {
   padding-bottom: 10px  !important;
   padding-top: 10px !important;
@@ -156,12 +130,12 @@ Text Domain: design_scuole_italia
 }
 
 /* Utility classes */
-.bg-menu-blueletric {
-  background-color: var(--menu-blueletric);
+.bg-menu-bluelectric {
+  background-color: var(--menu-bluelectric);
 }
 
-.bg-menu-blueletric:hover, .bg-menu-blueletric:focus {
-  background-color: var(--menu-blueletric-hover);
+.bg-menu-bluelectric:hover, .bg-menu-bluelectric:focus {
+  background-color: var(--menu-bluelectric-hover);
 }
 
 .bg-menu-redbrown {
@@ -201,15 +175,6 @@ li.flag-it a {
   margin-right: 16px;
 }
 
-/* Utility */
-.absolute-orizontal-position {
-  position: absolute !important;
-  left: 50% !important;
-  transform: translateX(-50%) !important;
-  top: 1rem;
-  padding: 2em !important;
-}
-
 @media (min-width: 768px) and (max-width:991.98px) {
   .absolute-orizontal-position {
     position: absolute !important;
@@ -233,8 +198,6 @@ li.flag-it a {
     transform: translateX(-30%) !important;
   }
 }
-
-
 
 /* Animation styles */
 @keyframes fadeIn {
