@@ -81,10 +81,11 @@
         <?php
         $footer_text = dsi_get_option("footer_text", "setup");
         if(isset($footer_text) && trim($footer_text) != "") {
+            //@customization Change the filter wordpress function wpautop to the custom function wpautop_icons in functions.php
             ?>
             <div class="row variable-gutters mb-3">
                 <div class="col-lg-12 text-left text-md-center footer-text">
-                    <?php echo wpautop($footer_text); ?>
+                    <?php echo wpautop_icons($footer_text); ?>
                 </div>
             </div>
             <?php
