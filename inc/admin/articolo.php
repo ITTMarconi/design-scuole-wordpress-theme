@@ -63,13 +63,14 @@ function dsi_add_articolo_metaboxes() {
     ) );
 
 
+    //@customization Increase the size of the abstract field
     $cmb_abstrat->add_field( array(
         'id' => $prefix . 'descrizione',
         'name'        => __( 'Abstract', 'design_scuole_italia' ),
-        'desc' => __( 'Indicare un sintetico abstract (max 160 caratteri)' , 'design_scuole_italia' ),
+        'desc' => __( 'Indicare un sintetico abstract (max 400 caratteri)' , 'design_scuole_italia' ),
         'type' => 'textarea',
         'attributes'    => array(
-            'maxlength'  => '160'
+            'maxlength'  => '400'
         ),
     ) );
 

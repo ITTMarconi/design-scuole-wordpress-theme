@@ -88,14 +88,14 @@ function dsi_add_circolare_metaboxes() {
 
     ) );
 
-
+    //@cusomization: Increment the number of characters allowed in the excerpt
     $cmb_abstrat->add_field( array(
         'id' => $prefix . 'descrizione',
         'name'        => __( 'Abstract', 'design_scuole_italia' ),
-        'desc' => __( 'Indicare un sintetico abstract (max 160 caratteri)' , 'design_scuole_italia' ),
+        'desc' => __( 'Indicare un sintetico abstract (max 400 caratteri)' , 'design_scuole_italia' ),
         'type' => 'textarea',
         'attributes'    => array(
-            'maxlength'  => '160'
+            'maxlength'  => '400'
         ),
     ) );
 
@@ -455,7 +455,7 @@ add_action('admin_notices', 'dsi_circolari_admin_notice');
 add_action( 'edit_form_after_title', 'sdi_circolare_add_content_after_title' );
 function sdi_circolare_add_content_after_title($post) {
     if($post->post_type == "circolare")
-        _e('<span><>il <b>Titolo</b> è il <b>Nome della Circolare</b></span><br><br>', 'design_scuole_italia' );
+        _e('<span>il <b>Titolo</b> è il <b>Nome della Circolare</b></span><br><br>', 'design_scuole_italia' );
 }
 
 

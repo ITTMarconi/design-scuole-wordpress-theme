@@ -29,3 +29,9 @@ Thumbs.db
 # Custom settings
 node_modules
 inc/admin/options-save.php
+
+/vendor/
+phpcs.xml*
+error_log
+design-scuole-wordpress-theme-stubs.php
+
