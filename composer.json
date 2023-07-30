@@ -1,0 +1,23 @@
+{
+    "name": "marconi/design-scuole-wordpress-theme",
+    "description": "Tema derivato da DI per il sito del Marconi",
+    "type": "wp-theme",
+    "require": {
+        "php": "^8.0",
+        "erusev/parsedown": "^1.7"
+    },
+    "require-dev": {
+        "phpcompatibility/phpcompatibility-wp": "^2.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "Marconi\\DesignScuoleWordpressTheme\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "mlongano",
+            "email": "mauro.longano@marconirovereto.it"
+        }
+    ]
+}

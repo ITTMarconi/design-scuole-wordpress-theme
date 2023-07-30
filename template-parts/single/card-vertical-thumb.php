@@ -1,10 +1,14 @@
 <?php
+$parsedown = new Parsedown();
+$parsedown->setSafeMode( true );
+
 global $post, $autore;
 $autore = get_user_by("ID", $post->post_author);
 
-$image_id= get_post_thumbnail_id($post);
+$image_id = get_post_thumbnail_id($post);
 $image_url = get_the_post_thumbnail_url($post, "vertical-card");
 
+//@customization Add te ability to parse markdown in the description
 ?><div class="card card-bg card-vertical-thumb bg-white card-thumb-rounded">
 	<div class="card-body">
 		<div class="card-content">
@@ -13,11 +17,11 @@ $image_url = get_the_post_thumbnail_url($post, "vertical-card");
 <?php
         if($post->post_type == "post") {
 	        ?>
-            <p><?php echo $post->_dsi_articolo_descrizione; ?></p>
+            <p><?php echo $parsedown->text($post->_dsi_articolo_descrizione); ?></p>
             <?php
         } else if($post->post_type == "circolare") {
 	        ?>
-            <p><?php echo $post->_dsi_circolare_descrizione; ?></p>
+            <p><?php echo $parsedown-text($post->_dsi_circolare_descrizione); ?></p>
             <?php
         } else {                        
             ?>

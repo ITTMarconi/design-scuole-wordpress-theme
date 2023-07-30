@@ -11,4 +11,3 @@ global $argomento;
             </div><!-- /card-body -->
         </a>
     </div><!-- /card card-bg rounded -->
-    <?php
