@@ -1,4 +1,7 @@
 <?php
+$Parsedown = new Parsedown();
+$Parsedown->setSafeMode(true);
+
 global $post;
 
 $image_url = get_the_post_thumbnail_url($post, "article-simple-thumb");
@@ -6,14 +9,15 @@ $class = dsi_get_post_types_color_class($post->post_type);
 $icon = dsi_get_post_types_icon_class($post->post_type);
 
 
-$excerpt =  dsi_get_meta("descrizione", "", $post->ID);
+//@customization Add te ability to parse markdown in the description
+$excerpt =  $Parsedown->text(dsi_get_meta("descrizione", "", $post->ID));
 if(!$excerpt)
-    $excerpt = get_the_excerpt($post);
+    $excerpt = '<p>'.get_the_excerpt($post).'</p>';
 
 $argomenti = dsi_get_argomenti_of_post();
 $numerazione_circolare =  dsi_get_meta("numerazione_circolare", "", $post->ID);
 
-
+//@customization Show "Circolare" only if numerazione_circolare is not empty
 ?>
 <a class="presentation-card-link" href="<?php the_permalink(); ?>">
     <article class="card card-bg card-article card-article-<?php echo $class; ?> cursorhand" >
@@ -32,9 +36,9 @@ $numerazione_circolare =  dsi_get_meta("numerazione_circolare", "", $post->ID);
 
                 </div>
                 <div class="card-article-content">
-                    <small class="h6 text-greendark"><?php _e("Circolare ", "design_scuole_italia"); echo $numerazione_circolare; ?></small>
+                    <small class="h6 text-greendark"><?= ($numerazione_circolare) ? _e("Circolare ", "design_scuole_italia").$numerazione_circolare : "" ?></small>
                     <h2 class="h3"><?php the_title(); ?></h2>
-                    <p><?php echo $excerpt; ?></p>
+                    <?php echo $excerpt; ?>
                     <?php /* if(is_array($argomenti) && count($argomenti)) { ?>
                         <div class="badges">
                             <?php foreach ( $argomenti as $item ) { ?>

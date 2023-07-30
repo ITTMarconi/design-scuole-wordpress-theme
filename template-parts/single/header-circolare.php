@@ -1,4 +1,7 @@
 <?php
+$Parsedown = new Parsedown();
+$Parsedown->setSafeMode(true);
+
 global $post, $autore, $luogo, $c, $badgeclass;
 $link_schede_documenti = dsi_get_meta("link_schede_documenti");
 $file_documenti = dsi_get_meta("file_documenti");
@@ -13,6 +16,8 @@ else
     $image_url = get_template_directory_uri() ."/assets/placeholders/logo-service.png";
 
 $autore = get_user_by("ID", $post->post_author);
+//@customization Show "Circolare" only if numerazione_circolare is not empty
+//@customization Add te ability to parse markdown in the description
 ?>
 <section class="section bg-white py-2 py-lg-3 py-xl-5">
     <div class="container">
@@ -23,10 +28,10 @@ $autore = get_user_by("ID", $post->post_author);
                 </div><!-- /section-thumb -->
             </div><!-- /col-lg-2 -->
             <div class="col-12 col-sm-9 col-lg-5 col-md-8">
-                <small class="h6 text-greendark"><?php _e("Circolare ", "design_scuole_italia"); echo $numerazione_circolare; ?></small>
+                <small class="h6 text-greendark"><?= ($numerazione_circolare) ? _e("Circolare ", "design_scuole_italia").$numerazione_circolare : "" ?></small>
                 <div class="section-title">
                     <h1 class="h2"><?php the_title(); ?></h1>
-                    <p><?php echo dsi_get_meta("descrizione"); ?></p>
+                    <p><?= $Parsedown->text(dsi_get_meta("descrizione")); ?></p>
                 </div><!-- /title-section -->
             </div><!-- /col-lg-5 col-md-8 -->
             <div class="col-lg-3 col-md-4 offset-lg-1">
