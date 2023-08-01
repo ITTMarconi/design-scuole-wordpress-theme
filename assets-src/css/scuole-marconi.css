@@ -13418,7 +13418,7 @@ button.icon-text {
     margin-right: 0;
   }
 }
-.logo-header > a {
+.logo-home {
   display: flex;
   flex-direction: row;
 }
