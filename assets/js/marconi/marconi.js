@@ -3,12 +3,12 @@ console.log("Enter Marconi Script");
 function showHero(evt) {
   //evt.preventDefault();
   evt.stopPropagation();
-  jQuery('.hero-title').removeClass('sr-only sr-only-focusable');
+  jQuery('.section-hero-marconi .hero-title').removeClass('sr-only sr-only-focusable');
 	console.log("SHOW Hero");
 }
 
 function hideHero(evt) {
-  jQuery('.hero-title').addClass('sr-only sr-only-focusable');
+  jQuery('.section-hero-marconi .hero-title').addClass('sr-only sr-only-focusable');
 	console.log("HIDE Hero");
 }
 
