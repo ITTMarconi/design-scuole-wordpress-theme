@@ -21,7 +21,7 @@ $image_url = get_the_post_thumbnail_url($post, "vertical-card");
             <?php
         } else if($post->post_type == "circolare") {
 	        ?>
-            <p><?php echo $parsedown-text($post->_dsi_circolare_descrizione); ?></p>
+            <p><?php echo $parsedown->text($post->_dsi_circolare_descrizione); ?></p>
             <?php
         } else {                        
             ?>
