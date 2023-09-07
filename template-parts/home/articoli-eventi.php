@@ -80,7 +80,55 @@ if ( is_array( $tipologie_notizie ) && count( $tipologie_notizie ) ) {
 	<section class="section bg-white py-2 py-lg-3 py-xl-5">
 		<div class="container">
 			<div class="row variable-gutters">
-				<!-- NOTIZIE -->
+				<!-- CIRCOLARI -->
+				<div class="col-lg-4">
+
+					<div class="title-section pb-4">
+						<h2><?php _e( 'Comunicazioni', 'design_scuole_italia' ); ?></h2>
+					</div><!-- /title-section -->
+					<?php
+					$args  = array(
+						'post_type'      => 'circolare',
+						'posts_per_page' => $home_numero_circolari,
+					);
+					$posts = get_posts( $args );
+					// @customization view circolari as a carousel of cards - #Marconi-theme
+					?>
+
+					<div id="carouselIndicators-circ" class="carousel slide" data-ride="carousel">
+						<ol class="carousel-indicators">
+							<?php foreach ( $posts as $key => $post ) { ?>
+								<li data-target="#carouselIndicators-circ"
+									data-slide-to="<?php echo $key; ?>" <?php echo $key === 0 ? 'class="active"' : ''; ?>></li>
+							<?php } ?>
+						</ol>
+
+						<div class="carousel-inner">
+							<?php foreach ( $posts as $key => $post ) { ?>
+								<div class="carousel-item <?php echo $key === 0 ? 'active' : ''; ?>"
+									data-interval="<?php echo $home_circolari_carousel_speed; ?>">
+									<?php get_template_part( 'template-parts/single/card', 'circolare' ); ?>
+								</div>
+							<?php } ?>
+						</div>
+						<!-- Uncomment per aggiungere le frecce laterali -->
+						<!--
+						<a class="carousel-control-prev" href="#carouselIndicators" role="button" data-slide="prev">
+							<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+							<span class="sr-only">Precedente</span>
+						</a>
+						<a class="carousel-control-next" href="#carouselIndicators" role="button" data-slide="next">
+							<span class="carousel-control-next-icon" aria-hidden="true"></span>
+							<span class="sr-only">Prossima</span>
+						</a>
+						-->
+					</div><!-- /carouselExampleIndicators -->
+					<div class="py-4">
+						<a class="text-underline"
+							href="<?php echo get_post_type_archive_link( 'circolare' ); ?>"><strong><?php _e( 'Vedi tutte', 'design_scuole_italia' ); ?></strong></a>
+					</div>
+				</div>
+	  		<!-- NOTIZIE -->
 				<?php
 				// Loop through each selected news type
 				foreach ( $tipologie_notizie as $id_tipologia_notizia ) {
@@ -212,54 +260,6 @@ if ( is_array( $tipologie_notizie ) && count( $tipologie_notizie ) ) {
 				}
 				?>
 
-				<!-- CIRCOLARI -->
-				<div class="col-lg-4">
-
-					<div class="title-section pb-4">
-						<h2><?php _e( 'Comunicazioni', 'design_scuole_italia' ); ?></h2>
-					</div><!-- /title-section -->
-					<?php
-					$args  = array(
-						'post_type'      => 'circolare',
-						'posts_per_page' => $home_numero_circolari,
-					);
-					$posts = get_posts( $args );
-					// @customization view circolari as a carousel of cards - #Marconi-theme
-					?>
-
-					<div id="carouselIndicators-circ" class="carousel slide" data-ride="carousel">
-						<ol class="carousel-indicators">
-							<?php foreach ( $posts as $key => $post ) { ?>
-								<li data-target="#carouselIndicators-circ"
-									data-slide-to="<?php echo $key; ?>" <?php echo $key === 0 ? 'class="active"' : ''; ?>></li>
-							<?php } ?>
-						</ol>
-
-						<div class="carousel-inner">
-							<?php foreach ( $posts as $key => $post ) { ?>
-								<div class="carousel-item <?php echo $key === 0 ? 'active' : ''; ?>"
-									data-interval="<?php echo $home_circolari_carousel_speed; ?>">
-									<?php get_template_part( 'template-parts/single/card', 'circolare' ); ?>
-								</div>
-							<?php } ?>
-						</div>
-						<!-- Uncomment per aggiungere le frecce laterali -->
-						<!--
-						<a class="carousel-control-prev" href="#carouselIndicators" role="button" data-slide="prev">
-							<span class="carousel-control-prev-icon" aria-hidden="true"></span>
-							<span class="sr-only">Precedente</span>
-						</a>
-						<a class="carousel-control-next" href="#carouselIndicators" role="button" data-slide="next">
-							<span class="carousel-control-next-icon" aria-hidden="true"></span>
-							<span class="sr-only">Prossima</span>
-						</a>
-						-->
-					</div><!-- /carouselExampleIndicators -->
-					<div class="py-4">
-						<a class="text-underline"
-							href="<?php echo get_post_type_archive_link( 'circolare' ); ?>"><strong><?php _e( 'Vedi tutte', 'design_scuole_italia' ); ?></strong></a>
-					</div>
-				</div>
 
 			</div><!-- /row -->
 		</div><!-- /container -->
