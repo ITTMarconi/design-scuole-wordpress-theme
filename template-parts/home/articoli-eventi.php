@@ -187,7 +187,7 @@ if ( is_array( $tipologie_notizie ) && count( $tipologie_notizie ) ) {
 										<?php foreach ( $posts as $key => $post ) { ?>
 											<div class="carousel-item <?php echo $key === 0 ? 'active' : ''; ?>"
 												data-interval="<?php echo get_option_value( $ct, 'speed' ); ?>">
-												<?php get_template_part( 'template-parts/single/card', 'vertical-thumb' ); ?>
+												<?php get_template_part( 'template-parts/single/card', 'horizontal-thumb' ); ?>
 											</div>
 										<?php } ?>
 									</div>
