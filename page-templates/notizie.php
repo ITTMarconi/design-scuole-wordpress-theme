@@ -17,9 +17,11 @@ get_header();
 
 			get_template_part("template-parts/hero/notizie");
 
+			$ct=1;
+      get_template_part("template-parts/home/notizie", "circolari");
+      $ct++;
 
 			$tipologie_notizie = dsi_get_option("tipologie_notizie", "notizie");
-			$ct=1;
 			if(is_array($tipologie_notizie) && count($tipologie_notizie)){
 				foreach ( $tipologie_notizie as $id_tipologia_notizia ) {
 					$tipologia_notizia = get_term_by("id", $id_tipologia_notizia, "tipologia-articolo");
@@ -29,10 +31,7 @@ get_header();
 
 			}
 
-            get_template_part("template-parts/home/notizie", "circolari");
-            $ct++;
-            get_template_part("template-parts/home/eventi");
-
+      get_template_part("template-parts/home/eventi");
 
 		endwhile; // End of the loop.
 		?>
