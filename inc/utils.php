@@ -768,7 +768,7 @@ function dsi_is_albo($post){
  * Converte l'anno scolastico nel formato da stampare
  */
 function dsi_convert_anno_scuola($anno){
-    if(is_int($anno)) {
+    if(is_numeric($anno)) {
         $nextanno = $anno + 1;
         return $anno . "/" . $nextanno;
     }else{
