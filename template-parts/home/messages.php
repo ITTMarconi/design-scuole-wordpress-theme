@@ -18,9 +18,9 @@
                     <path d="M483.658,391.382l-206.6-334.7c-17.2-26.8-44-26.8-61.2,0l-206.5,334.7c-21,36.3-5.7,65,36.3,65h399.7C489.358,456.382,504.658,427.781,483.658,391.382z M451.158,437.281h-409.3c-21,0-28.7-15.3-17.2-32.5l210.4-340.399c5.7-11.5,17.2-11.5,24.899,0l210.4,340.399C479.858,421.981,472.158,437.281,451.158,437.281z"/>
                 </svg>
                 <?php endif; ?>
-                <?php echo nl2br($message['testo_message']) ?>
+                <strong><?php echo nl2br($message['testo_message']) ?></strong>
                 <?php if($message['link_message']): ?>
-                    <a href="<?php echo $message['link_message']; ?>" class="btn btn-sm btn-outline-<?php echo $color; ?> ml-3">Dettagli</a>
+                    <a href="<?php echo $message['link_message']; ?>" target="_blank" class="btn btn-sm btn-outline-<?php echo $color; ?> ml-3">Apri</a>
                 <?php endif; ?>
             </p>
         </div>
