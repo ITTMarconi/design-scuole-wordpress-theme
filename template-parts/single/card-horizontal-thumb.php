@@ -6,7 +6,7 @@ global $post, $autore;
 $autore = get_user_by("ID", $post->post_author);
 
 $image_id = get_post_thumbnail_id($post);
-$image_url = get_the_post_thumbnail_url($post, "vertical-card");
+$image_url = get_the_post_thumbnail_url($post, "medium");
 $post_link = get_permalink($post);
 
 //@customization Add te ability to parse markdown in the description
