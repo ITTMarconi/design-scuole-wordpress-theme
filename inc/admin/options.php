@@ -439,13 +439,13 @@ function dsi_register_main_options_metabox() {
     $home_options->add_field( array(
         'id' => $prefix . 'home_istruzioni_banner',
         'name'        => __( 'Sezione Banner', 'design_scuole_italia' ),
-        'desc' => __( 'Gestione sezione Banner (opzionale) mostrata in home page' , 'design_scuole_italia' ),
+        'desc' => __( 'Gestione sezione Banner (opzionale) mostrata in home page in alto o nel footer' , 'design_scuole_italia' ),
         'type' => 'title',
     ) );
 
     $home_options->add_field(  array(
         'id' => $prefix.'visualizza_banner',
-        'name'    => __( 'Visualizza la fascia banner', 'design_scuole_italia' ),
+        'name'    => __( 'Visualizza la fascia banner in alto', 'design_scuole_italia' ),
         'type'    => 'radio_inline',
         'options' => array(
             'si' => __( 'Si', 'design_scuole_italia' ),
@@ -454,6 +454,16 @@ function dsi_register_main_options_metabox() {
         'default' => "no"
     ) );
 
+    $home_options->add_field(  array(
+        'id' => $prefix.'visualizza_banner_in_fondo',
+        'name'    => __( 'Visualizza la fascia banner in fondo', 'design_scuole_italia' ),
+        'type'    => 'radio_inline',
+        'options' => array(
+            'si' => __( 'Si', 'design_scuole_italia' ),
+            'no'   => __( 'No', 'design_scuole_italia' ),
+        ),
+        'default' => "no"
+    ) );
 
     $bsnner_group_id = $home_options->add_field( array(
         'id'          =>  $prefix . 'banner_group',

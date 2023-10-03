@@ -74,11 +74,13 @@
                             <?php if($linkedin = dsi_get_option( "linkedin", "socials" )) :?><a href="<?php echo $linkedin; ?>" aria-label="linkedin" title="vai alla pagina linkedin"><svg class="icon it-social-linkedin"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#it-social-linkedin"></use></svg></a><?php endif; ?>
                             <?php if($telegram = dsi_get_option( "telegram", "socials" )) :?><a href="<?php echo $telegram; ?>" aria-label="telegram" title="vai su Telegram"><svg class="icon it-social-telegram"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#it-social-telegram"></use></svg></a><?php endif; ?>
                         </div><!-- /footer-social-wrapper -->
-                    </div><!-- /gooter-social -->
+                    </div><!-- /footer-social -->
                 <?php endif ?>
             </div>
         </div><!-- /row -->
-        <?php
+        <!--@customization add banners for badges and sponsors -->
+         <?php
+        get_template_part("template-parts/home/banners-grid");
         $footer_text = dsi_get_option("footer_text", "setup");
         if(isset($footer_text) && trim($footer_text) != "") {
             //@customization Change the filter wordpress function wpautop to the custom function wpautop_icons in functions.php

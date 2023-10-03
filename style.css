@@ -40,7 +40,7 @@ Text Domain: design_scuole_italia
 ...
 }
 
- */ 
+ */
 
 .pulsanti-group {
   opacity: 1;
@@ -112,7 +112,7 @@ Text Domain: design_scuole_italia
 }
 
 .carousel-item {
-  padding-bottom: 10px  !important;
+  padding-bottom: 10px !important;
   padding-top: 10px !important;
   width: 95% !important;
 }
@@ -134,7 +134,8 @@ Text Domain: design_scuole_italia
   background-color: var(--menu-bluelectric);
 }
 
-.bg-menu-bluelectric:hover, .bg-menu-bluelectric:focus {
+.bg-menu-bluelectric:hover,
+.bg-menu-bluelectric:focus {
   background-color: var(--menu-bluelectric-hover);
 }
 
@@ -142,7 +143,8 @@ Text Domain: design_scuole_italia
   background-color: var(--menu-redbrown);
 }
 
-.bg-menu-redbrown:hover, .bg-menu-redbrown:focus {
+.bg-menu-redbrown:hover,
+.bg-menu-redbrown:focus {
   background-color: var(--menu-redbrown-hover);
 }
 
@@ -150,7 +152,8 @@ Text Domain: design_scuole_italia
   background-color: var(--menu-purplelight);
 }
 
-.bg-menu-purplelight:hover, .bg-menu-purplelight:focus {
+.bg-menu-purplelight:hover,
+.bg-menu-purplelight:focus {
   background-color: var(--menu-purplelight-hover);
 }
 
@@ -158,7 +161,8 @@ Text Domain: design_scuole_italia
   background-color: var(--menu-greendark);
 }
 
-.bg-menu-greendark:hover, .bg-menu-greendark:focus {
+.bg-menu-greendark:hover,
+.bg-menu-greendark:focus {
   background-color: var(--menu-greendark-hover);
 }
 
@@ -175,7 +179,7 @@ li.flag-it a {
   margin-right: 16px;
 }
 
-@media (min-width: 768px) and (max-width:991.98px) {
+@media (min-width: 768px) and (max-width: 991.98px) {
   .absolute-orizontal-position {
     position: absolute !important;
     left: 30% !important;
@@ -183,12 +187,12 @@ li.flag-it a {
   }
 }
 
-@media (min-width: 992px) and (max-width:1199.98px) {
+@media (min-width: 992px) and (max-width: 1199.98px) {
   .absolute-orizontal-position {
     position: absolute !important;
     left: 30% !important;
     transform: translateX(-30%) !important;
-    }
+  }
 }
 
 @media (min-width: 1200px) {
@@ -235,3 +239,142 @@ li.flag-it a {
     opacity: 1;
   }
 }
+
+/* Grid container */
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+  gap: 20px;
+  justify-items: center;
+  align-items: center;
+}
+
+/* Grid items */
+.grid-item {
+  text-align: center;
+}
+
+.grid-item img {
+  max-width: 100%;
+  height: auto;
+}
+
+.section-footer:before {
+  display: block;
+  content: "";
+  width: 100%;
+  height: 1px;
+  background-color: #fff;
+  top: 0;
+  left: 0;
+  position: absolute;
+  z-index: 1;
+  opacity: 0.27;
+}
+.section.section-footer {
+  position: relative;
+  margin: 20px 0 0 0;
+  margin-right: -6px;
+  margin-left: -6px;
+  padding: 20px 0 0px 0;
+}
+
+/* Remove default list styling */
+.footer-text ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Style each list item */
+.footer-text ul li {
+  margin: 5px;
+  padding: 0;
+  text-align: center;
+}
+
+/* Optional: Add media query for smaller screens */
+@media (max-width: 600px) {
+  .footer-text ul {
+    flex-direction: column;
+  }
+}
+
+div.nsl-container.nsl-container-block .nsl-container-buttons {
+  display: grid !important;
+  grid-template-columns: minmax(145px, auto);
+}
+
+.nsl-container-buttons a {
+  color: #000;
+  background-color: #fff !important;
+  border-color: #e6e6e6;
+
+  padding: 12px 24px;
+  font-size: 16px;
+  white-space: initial;
+  display: block;
+  width: 100%;
+  border-radius: 4px !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.15),
+    0 1px 1px rgba(0, 0, 0, 0.075);
+  font-weight: 600;
+  text-align: center;
+  background-color: transparent;
+  border: 0 solid transparent;
+  line-height: 1.5;
+  transition:
+    color 0.15s ease-in-out,
+    background-color 0.15s ease-in-out,
+    border-color 0.15s ease-in-out,
+    box-shadow 0.15s ease-in-out;
+}
+
+.nsl-container-buttons a:hover {
+  color: #000;
+  background-color: #ececec !important;
+  border-color: #e6e6e6;
+}
+
+
+/* Stili Albo Pretorio */
+#DatiAtto {
+    font-size: 16px;
+}
+
+
+#DatiAtto svg {
+	width: 2em !important;
+	height: 2em !important;
+}
+
+#CookiebotWidget, #CookiebotWidget * {
+	font-family: "Titillium Web",Geneva,Tahoma,sans-serif !important;
+}
+/*
+.tabalbo td {
+    font-size: 1.2em !important;
+}
+
+div.Visalbo {
+	font-size: 1.2em !important;
+}
+
+.tabalbo {
+    margin-top: 1em !important;
+
+}
+*/
+
+/*
+#DatiAtto .alert-info {
+    background-position: 10px 10px;align-content
+}
+
+*/
