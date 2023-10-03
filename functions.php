@@ -324,6 +324,34 @@ function marconi_scripts() {
 }
 add_action( 'wp_enqueue_scripts', 'marconi_scripts' );
 
+function lines_to_list($text) {
+    // Normalize line breaks and split the text into lines
+    $text = str_replace("\r\n", "\n", $text);
+    $text = str_replace("\r", "\n", $text);
+    $lines = explode("\n", $text);
+
+    // Start the <ul> element
+    $output = '<ul>';
+
+    // Loop through each line and add it as a list item
+    foreach ($lines as $line) {
+        // Remove leading/trailing whitespace
+        $line = trim($line);
+
+        // Skip empty lines
+        if (empty($line)) {
+            continue;
+        }
+
+        $output .= '<li>' . esc_html($line) . '</li>';
+    }
+
+    // Close the </ul> element
+    $output .= '</ul>';
+
+    return $output;
+}
+
 // @customization Define a custom wpautop function that substitutes prefixed lines with links and icons
 // valid prefixes:
 // mail: mailto: link with email icon
@@ -333,7 +361,7 @@ add_action( 'wp_enqueue_scripts', 'marconi_scripts' );
 // map:  link to google maps search of the line
 function wpautop_icons($content) {
     // Apply the existing wpautop function
-    $content = wpautop($content);
+    $content = lines_to_list($content);
 
     // Replace lines starting with mail:
     $content = preg_replace_callback(
@@ -382,7 +410,7 @@ function wpautop_icons($content) {
  
     // Replace lines starting with map:
     $content = preg_replace_callback(
-        '/map:(.+)\<\/p\>/',
+        '/map:(.+)\<\/li\>/',
         function($matches) {
             $address = urlencode($matches[1]);
             $icon = '<svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 384 512"><path d="M215.7 499.2C267 435 384 279.4 384 192C384 86 298 0 192 0S0 86 0 192c0 87.4 117 243 168.3 307.2c12.3 15.3 35.1 15.3 47.4 0zM192 128a64 64 0 1 1 0 128 64 64 0 1 1 0-128z"/></svg>';
@@ -393,3 +421,4 @@ function wpautop_icons($content) {
 
     return $content;
 }
+
