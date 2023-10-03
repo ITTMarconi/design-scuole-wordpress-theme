@@ -136,10 +136,10 @@ function dsi_add_struttura_metaboxes() {
     $cmb_sottotitolo->add_field( array(
         'id' => $prefix . 'descrizione',
         'name'        => __( 'Descrizione Breve', 'design_scuole_italia' ),
-        'desc' => __( 'Indicare una sintetica descrizione della struttura (max 160 caratteri) ' , 'design_scuole_italia' ),
+        'desc' => __( 'Indicare una sintetica descrizione della struttura (max 240 caratteri) ' , 'design_scuole_italia' ),
         'type' => 'textarea',
         'attributes'    => array(
-            'maxlength'  => '160'
+            'maxlength'  => '240'
         ),
     ) );
 

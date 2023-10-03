@@ -103,10 +103,10 @@ function dsi_add_luogo_metaboxes() {
 	$cmb_aftertitle_luoghi->add_field( array(
 		'id'         => $prefix . 'descrizione_breve',
 		'name'       => __( 'Descrizione breve *', 'design_scuole_italia' ),
-		'desc'       => __( 'Sintetica descrizione del luogo (inferiore 160 caratteri)', 'design_scuole_italia' ),
+		'desc'       => __( 'Sintetica descrizione del luogo (inferiore 500 caratteri)', 'design_scuole_italia' ),
 		'type'       => 'textarea',
 		'attributes'    => array(
-			'maxlength'  => '160',
+			'maxlength'  => '500',
 			'required'    => 'required'
 		),
 	) );

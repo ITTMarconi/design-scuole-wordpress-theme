@@ -141,10 +141,10 @@ function dsi_add_servizi_metaboxes() {
 	$cmb_sottotitolo->add_field( array(
 		'id' => $prefix . 'descrizione',
 		'name'        => __( 'Descrizione *', 'design_scuole_italia' ),
-		'desc' => __( 'Indicare una sintetica descrizione del Servizio (max 160 caratteri) utilizzando un linguaggio semplice che possa aiutare qualsiasi utente a identificare con chiarezza il Servizio. Non utilizzare un linguaggio ricco di riferimenti normativi. Vincoli: 160 caratteri spazi inclusi.' , 'design_scuole_italia' ),
+		'desc' => __( 'Indicare una sintetica descrizione del Servizio (max 240 caratteri) utilizzando un linguaggio semplice che possa aiutare qualsiasi utente a identificare con chiarezza il Servizio. Non utilizzare un linguaggio ricco di riferimenti normativi. Vincoli: 240 caratteri spazi inclusi.' , 'design_scuole_italia' ),
 		'type' => 'textarea',
 		'attributes'    => array(
-			'maxlength'  => '160',
+			'maxlength'  => '240',
 			'required'    => 'required'
 		),
 	) );
