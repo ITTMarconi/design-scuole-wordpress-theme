@@ -23,7 +23,7 @@ $image_url = get_the_post_thumbnail_url($post, "vertical-card");
 	        ?>
             <p><?php echo $parsedown->text($post->_dsi_circolare_descrizione); ?></p>
             <?php
-        } else {                        
+        } else {
             ?>
             <p><?php echo get_the_excerpt($post); ?></p>
 	        <?php

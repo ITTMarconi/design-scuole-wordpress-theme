@@ -42,14 +42,14 @@ function dsi_add_articolo_metaboxes() {
 	$prefix = '_dsi_articolo_';
 
 
-    $cmb_abstrat = new_cmb2_box( array(
+    $cmb_abstract = new_cmb2_box( array(
         'id'           => $prefix . 'box_abstract',
         'object_types' => array( 'post' ),
         'context'      => 'after_title',
         'priority'     => 'high',
     ) );
 
-    $cmb_abstrat->add_field( array(
+    $cmb_abstract->add_field( array(
         'id' => $prefix . 'tipologia',
         'name'        => __( 'Tipologia articolo *', 'design_scuole_italia' ),
         'type'             => 'taxonomy_radio_inline',
