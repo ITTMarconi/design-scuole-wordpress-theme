@@ -126,6 +126,12 @@ function dsi_register_main_options_metabox() {
     ) );
 
     $contacts_options->add_field( array(
+        'id' => $prefix . 'contatti_fax',
+        'name'        => __( 'Fax', 'design_comuni_italia' ),
+        'type' => 'text_medium',
+    ) );
+
+    $contacts_options->add_field( array(
         'id' => $prefix . 'contatti_PEO',
         'name' => 'Posta Elettronica Ordinaria (PEO)',
         'type' => 'text_email',
@@ -158,6 +164,12 @@ function dsi_register_main_options_metabox() {
     $contacts_options->add_field( array(
         'id' => $prefix . 'contatti_CUF',
         'name' => 'Codice Unico di Fatturazione (CUF)',
+        'type' => 'text',
+    ) );
+
+    $contacts_options->add_field( array(
+        'id' => $prefix . 'contatti_AOO',
+        'name' => 'Area Organizzativa Omogenea (AOO)',
         'type' => 'text',
     ) );
 

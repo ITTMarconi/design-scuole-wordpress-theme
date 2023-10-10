@@ -16959,10 +16959,10 @@ button.icon-text {
   text-decoration: underline;
 }
 .text-underline-hover {
-  text-decoration: underline;
+  text-decoration: none;
 }
 .text-underline-hover:hover {
-  text-decoration: none;
+  text-decoration: underline;
 }
 .footer-link a {
   text-decoration: underline;
