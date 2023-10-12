@@ -45,30 +45,55 @@ if ($home_show_events == 'false') {
     <div class="container">
         <div class="row variable-gutters">
         <!-- CIRCOLARI -->
-        <div class="col-lg-4">
-            <div class="title-section pb-4">
-            <h2><?php _e('Comunicazioni', 'design_scuole_italia'); ?></h2>
-            </div><!-- /title-section -->
-            <?php
-            $args = array(
-              'post_type'           => 'circolare',
-              'posts_per_page'      => $home_numero_comunicazioni,
+        <?php
+        // Get term IDs from $tipologia_comunicazioni
+        $tipologia_comunicazioni = get_term_by('id', $id_tipologia_comunicazioni, 'tipologia-articolo');
+
+        // Set the arguments for the query
+        $args = array(
+          'posts_per_page'      => $home_numero_comunicazioni,
+          'tax_query'           => array(
+            array(
+              'taxonomy' => 'tipologia-articolo',
+              'field'    => 'term_id',
+              'terms'    => $tipologia_comunicazioni->term_id,
+            ),
+          ),
+        );
+        // Filter the query by the number of days specified in the option
+        if ($giorni_per_filtro != '' || $giorni_per_filtro > 0) {
+            $filter = array(
+            'date_query' => array(
+              array(
+                'after'     => '-' . $giorni_per_filtro . ' day',
+                'inclusive' => true,
+              ),
+            ),
             );
-            $posts = get_posts($args);
-            ?>
+            // Merge the filter arguments with the query arguments
+            $args   = array_merge($args, $filter);
+        }
+        // Retrieve the posts for all news types
+        $all_posts = get_posts($args);
+        // Set the column width for the news type section
+        $lg = 4;
+        // @customization view the two types of news as a carousel of cards - #Marconi-theme
+        ?>
+        <div class="col-lg-<?php echo $lg; ?>">
+            <div class="title-section pb-4">
+              <h2>Comunicazioni</h2>
+            </div><!-- /title-section -->
             <div id="carouselIndicators-comunicazioni" class="carousel slide" data-ride="carousel">
               <ol class="carousel-indicators">
-              <!-- <?php echo count($posts); ?> -->
-                
-                <?php foreach ($posts as $key => $post) { ?>
+                <?php foreach ($all_posts as $key => $post) { ?>
                   <li data-target="#carouselIndicators-comunicazioni" data-slide-to="<?php echo $key; ?>" <?php echo $key === 0 ? 'class="active"' : ''; ?>></li>
                 <?php } ?>
               </ol>
 
               <div class="carousel-inner">
-                <?php foreach ($posts as $key => $post) { ?>
+                <?php foreach ($all_posts as $key => $post) { ?>
                   <div class="carousel-item <?php echo $key === 0 ? 'active' : ''; ?>" data-interval="<?php echo $home_comunicazioni_carousel_speed; ?>">
-                    <?php get_template_part('template-parts/single/card', 'circolare-thumb'); ?>
+                    <?php get_template_part('template-parts/single/card', 'horizontal-thumb'); ?>
                   </div>
                 <?php } ?>
               </div>
@@ -86,9 +111,9 @@ if ($home_show_events == 'false') {
 
             </div><!-- /carousel -->
             <div class="py-4">
-              <a class="text-underline" href="<?php echo get_post_type_archive_link('circolare'); ?>"><strong><?php _e('Vedi tutti', 'design_scuole_italia'); ?></strong></a>
+              <a class="text-underline" href="<?php echo get_term_link($tipologia_comunicazioni); ?>"><strong><?php _e('Vedi tutti', 'design_scuole_italia'); ?></strong></a>
             </div>
-        </div><!-- /col-lg-4 --> <!-- <?php echo "a"; ?> -->
+        </div><!-- /col-lg-4 --> <!-- <?php echo $tipologie_notizie; ?> -->
         <!-- NOTIZIE -->
         <?php
         // Get an array of term IDs from $tipologie_notizie

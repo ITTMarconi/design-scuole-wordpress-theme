@@ -13,11 +13,16 @@ function dsi_register_circolare_post_type()
         'add_new' => _x('Aggiungi una Circolare', 'Post Type Singular Name', 'design_scuole_italia'),
         'add_new_item' => _x('Aggiungi una nuova Circolare', 'Post Type Singular Name', 'design_scuole_italia'),
         'edit_item' => _x('Modifica la Circolare', 'Post Type Singular Name', 'design_scuole_italia'),
+        'featured_image' => __( 'Immagine in evidenza', 'design_scuole_italia' ),
+		'set_featured_image' => __( 'Seleziona Immagine' ),
+		'remove_featured_image' => __( 'Rimuovi Immagine' , 'design_scuole_italia' ),
+		'use_featured_image' => __( 'Usa come Immagine' , 'design_scuole_italia' ),
+
     );
     $args = array(
         'label' => __('Circolare', 'design_scuole_italia'),
         'labels' => $labels,
-        'supports' => array('title', 'editor'),
+        'supports' => array('title', 'editor', 'thumbnail'),
         'taxonomies' => array('post_tag'),
         'hierarchical' => false,
         'public' => true,

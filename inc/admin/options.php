@@ -305,7 +305,7 @@ function dsi_register_main_options_metabox() {
     $home_options->add_field( array(
         'id' => $prefix . 'home_istruzioni_1',
         'name'        => __( 'Sezione Notizie', 'design_scuole_italia' ),
-        'desc' => __( 'Gestione Notizie / Articoli / Eventi mostrati in home page' , 'design_scuole_italia' ),
+        'desc' => __( 'Gestione Comunicazioni / Notizie / Eventi mostrati in home page' , 'design_scuole_italia' ),
         'type' => 'title',
     ) );
 
@@ -342,6 +342,30 @@ function dsi_register_main_options_metabox() {
     //@customization Custom field for carousel options
     //Se in selezione automatica visualizza i aggiuntivi per la configurazione del carousel delle notizie/circolarri
     $home_options->add_field(array(
+        'id' => $prefix . 'home_numero_comunicazioni',
+        'name' => __('Numero di comunicazioni', 'design_scuole_italia'),
+        'desc' => __('Numero di comunicazioni', 'design_scuole_italia'),
+        'type' => 'text_small',
+        'default' => '5',
+        'attributes' => array(
+            'data-conditional-id' => $prefix . 'home_is_selezione_automatica',
+            'data-conditional-value' => "true",
+        ),
+    ));
+
+    $home_options->add_field(array(
+        'id' => $prefix . 'home_comunicazioni_carousel_speed',
+        'name' => __('Velocità', 'design_scuole_italia'),
+        'desc' => __('Velocità di transizione tra una comunicazione e l\'altra (in millisecondi)', 'design_scuole_italia'),
+        'type' => 'text_small',
+        'default' => '5000',
+        'attributes' => array(
+            'data-conditional-id' => $prefix . 'home_is_selezione_automatica',
+            'data-conditional-value' => "true",
+        ),
+    ));
+ 
+    $home_options->add_field(array(
         'id' => $prefix . 'home_numero_notizie',
         'name' => __('Numero di notizie', 'design_scuole_italia'),
         'desc' => __('Numero di notizie da mostrare', 'design_scuole_italia'),
@@ -366,9 +390,9 @@ function dsi_register_main_options_metabox() {
     ));
 
     $home_options->add_field(array(
-        'id' => $prefix . 'home_numero_rassegne_stampa',
-        'name' => __('Numero di articoli di giornale', 'design_scuole_italia'),
-        'desc' => __('Numero di articolo per la rassegne stampa', 'design_scuole_italia'),
+        'id' => $prefix . 'home_numero_eventi',
+        'name' => __('Numero di eventi', 'design_scuole_italia'),
+        'desc' => __('Numero di eventi da mostrare', 'design_scuole_italia'),
         'type' => 'text_small',
         'default' => '5',
         'attributes' => array(
@@ -378,9 +402,9 @@ function dsi_register_main_options_metabox() {
     ));
 
     $home_options->add_field(array(
-        'id' => $prefix . 'home_rassegna_stampa_carousel_speed',
-        'name' => __('Velocità per gli articoli della rassegna stampa', 'design_scuole_italia'),
-        'desc' => __('Velocità di transizione tra un articolo e l\'altro (in millisecondi)', 'design_scuole_italia'),
+        'id' => $prefix . 'home_eventi_carousel_speed',
+        'name' => __('Velocità per il cambio di eventi', 'design_scuole_italia'),
+        'desc' => __('Velocità di transizione tra una notizia e l\'altra (in millisecondi)', 'design_scuole_italia'),
         'type' => 'text_small',
         'default' => '5000',
         'attributes' => array(
@@ -389,30 +413,7 @@ function dsi_register_main_options_metabox() {
         ),
     ));
 
-    $home_options->add_field(array(
-        'id' => $prefix . 'home_numero_circolari',
-        'name' => __('Numero di circolari', 'design_scuole_italia'),
-        'desc' => __('Numero di circolari', 'design_scuole_italia'),
-        'type' => 'text_small',
-        'default' => '5',
-        'attributes' => array(
-            'data-conditional-id' => $prefix . 'home_is_selezione_automatica',
-            'data-conditional-value' => "true",
-        ),
-    ));
-
-    $home_options->add_field(array(
-        'id' => $prefix . 'home_circolari_carousel_speed',
-        'name' => __('Velocità', 'design_scuole_italia'),
-        'desc' => __('Velocità di transizione tra una circolare e l\'altra (in millisecondi)', 'design_scuole_italia'),
-        'type' => 'text_small',
-        'default' => '5000',
-        'attributes' => array(
-            'data-conditional-id' => $prefix . 'home_is_selezione_automatica',
-            'data-conditional-value' => "true",
-        ),
-    ));
-    // Fine dei campi aggiuntivi
+   // Fine dei campi aggiuntivi
 
     $home_options->add_field(array(
             'name' => __('Selezione articoli ', 'design_scuole_italia'),
@@ -1300,7 +1301,6 @@ function dsi_register_main_options_metabox() {
 			),
 		)
 	);
-
 
 	/**
 	 * Registers Didattica option page.
