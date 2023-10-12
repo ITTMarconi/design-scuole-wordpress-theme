@@ -58,7 +58,6 @@ if ($home_show_events == 'false') {
             ?>
             <div id="carouselIndicators-comunicazioni" class="carousel slide" data-ride="carousel">
               <ol class="carousel-indicators">
-              <!-- <?php echo count($posts); ?> -->
                 
                 <?php foreach ($posts as $key => $post) { ?>
                   <li data-target="#carouselIndicators-comunicazioni" data-slide-to="<?php echo $key; ?>" <?php echo $key === 0 ? 'class="active"' : ''; ?>></li>
@@ -153,7 +152,7 @@ if ($home_show_events == 'false') {
             <div class="py-4">
               <a class="text-underline" href="/tipologia-articolo/notizie/"><strong><?php _e('Vedi tutti', 'design_scuole_italia'); ?></strong></a>
             </div>
-        </div><!-- /col-lg-4 --> <!-- <?php echo $tipologie_notizie; ?> -->
+        </div><!-- /col-lg-4 -->
         <?php
 
         // <!-- EVENTI -->
