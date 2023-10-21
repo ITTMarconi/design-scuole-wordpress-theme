@@ -139,6 +139,7 @@ Old bluelectric: new #6B0DDE #250DDE #4B21F2
 
   /* definizione del sistema di colori */
   --white: #fff;
+  --black: #333;
   --dark: #17324d;
   --white-alpha: rgba(255, 255, 255, 0.15);
   --black-alpha: rgba(0, 0, 0, 0.075);
@@ -186,7 +187,8 @@ Old bluelectric: new #6B0DDE #250DDE #4B21F2
   --menu-greendark-hover: #084932; /* CroW 10.45:1 AAA */
   --menu-bluelectric: var(--bluelectric); /* CroW 8.53:1 AAA */
   --menu-bluelectric-hover: #130f51; /* CroW 17.28:1 AAA */
-
+  --pre-header-fg: var(--black);
+  --pre-header-bg: var(--white);
   /* Colors that pass WCAG from https://realtimecolors.com/docs/contrast-checker/?colors=ffffff-a41212-2a552a-7c19aa-5abcd3 */
   --text: #ffffff;
   --background: #a41212;
@@ -13210,7 +13212,8 @@ button.icon-text {
   margin: 0;
   font-weight: 700;
   line-height: 40px;
-  color: #fff;
+  color: var(--pre-header-fg);
+  background-color: var(--pre-header-bg);
   font-size: 0.875rem;
 }
 #pre-header::after {
@@ -13219,20 +13222,20 @@ button.icon-text {
   content: "";
 }
 #pre-header a {
-  color: #fff;
+  color: var(--pre-header-fg);
 }
 #pre-header .header-utils .header-notification-alert svg {
-  fill: white;
+  fill: var(--pre-header-fg);
 }
 #pre-header .header-utils .icon-wrapper img,
 #pre-header .header-utils .icon-wrapper svg {
-  fill: white;
+  fill: var(--pre-header-fg);
 }
 #pre-header .header-utils .avatar-wrapper {
-  border: 2px solid #fff;
+  border: 2px solid var(--pre-header-fg);
 }
 .header-top {
-  padding-top: 20px;
+  padding-top: 5px;
   padding-bottom: 20px;
 }
 .header-top::after {
