@@ -1,12 +1,12 @@
 <div id="pre-header">
     <div class="container">
         <div class="row variable-gutters">
-            <div class="col-3">
+            <div class="col-8">
                 <a href="https://www.miur.gov.it/" target="_blank" aria-label="MIUR - Collegamento esterno - Apre su nuova scheda">
                     <strong>Ministero dell'Istruzione e del Merito</strong>
                 </a>
             </div><!-- /col-6 -->
-            <div class="col-6 d-flex align-items-center justify-content-end">
+            <div class="col-2 d-flex align-items-center justify-content-end">
 
                 <?php
                 /*
@@ -21,7 +21,7 @@
                 $show_socials = dsi_get_option("show_socials", "socials");
                 if ($show_socials == "true") : ?>
                     <div class="header-social">
-                        <span>Seguici su:</span>
+                        <!-- <span>Seguici su:</span> -->
                         <div class="header-social-wrapper">
                             <?php if ($facebook = dsi_get_option("facebook", "socials")) : ?><a href="<?php echo $facebook; ?>" aria-label="facebook" title="vai alla pagina facebook"><svg class="icon it-social-facebook">
                                         <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#it-social-facebook"></use>
@@ -62,7 +62,7 @@
                     </button>
                 </div><!-- /header-search -->
             </div><!-- /col -->
-            <div class="col-3 header-utils-wrapper">
+            <div class="col-2 header-utils-wrapper">
                 <div class="header-utils">
                     <?php
                     if (!is_user_logged_in()) {
