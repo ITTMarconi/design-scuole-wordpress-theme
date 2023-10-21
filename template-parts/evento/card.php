@@ -1,11 +1,19 @@
 <?php
 global $post;
 $autore = get_user_by("ID", $post->post_author);
-
-$image_url = get_the_post_thumbnail_url($post, "vertical-card");
+$image_id = get_post_thumbnail_id($post);
+$image_url = get_the_post_thumbnail_url($post, "medium");
 
 ?>
-<div class="card card-bg card-event bg-white card-thumb-rounded">
+<div class="card card-bg card-event bg-white card-thumb-rounded card-horizontal-thumb">
+    <?php if ($image_url) { ?>
+        <div class="card-thumb">
+            <a href="<?php echo get_permalink($post); ?>">
+                <?php dsi_get_img_from_id_url( $image_id, $image_url ); ?>
+            </a>
+        </div>
+    <?php } ?>
+
 	<div class="card-body">
 		<div class="card-content">
 			<h3 class="h5"><a href="<?php echo get_permalink($post);     ?>"><?php echo get_the_title($post); ?></a></h3>

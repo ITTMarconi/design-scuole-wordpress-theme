@@ -10,36 +10,46 @@ $data_limite_filtro = strtotime('-' . $giorni_per_filtro . ' day');
 
 // @customization Custom extra Home fields - #Marconi-theme
 // This are the parameters for the carousel of notizie(max 2 types only selected in another section) and cirolari
-// Notizie carousel settings
-$home_notizie_carousel_speed = dsi_get_option('home_notizie_carousel_speed', 'homepage');
-$home_notizie_carousel_speed = intval($home_notizie_carousel_speed);
-if (!$home_notizie_carousel_speed) {
-    $home_notizie_carousel_speed = 5000;
-}
-
-$home_numero_notizie = dsi_get_option('home_numero_rassegne_stampa', 'homepage');
-$home_numero_notizie = intval($home_numero_notizie);
-if (!$home_numero_notizie) {
-    $home_numero_notizie = 5;
-}
 
 // Comunicazioni carousel settings
-$home_comunicazioni_carousel_speed = dsi_get_option('home_comunicazioni_carousel_speed', 'homepage');
-$home_comunicazioni_carousel_speed = intval($home_comunicazioni_carousel_speed);
-if (!$home_comunicazioni_carousel_speed) {
-    $home_comunicazioni_carousel_speed = 5000;
-}
-
 $home_numero_comunicazioni = dsi_get_option('home_numero_comunicazioni', 'homepage');
 $home_numero_comunicazioni = intval($home_numero_comunicazioni);
 if (!$home_numero_comunicazioni) {
     $home_numero_comunicazioni = 5;
 }
 
-$column = 1;
-if ($home_show_events == 'false') {
-    $column = 2;
+$home_comunicazioni_carousel_speed = dsi_get_option('home_comunicazioni_carousel_speed', 'homepage');
+$home_comunicazioni_carousel_speed = intval($home_comunicazioni_carousel_speed);
+if (!$home_comunicazioni_carousel_speed) {
+    $home_comunicazioni_carousel_speed = 5000;
 }
+
+// Notizie carousel settings
+$home_numero_notizie = dsi_get_option('home_numero_notizie', 'homepage');
+$home_numero_notizie = intval($home_numero_notizie);
+if (!$home_numero_notizie) {
+    $home_numero_notizie = 5;
+}
+
+$home_notizie_carousel_speed = dsi_get_option('home_notizie_carousel_speed', 'homepage');
+$home_notizie_carousel_speed = intval($home_notizie_carousel_speed);
+if (!$home_notizie_carousel_speed) {
+    $home_notizie_carousel_speed = 5000;
+}
+
+// Eventi carousel settings
+$home_numero_eventi = dsi_get_option('home_numero_eventi', 'homepage');
+$home_numero_eventi = intval($home_numero_eventi);
+if (!$home_numero_eventi) {
+    $home_numero_eventi = 5;
+}
+
+$home_eventi_carousel_speed = dsi_get_option('home_eventi_carousel_speed', 'homepage');
+$home_eventi_carousel_speed = intval($home_eventi_carousel_speed);
+if (!$home_eventi_carousel_speed) {
+    $home_eventi_carousel_speed = 5000;
+}
+
 ?>
 <section class="section bg-white py-2 py-lg-3 py-xl-5">
     <div class="container">
@@ -176,7 +186,7 @@ if ($home_show_events == 'false') {
             if ($home_show_events == 'true_event') {
                 $args  = array(
                 'post_type'           => 'evento',
-                'posts_per_page'      => 1,
+                'posts_per_page'      => $home_numero_eventi,
                 'meta_key'            => '_dsi_evento_timestamp_inizio',
                 'orderby'             => array(
                   'meta_value' => 'ASC',
@@ -195,9 +205,25 @@ if ($home_show_events == 'false') {
                 ),
                 );
                 $posts = get_posts($args);
-                foreach ($posts as $post) {
-                    get_template_part('template-parts/evento/card');
-                }
+                ?>
+                <div id="carouselIndicators-eventi" class="carousel slide" data-ride="carousel">
+                    <ol class="carousel-indicators">
+                    
+                    <?php foreach ($posts as $key => $post) { ?>
+                        <li data-target="#carouselIndicators-eventi" data-slide-to="<?php echo $key; ?>" <?php echo $key === 0 ? 'class="active"' : ''; ?>></li>
+                    <?php } ?>
+                    </ol>
+
+                    <div class="carousel-inner">
+                    <?php foreach ($posts as $key => $post) { ?>
+                        <div class="carousel-item <?php echo $key === 0 ? 'active' : ''; ?>" data-interval="<?php echo $home_comunicazioni_carousel_speed; ?>">
+                            <?php get_template_part('template-parts/evento/card'); ?>
+                        </div>
+                    <?php } ?>
+                    </div>
+                </div>
+            <?php
+            
             } else {
                 // $calendar_card = true;
                 // get_template_part("template-parts/evento/full_calendar");
