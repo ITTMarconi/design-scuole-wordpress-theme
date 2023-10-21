@@ -44,13 +44,11 @@ Text Domain: design_scuole_italia
 
 .pulsanti-group {
   opacity: 1;
-  animation-name: fadeIn;
-  -webkit-animation-name: fadeIn;
-  animation-duration: 1.5s;
-  -webkit-animation-duration: 1.5s;
-  animation-timing-function: ease-in-out;
-  -webkit-animation-timing-function: ease-in-out;
   visibility: visible !important;
+  animation: fadeInAnimation ease 3s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+
 }
 
 .pulsanti-group a:hover {
@@ -59,7 +57,8 @@ Text Domain: design_scuole_italia
 
 .pulsanti-group > div {
   flex-wrap: wrap;
-  gap: 2px;
+  gap: 5px;
+  filter: drop-shadow(2px 4px 25px black);
 }
 
 .beautiful-button {
@@ -204,6 +203,14 @@ li.flag-it a {
 }
 
 /* Animation styles */
+@keyframes fadeInAnimation {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+     }
+}
 @keyframes fadeIn {
   0% {
     transform: scale(0);
@@ -218,24 +225,6 @@ li.flag-it a {
   }
   100% {
     transform: scale(1);
-    opacity: 1;
-  }
-}
-
-@-webkit-keyframes fadeIn {
-  0% {
-    -webkit-transform: scale(0);
-    opacity: 0;
-  }
-  60% {
-    -webkit-transform: scale(1.1);
-  }
-  80% {
-    -webkit-transform: scale(0.9);
-    opacity: 1;
-  }
-  100% {
-    -webkit-transform: scale(1);
     opacity: 1;
   }
 }
