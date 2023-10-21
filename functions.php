@@ -443,3 +443,10 @@ function breadcrumb_fix( $string, $arg1 ) {
     return $string;
 }
 add_filter( 'breadcrumb_trail', 'breadcrumb_fix', 10, 3);
+
+// Aggiunge un css personalizzato per l'interfaccia di Admin
+function admin_theme_style() {
+    wp_enqueue_style('admin-style', get_template_directory_uri() . '/assets/css/admin-style.css');
+}
+add_action('admin_enqueue_scripts', 'admin_theme_style');
+
