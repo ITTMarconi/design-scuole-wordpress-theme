@@ -13232,7 +13232,14 @@ button.icon-text {
   fill: var(--pre-header-fg);
 }
 #pre-header .header-utils .avatar-wrapper {
-  border: 2px solid var(--pre-header-fg);
+  /* border: 2px solid var(--pre-header-fg); */
+  border: none;
+}
+#pre-header .search-btn {
+  color: var(--pre-header-fg);
+}
+#pre-header button.icon-text {
+    color: var(--pre-header-fg);
 }
 .header-top {
   padding-top: 5px;
