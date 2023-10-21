@@ -12,11 +12,8 @@ get_header();
     <main id="main-container" class="main-container redbrown">
         <?php
         if ( have_posts() ) :
-            $messages = dsi_get_option( "messages", "home_messages" );
-            if($messages && !empty($messages)) {
-                get_template_part("template-parts/home/messages");
-            }
 
+            $messages = dsi_get_option("messages", "home_messages");
             get_template_part("template-parts/hero/home");
 
             get_template_part("template-parts/home/banner");

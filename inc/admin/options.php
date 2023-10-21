@@ -224,6 +224,7 @@ function dsi_register_main_options_metabox() {
             'green'     => __( '<span class="radio-color green"></span>Verde', 'design_scuole_italia' ),
             'blue'     => __( '<span class="radio-color blue"></span>Blu', 'design_scuole_italia' ),
             'purple'     => __( '<span class="radio-color purple"></span>Viola', 'design_scuole_italia' ),
+            'transparent'     => __( '<span class="radio-color"></span>Trasparente', 'design_scuole_italia' ),
         ),
         'default' => 'yellow',
     ) );

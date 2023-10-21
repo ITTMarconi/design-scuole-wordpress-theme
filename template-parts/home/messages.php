@@ -5,7 +5,12 @@
     if(trim($message['testo_message']) == "") continue;
     $message_date = strtotime($message['data_message']);
     $now = strtotime("now");
-    $color = $message['colore_message'] == 'yellow' ? 'black' : 'white';
+    $btn_type =  match($message['colore_message']) {
+        'yellow' => 'btn-outline-black',
+        'transparent' => 'btn-outline-redbrown',
+        default => 'btn-outline-white',
+    };
+    
     if (($message_date != "") && ($message_date <= $now)) continue; ?>
 
     <div class="p-4 home-message <?php echo $message['colore_message'] ?>">
@@ -20,7 +25,7 @@
                 <?php endif; ?>
                 <strong><?php echo nl2br($message['testo_message']) ?></strong>
                 <?php if($message['link_message']): ?>
-                    <a href="<?php echo $message['link_message']; ?>" target="_blank" class="btn btn-sm btn-outline-<?php echo $color; ?> ml-3">Apri</a>
+                    <a href="<?php echo $message['link_message']; ?>" target="_blank" class="btn btn-sm <?php echo $btn_type; ?> ml-3">Apri</a>
                 <?php endif; ?>
             </p>
         </div>
