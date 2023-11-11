@@ -140,6 +140,7 @@ Old bluelectric: new #6B0DDE #250DDE #4B21F2
   /* definizione del sistema di colori */
   --white: #fff;
   --black: #333;
+  --yellow: #fc0;
   --dark: #17324d;
   --white-alpha: rgba(255, 255, 255, 0.15);
   --black-alpha: rgba(0, 0, 0, 0.075);
@@ -187,6 +188,8 @@ Old bluelectric: new #6B0DDE #250DDE #4B21F2
   --menu-greendark-hover: #084932; /* CroW 10.45:1 AAA */
   --menu-bluelectric: var(--bluelectric); /* CroW 8.53:1 AAA */
   --menu-bluelectric-hover: #130f51; /* CroW 17.28:1 AAA */
+  --menu-yellow: var(--yellow); /* CroW  AAA */
+  --menu-yellow-hover: #fc0; /* CroW  AAA */
   --pre-header-fg: var(--black);
   --pre-header-bg: var(--white);
   /* Colors that pass WCAG from https://realtimecolors.com/docs/contrast-checker/?colors=ffffff-a41212-2a552a-7c19aa-5abcd3 */
@@ -2620,7 +2623,7 @@ Old bluelectric: new #6B0DDE #250DDE #4B21F2
 }
 .home-message.yellow,
 .home-message.yellow .msg svg {
-  background-color: #fc0;
+  background-color: var(--yellow);
   color: #333 !important;
   fill: #333 !important;
 }

@@ -165,6 +165,17 @@ Text Domain: design_scuole_italia
   background-color: var(--menu-greendark-hover);
 }
 
+.bg-menu-yellow {
+  background-color: var(--menu-yellow);
+  color: var(--black);
+}
+
+.bg-menu-yellow:hover,
+.bg-menu-yellow:focus {
+  background-color: var(--menu-yellow-hover);
+  color: var(--black);
+}
+
 li.flag-it a {
   background-image: url(/wp-content/uploads/assets/images/logos/flag-it-jpg.webp);
   background-repeat: no-repeat;
