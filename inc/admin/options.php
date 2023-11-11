@@ -913,6 +913,20 @@ function dsi_register_main_options_metabox() {
 		),
 	) );
 
+    $main_options->add_field(array(
+        'id' => $prefix . 'altezza_immagine',
+        'name' => __('Altezza immagine hero in px', 'design_scuole_italia'),
+        'desc' => __('Altezza immagine hero in px', 'design_scuole_italia'),
+        'type' => 'text',
+		'attributes' => array(
+			'type' => 'number',
+            'min' => '480',
+			'pattern' => '\d*',
+			'required'    => 'required'
+		),
+		'sanitization_cb' => 'absint',
+		'escape_cb'       => 'absint',
+    ));
 	$main_options->add_field( array(
 		'id' => $prefix . 'citazione',
 			'name'        => __( 'Citazione', 'design_scuole_italia' ),

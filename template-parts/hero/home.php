@@ -2,10 +2,12 @@
 global $post, $messages;
 
 $img_identita = dsi_get_option("immagine", "la_scuola");
+$img_altezza = dsi_get_option("altezza_immagine", "la_scuola");
 //$id_scuola_principale = dsi_get_option("scuola_principale", "homepage");
 $landing_url = dsi_get_template_page_url("page-templates/la-scuola.php");
 ?>
-<section class="section bg-redbrown section-hero-marconi section-hero-left" style="background-image: url('<?php echo $img_identita; ?>');">
+<section class="section bg-redbrown section-hero-marconi section-hero-left" 
+         style="background-image: url('<?php echo $img_identita; ?>'); min-height: <?php echo $img_altezza ?>px;">
     <?php
     if ($messages && !empty($messages)) {
         get_template_part("template-parts/home/messages");
