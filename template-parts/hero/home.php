@@ -3,6 +3,7 @@ global $post, $messages;
 
 $img_identita = dsi_get_option("immagine", "la_scuola");
 $img_altezza = dsi_get_option("altezza_immagine", "la_scuola");
+$testo_hero = dsi_get_option("testo_hero", "la_scuola");
 //$id_scuola_principale = dsi_get_option("scuola_principale", "homepage");
 $landing_url = dsi_get_template_page_url("page-templates/la-scuola.php");
 ?>
@@ -12,7 +13,10 @@ $landing_url = dsi_get_template_page_url("page-templates/la-scuola.php");
     if ($messages && !empty($messages)) {
         get_template_part("template-parts/home/messages");
     }
-    ?>
+?>
+    <?php if ($testo_hero) { ?>
+        <h2 class="hero-text"><?php echo $testo_hero; ?></h2>
+    <?php } ?>
     <div class="hero-title sr-only sr-only-focusable">
         <div class="text-white font-weight-normal h4"><?php echo dsi_get_option("tipologia_scuola"); ?> </div>
         <h1><span class="text-white d-line d-xl-block"><?php echo dsi_get_option("nome_scuola"); ?></span> </h1>
