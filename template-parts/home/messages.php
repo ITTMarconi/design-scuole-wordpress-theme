@@ -13,7 +13,7 @@
     
     if (($message_date != "") && ($message_date <= $now)) continue; ?>
 
-    <div class="p-4 home-message <?php echo $message['colore_message'] ?>">
+    <div class="p-2 home-message <?php echo $message['colore_message'] ?>">
         <div class="home-message-content">
             <p class="msg">
                 <?php if(array_key_exists('icona_message', $message) && $message['icona_message']): ?>
