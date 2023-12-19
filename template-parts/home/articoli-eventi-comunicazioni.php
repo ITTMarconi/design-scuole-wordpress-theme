@@ -203,17 +203,17 @@ if ($home_show_events == 'false') {
                 $args  = array(
                 'post_type'           => 'evento',
                 'posts_per_page'      => 1,
-                'meta_key'            => '_dsi_evento_timestamp_inizio',
+                'meta_key'            => '_dsi_evento_timestamp_fine',
                 'orderby'             => array(
                   'meta_value' => 'ASC',
                   'date'       => 'ASC',
                 ),
                 'meta_query'          => array(
                   array(
-                    'key' => '_dsi_evento_timestamp_inizio',
+                    'key' => '_dsi_evento_timestamp_fine',
                   ),
                   array(
-                    'key'     => '_dsi_evento_timestamp_inizio',
+                    'key'     => '_dsi_evento_timestamp_fine',
                     'value'   => time(),
                     'compare' => '>=',
                     'type'    => 'numeric',

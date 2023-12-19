@@ -187,17 +187,17 @@ if (!$home_eventi_carousel_speed) {
                 $args  = array(
                 'post_type'           => 'evento',
                 'posts_per_page'      => $home_numero_eventi,
-                'meta_key'            => '_dsi_evento_timestamp_inizio',
+                'meta_key'            => '_dsi_evento_timestamp_fine',
                 'orderby'             => array(
                   'meta_value' => 'ASC',
                   'date'       => 'ASC',
                 ),
                 'meta_query'          => array(
                   array(
-                    'key' => '_dsi_evento_timestamp_inizio',
+                    'key' => '_dsi_evento_timestamp_fine',
                   ),
                   array(
-                    'key'     => '_dsi_evento_timestamp_inizio',
+                    'key'     => '_dsi_evento_timestamp_fine',
                     'value'   => time(),
                     'compare' => '>=',
                     'type'    => 'numeric',
@@ -216,7 +216,7 @@ if (!$home_eventi_carousel_speed) {
 
                     <div class="carousel-inner">
                     <?php foreach ($posts as $key => $post) { ?>
-                        <div class="carousel-item <?php echo $key === 0 ? 'active' : ''; ?>" data-interval="<?php echo $home_comunicazioni_carousel_speed; ?>">
+                        <div class="carousel-item <?php echo $key === 0 ? 'active' : ''; ?>" data-interval="<?php echo $home_eventi_carousel_speed; ?>">
                             <?php get_template_part('template-parts/evento/card'); ?>
                         </div>
                     <?php } ?>
