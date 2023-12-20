@@ -2598,6 +2598,9 @@ Old bluelectric: new #6B0DDE #250DDE #4B21F2
   margin-right: 10px;
   display: inline-block;
 }
+.home-message {
+  width: 100%;
+}
 .home-message.red,
 .home-message.red .msg svg {
   background-color: var(--redbrown);
@@ -16118,6 +16121,8 @@ button.icon-text {
   z-index: 0;
   min-height: 570px;
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
 }
 
 /* Hero Text Customization */
@@ -16284,6 +16289,10 @@ button.icon-text {
   line-height: 1.17;
   text-shadow: 3px 4px 6px black;
   text-align: center;
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 /*** End of Hero customization ***/
 

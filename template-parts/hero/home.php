@@ -7,7 +7,7 @@ $testo_hero = dsi_get_option("testo_hero", "la_scuola");
 //$id_scuola_principale = dsi_get_option("scuola_principale", "homepage");
 $landing_url = dsi_get_template_page_url("page-templates/la-scuola.php");
 ?>
-<section class="section bg-redbrown section-hero-marconi section-hero-left d-flex justify-content-center align-items-center" 
+<section class="section bg-redbrown section-hero-marconi section-hero-left justify-content-center align-items-center" 
          style="background-image: url('<?php echo $img_identita; ?>'); min-height: <?php echo $img_altezza ?>px;">
     <?php
     if ($messages && !empty($messages)) {
