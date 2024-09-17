@@ -33,8 +33,8 @@
                             </div>
                             <div class="col-lg-4 offset-lg-2 access-mobile-bg">
                                 <div class="access-login">
-                                    <h3><?php _e("Personale scolastico", "design_scuole_italia"); ?></h3>
-                                    <p class="text-large"><?php _e("Entra nel sito della scuola con le tue credenziali per gestire contenuti, visualizzare circolari e altre funzionalità.", "design_scuole_italia"); ?></p>
+                                    <h3><?php _e("Accesso Riservato", "design_scuole_italia"); ?></h3>
+                                    <p class="text-large"><?php _e("Accesso riservato agli autori e amministratori", "design_scuole_italia"); ?></p>
                                     <?php if(in_array('wp-spid-italia/wp-spid-italia.php', apply_filters('active_plugins', get_option('active_plugins')))){?>
                                         <div class="col text-center pt-4">
                                             <?php echo do_shortcode("[spid_login_button]"); ?>
