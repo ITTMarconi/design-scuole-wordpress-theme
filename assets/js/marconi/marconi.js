@@ -3,8 +3,9 @@ console.log("Enter Marconi Script");
 function showHero(evt) {
   //evt.preventDefault();
   evt.stopPropagation();
-  jQuery('.section-hero-marconi .hero-title').removeClass('sr-only sr-only-focusable');
-	console.log("SHOW Hero");
+  // Comment the following line to not show school red card	
+  // jQuery('.section-hero-marconi .hero-title').removeClass('sr-only sr-only-focusable');
+	//console.log("SHOW Hero");
 }
 
 function hideHero(evt) {
