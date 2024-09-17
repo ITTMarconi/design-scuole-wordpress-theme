@@ -25,8 +25,8 @@ $testo_argomenti = dsi_get_option("testo_argomenti", "setup");
             <div class="row variable-gutters">
                 <div class="col-md-5">
                     <div class="hero-title text-left">
-                        <h1 class="p-0 mb-2"><?php _e("Argomenti", "design_scuole_italia"); ?></h1>
-                        <h2 class="h4 font-weight-normal"><?php echo $testo_argomenti; ?></h2>
+                        <h1 class="p-0 mb-2 text-white"><?php _e("Argomenti", "design_scuole_italia"); ?></h1>
+                        <h2 class="h4 font-weight-normal text-white"><?php echo $testo_argomenti; ?></h2>
                     </div><!-- /hero-title -->
                 </div><!-- /col-md-5 -->
             </div><!-- /row -->
