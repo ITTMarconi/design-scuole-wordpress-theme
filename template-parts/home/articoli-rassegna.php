@@ -45,16 +45,16 @@ if (!$home_notizie_carousel_speed) {
 }
 
 // Eventi carousel settings
-$home_numero_eventi = dsi_get_option('home_numero_eventi', 'homepage');
-$home_numero_eventi = intval($home_numero_eventi);
-if (!$home_numero_eventi) {
-    $home_numero_eventi = 5;
+$home_numero_rassegna = dsi_get_option('home_numero_rassegna', 'homepage');
+$home_numero_rassegna = intval($home_numero_rassegna);
+if (!$home_numero_rassegna) {
+    $home_numero_rassegna = 5;
 }
 
-$home_eventi_carousel_speed = dsi_get_option('home_eventi_carousel_speed', 'homepage');
-$home_eventi_carousel_speed = intval($home_eventi_carousel_speed);
-if (!$home_eventi_carousel_speed) {
-    $home_eventi_carousel_speed = 5000;
+$home_rassegna_carousel_speed = dsi_get_option('home_rassegna_carousel_speed', 'homepage');
+$home_rassegna_carousel_speed = intval($home_rassegna_carousel_speed);
+if (!$home_rassegna_carousel_speed) {
+    $home_rassegna_carousel_speed = 5000;
 }
 
 ?>
@@ -119,7 +119,7 @@ if (!$home_eventi_carousel_speed) {
         // Set the arguments for the query
         $args = array(
           'post_type'           => 'post',
-          'posts_per_page'      => $home_numero_eventi,
+          'posts_per_page'      => $home_numero_rassegna,
           'tax_query'           => array(
             array(
               'taxonomy' => 'tipologia-articolo',

@@ -414,6 +414,30 @@ function dsi_register_main_options_metabox() {
         ),
     ));
 
+    $home_options->add_field(array(
+        'id' => $prefix . 'home_numero_rassegna',
+        'name' => __('Numero di articoli in rassegna stampa', 'design_scuole_italia'),
+        'desc' => __('Numero di articoli in rassegna stampa da mostrare', 'design_scuole_italia'),
+        'type' => 'text_small',
+        'default' => '5',
+        'attributes' => array(
+            'data-conditional-id' => $prefix . 'home_is_selezione_automatica',
+            'data-conditional-value' => "true",
+        ),
+    ));
+
+    $home_options->add_field(array(
+        'id' => $prefix . 'home_rassegna_carousel_speed',
+        'name' => __('Velocità per il cambio di articoli', 'design_scuole_italia'),
+        'desc' => __('Velocità di transizione tra un articolo e l\'altro (in millisecondi)', 'design_scuole_italia'),
+        'type' => 'text_small',
+        'default' => '5000',
+        'attributes' => array(
+            'data-conditional-id' => $prefix . 'home_is_selezione_automatica',
+            'data-conditional-value' => "true",
+        ),
+    ));
+
    // Fine dei campi aggiuntivi
 
     $home_options->add_field(array(
