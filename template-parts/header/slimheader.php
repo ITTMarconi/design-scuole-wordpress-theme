@@ -1,7 +1,7 @@
 <div id="pre-header">
     <div class="container">
         <div class="row variable-gutters">
-            <div class="col-8">
+            <div class="col-6">
                 <a href="https://www.miur.gov.it/" target="_blank" aria-label="MIUR - Collegamento esterno - Apre su nuova scheda">
                     <strong>Ministero dell'Istruzione e del Merito</strong>
                 </a>
@@ -62,8 +62,9 @@
                     </button>
                 </div><!-- /header-search -->
             </div><!-- /col -->
-            <div class="col-2 header-utils-wrapper">
+            <div class="col-4 header-utils-wrapper">
                 <div class="header-utils">
+                    <?php get_template_part("template-parts/header/header-common"); ?>
                     <?php
                     if (!is_user_logged_in()) {
                         get_template_part("template-parts/header/header-anon");

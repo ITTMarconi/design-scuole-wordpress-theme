@@ -389,6 +389,7 @@ if(is_search() || is_archive())
     </header><!-- /header -->
 
 	<?php get_template_part("template-parts/common/search-modal"); ?>
+	<?php get_template_part("template-parts/common/services-modal"); ?>
     <?php
     if(!is_user_logged_in())
         get_template_part("template-parts/common/access-modal");
