@@ -1317,8 +1317,29 @@ function dsi_register_main_options_metabox() {
 
 	$notizie_options->add_field( array(
 			'name'       => __('Tipologie Articoli', 'design_scuole_italia' ),
-			'desc' => __( 'Articoli aggregati per tipologie (es: articoli, circolari, notizie), . Seleziona le tipologie da mostrare. ', 'design_scuole_italia' ),
+			'desc' => __( 'Articoli aggregati per tipologie (es: articoli, circolari, notizie), . Seleziona le tipologie da mostrare come Notizie. ', 'design_scuole_italia' ),
 			'id' => $prefix . 'tipologie_notizie',
+			'type'    => 'pw_multiselect',
+			'options' => dsi_get_tipologia_articoli_options(),
+			'attributes' => array(
+				'placeholder' =>  __( 'Seleziona e ordina le tipologie di articoli da mostrare nella HomePage di sezione', 'design_scuole_italia' ),
+			),
+		)
+	);
+    $notizie_options->add_field( array(
+		'id' => $prefix . 'testo_rassegna',
+		'name'        => __( 'Descrizione Sezione', 'design_scuole_italia' ),
+		'desc' => __( 'es: "Le notizie del liceo scientifico Enriques dedicate a tutti i genitori, studenti, personale ATA e docenti"' , 'design_scuole_italia' ),
+		'type' => 'textarea',
+		'attributes'    => array(
+			'maxlength'  => '140'
+		),
+	) );
+
+	$notizie_options->add_field( array(
+			'name'       => __('Tipologie Articoli', 'design_scuole_italia' ),
+			'desc' => __( 'Articoli aggregati per tipologie (es: articoli, circolari, notizie), . Seleziona le tipologie da mostrare come Rassegna Stampa. ', 'design_scuole_italia' ),
+			'id' => $prefix . 'tipologie_rassegna',
 			'type'    => 'pw_multiselect',
 			'options' => dsi_get_tipologia_articoli_options(),
 			'attributes' => array(
