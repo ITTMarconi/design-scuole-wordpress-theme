@@ -216,10 +216,10 @@ if (!$home_rassegna_carousel_speed) {
             <div class="title-section pb-4">
               <h2>Rassegna Stampa</h2>
             </div><!-- /title-section -->
-            <div id="carouselIndicators" class="carousel slide" data-ride="carousel">
+            <div id="carouselIndicatorsRassegna" class="carousel slide" data-ride="carousel">
               <ol class="carousel-indicators">
                 <?php foreach ($all_posts as $key => $post) { ?>
-                  <li data-target="#carouselIndicators" data-slide-to="<?php echo $key; ?>" <?php echo $key === 0 ? 'class="active"' : ''; ?>></li>
+                  <li data-target="#carouselIndicatorsRassegna" data-slide-to="<?php echo $key; ?>" <?php echo $key === 0 ? 'class="active"' : ''; ?>></li>
                 <?php } ?>
               </ol>
 
