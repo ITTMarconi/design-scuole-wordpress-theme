@@ -2600,6 +2600,7 @@ Old bluelectric: new #6B0DDE #250DDE #4B21F2
 }
 .home-message {
   width: 100%;
+  opacity: 0.8;
 }
 .home-message.red,
 .home-message.red .msg svg {
