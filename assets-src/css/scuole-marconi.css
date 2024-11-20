@@ -15465,8 +15465,8 @@ button.icon-text {
   z-index: 1;
   top: 0;
   right: 0;
-  width: 50%;
   height: 100%;
+  aspect-ratio: 16 / 9;
   background-repeat: no-repeat;
   background-color: #455b71;
   background-size: cover;
