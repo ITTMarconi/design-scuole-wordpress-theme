@@ -8,7 +8,8 @@
     "version": "node scripts/config-sync && git add style.css && git add README.md",
     "postversion": "echo \"You can now publish your tag with 'git push --follow-tags'\"",
     "minify:css": "node scripts/minify-css.js",
-    "minify:js": "node scripts/minify-js.js"
+    "minify:js": "node scripts/minify-js.js",
+    "tail": "tailwindcss -i ./assets-src/css/tail.css -o ./assets/css/tail.css"
   },
   "repository": {
     "type": "git",
@@ -24,8 +25,11 @@
     "bootstrap-italia": "^2.0.9"
   },
   "devDependencies": {
+    "autoprefixer": "^10.4.20",
     "clean-css-cli": "^5.6.1",
+    "postcss": "^8.4.49",
     "replace-in-file": "^6.3.5",
+    "tailwindcss": "^3.4.17",
     "uglify-js": "^3.17.4"
   }
 }

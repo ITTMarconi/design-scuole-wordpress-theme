@@ -224,6 +224,7 @@ function dsi_scripts() {
 	wp_enqueue_style( 'dsi-overrides', get_template_directory_uri() . '/assets/css/overrides.css');
 	wp_enqueue_style( 'dsi-carousel-style', get_template_directory_uri() . '/assets/css/carousel-style-double.css');
 	wp_enqueue_style( 'dsi-splide-min', get_template_directory_uri() . '/assets/css/splide.min.css');
+	wp_enqueue_style( 'marconi-tailwind', get_template_directory_uri() . '/assets/css/tail.css');
 
 	wp_enqueue_script( 'dsi-modernizr', get_template_directory_uri() . '/assets/js/modernizr.custom.js');
 
