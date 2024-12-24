@@ -3,7 +3,11 @@
 // global $calendar_card;
 global $posts, $link_all, $card_type, $title;
 
-error_log("articoli-rassegna.php");
+error_log("articoli-notizie.php");
+
+
+$tipologie_notizie  = dsi_get_option('tipologie_notizie', 'notizie');
+error_log("tipologie_notizie: " . print_r($tipologie_notizie, true));
 
 $giorni_per_filtro  = dsi_get_option('giorni_per_filtro', 'homepage');
 $data_limite_filtro = strtotime('-' . $giorni_per_filtro . ' day');
@@ -11,39 +15,43 @@ $data_limite_filtro = strtotime('-' . $giorni_per_filtro . ' day');
 // @customization Custom extra Home fields - #Marconi-theme
 // This are the parameters for the carousel of notizie(max 2 types only selected in another section) and cirolari
 
-$tipologie = dsi_get_option('tipologie_rassegna', 'notizie');
-error_log("tipologie_rassegna: " . print_r($tipologie_rassegna, true));
-
-// Rassegna carousel settings
-$home_numero = dsi_get_option('home_numero_rassegna', 'homepage');
-$home_numero = intval($home_numero_rassegna);
-if (!$home_numero) {
-    $home_numero = 5;
+// Notizie carousel settings
+$home_numero_notizie = dsi_get_option('home_numero_notizie', 'homepage');
+$home_numero_notizie = intval($home_numero_notizie);
+if (!$home_numero_notizie) {
+    $home_numero_notizie = 5;
 }
 
+$home_notizie_carousel_speed = dsi_get_option('home_notizie_carousel_speed', 'homepage');
+$home_notizie_carousel_speed = intval($home_notizie_carousel_speed);
+if (!$home_notizie_carousel_speed) {
+    $home_notizie_carousel_speed = 5000;
+}
+
+
 ?>
-<!-- RASSEGNA STAMPA -->
+<!-- NOTIZIE -->
 <?php
-// Get an array of term IDs from $tipologie
+// Get an array of term IDs from $tipologie_notizie
 $term_ids = array_map(
     function ($id) {
         $term = get_term_by('id', $id, 'tipologia-articolo');
         return ($term) ? $term->term_id : null;
     },
-    $tipologie
+    $tipologie_notizie
 );
 
 // Set the arguments for the query
 $args = array(
-  'post_type'           => 'post',
-  'posts_per_page'      => $home_numero,
-  'tax_query'           => array(
-    array(
-      'taxonomy' => 'tipologia-articolo',
-      'field'    => 'term_id',
-      'terms'    => $term_ids,
-    ),
+'post_type'           => 'post',
+'posts_per_page'      => $home_numero_rassegna,
+'tax_query'           => array(
+  array(
+    'taxonomy' => 'tipologia-articolo',
+    'field'    => 'term_id',
+    'terms'    => $term_ids,
   ),
+),
 );
 // Filter the query by the number of days specified in the option
 if ($giorni_per_filtro != '' || $giorni_per_filtro > 0) {
@@ -60,8 +68,7 @@ if ($giorni_per_filtro != '' || $giorni_per_filtro > 0) {
 }
 // Retrieve the posts for all news types
 $posts = get_posts($args);
-// Set the column width for the news type section
-$link_all = "/tipologia-articolo/rassegna-stampa/";
+$link_all = "/tipologia-articolo/notizie/";
 $card_type = "horizontal-thumb";
-$title = "Rassegna Stampa";
+$title = "Notizie";
 get_template_part("template-parts/home/articoli", "striscia");

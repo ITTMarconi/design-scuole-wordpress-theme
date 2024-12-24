@@ -35,3 +35,4 @@ phpcs.xml*
 error_log
 design-scuole-wordpress-theme-stubs.php
 
+.php-cs-fixer.cache

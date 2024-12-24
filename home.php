@@ -26,6 +26,8 @@ get_header();
             if($home_is_selezione_automatica == "false"){
                 get_template_part("template-parts/home/articoli", "manuali");
             }else{
+                get_template_part("template-parts/home/articoli", "comunicazioni");
+                get_template_part("template-parts/home/articoli", "notizie");
                 get_template_part("template-parts/home/articoli", "rassegna");
             }
 
