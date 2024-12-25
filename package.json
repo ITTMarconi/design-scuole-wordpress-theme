@@ -9,7 +9,7 @@
     "postversion": "echo \"You can now publish your tag with 'git push --follow-tags'\"",
     "minify:css": "node scripts/minify-css.js",
     "minify:js": "node scripts/minify-js.js",
-    "tail": "tailwindcss -i ./assets-src/css/tail.css -o ./assets/css/tail.css"
+    "tail": "tailwindcss -i ./assets-src/css/tail.css -o ./assets/css/tail.css --watch"
   },
   "repository": {
     "type": "git",
