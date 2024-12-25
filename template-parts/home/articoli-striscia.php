@@ -1,5 +1,5 @@
 <?php
-global $posts, $link_all, $card_type, $title;
+global $posts, $see_all_link, $card_type, $title;
 ?>
 <section class="mb-4 px-2 w-full">
   <header>
