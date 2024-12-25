@@ -1,7 +1,7 @@
 <?php
 
 // global $calendar_card;
-global $posts, $link_all, $card_type, $title;
+global $posts, $see_all_link, $card_type, $title;
 
 error_log("articoli-rassegna.php");
 
@@ -61,7 +61,7 @@ if ($giorni_per_filtro != '' || $giorni_per_filtro > 0) {
 // Retrieve the posts for all news types
 $posts = get_posts($args);
 // Set the column width for the news type section
-$link_all = "/tipologia-articolo/rassegna-stampa/";
+$see_all_link = "/tipologia-articolo/rassegna-stampa/";
 $card_type = "horizontal-thumb";
 $title = "Rassegna Stampa";
 get_template_part("template-parts/home/articoli", "striscia");

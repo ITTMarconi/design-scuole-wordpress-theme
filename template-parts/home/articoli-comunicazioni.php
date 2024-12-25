@@ -2,7 +2,7 @@
 
 // global $calendar_card;
 
-global $posts, $link_all, $card_type, $title;
+global $posts, $see_all_link, $card_type, $title;
 
 error_log("articoli-rassegna.php");
 
@@ -28,7 +28,7 @@ $args = array(
     'posts_per_page' => $home_numero_comunicazioni,
 );
 $posts = get_posts($args);
-$link_all = get_post_type_archive_link('circolare');
+$see_all_link = get_post_type_archive_link('circolare');
 $card_type = "circolare-thumb";
 $title = "Comunicazioni";
 get_template_part("template-parts/home/articoli", "striscia");

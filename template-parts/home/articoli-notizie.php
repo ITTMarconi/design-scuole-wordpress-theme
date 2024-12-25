@@ -1,7 +1,7 @@
 <?php
 
 // global $calendar_card;
-global $posts, $link_all, $card_type, $title;
+global $posts, $see_all_link, $card_type, $title;
 
 error_log("articoli-notizie.php");
 
@@ -68,7 +68,7 @@ if ($giorni_per_filtro != '' || $giorni_per_filtro > 0) {
 }
 // Retrieve the posts for all news types
 $posts = get_posts($args);
-$link_all = "/tipologia-articolo/notizie/";
+$see_all_link = "/tipologia-articolo/notizie/";
 $card_type = "horizontal-thumb";
 $title = "Notizie";
 get_template_part("template-parts/home/articoli", "striscia");
