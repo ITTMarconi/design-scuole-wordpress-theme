@@ -1,12 +1,12 @@
 <div id="pre-header">
     <div class="container">
-        <div class="row variable-gutters">
-            <div class="col-6">
+        <div class="row variable-gutters flex flex-nowrap min-h-12">
+            <div class="grow pl-2">
                 <a href="https://www.miur.gov.it/" target="_blank" aria-label="MIUR - Collegamento esterno - Apre su nuova scheda">
                     <strong>Ministero dell'Istruzione e del Merito</strong>
                 </a>
             </div><!-- /col-6 -->
-            <div class="col-2 d-flex align-items-center justify-content-end">
+            <div class="d-flex align-items-center justify-content-end">
 
                 <?php
                 /*
@@ -62,7 +62,7 @@
                     </button>
                 </div><!-- /header-search -->
             </div><!-- /col -->
-            <div class="col-4 header-utils-wrapper">
+            <div class="header-utils-wrapper pr-2">
                 <div class="header-utils">
                     <?php get_template_part("template-parts/header/header-common"); ?>
                     <?php
