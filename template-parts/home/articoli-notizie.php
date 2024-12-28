@@ -44,7 +44,7 @@ $term_ids = array_map(
 // Set the arguments for the query
 $args = array(
 'post_type'           => 'post',
-'posts_per_page'      => $home_numero_rassegna,
+'posts_per_page'      => $home_numero_notizie,
 'tax_query'           => array(
   array(
     'taxonomy' => 'tipologia-articolo',

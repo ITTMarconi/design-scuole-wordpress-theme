@@ -16,7 +16,7 @@ error_log("tipologie_rassegna: " . print_r($tipologie_rassegna, true));
 
 // Rassegna carousel settings
 $home_numero = dsi_get_option('home_numero_rassegna', 'homepage');
-$home_numero = intval($home_numero_rassegna);
+$home_numero = intval($home_numero);
 if (!$home_numero) {
     $home_numero = 5;
 }
