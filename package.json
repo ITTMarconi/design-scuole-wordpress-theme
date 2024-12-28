@@ -23,6 +23,7 @@
   "homepage": "https://github.com/italia/design-scuole-wordpress-theme#readme",
   "dependencies": {
     "bootstrap-italia": "^2.0.9"
+    "tailwindcss-motion": "^1.0.0"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.20",
