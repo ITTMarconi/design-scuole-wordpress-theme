@@ -1163,14 +1163,6 @@ video {
   margin-top: 1rem;
 }
 
-.mt-\[0\.1rem\] {
-  margin-top: 0.1rem;
-}
-
-.mt-\[0\.2rem\] {
-  margin-top: 0.2rem;
-}
-
 .block {
   display: block;
 }
@@ -1279,6 +1271,14 @@ video {
   flex: none;
 }
 
+.flex-shrink {
+  flex-shrink: 1;
+}
+
+.flex-grow {
+  flex-grow: 1;
+}
+
 .grow {
   flex-grow: 1;
 }
@@ -1315,6 +1315,10 @@ video {
   scroll-snap-align: center;
 }
 
+.flex-wrap {
+  flex-wrap: wrap;
+}
+
 .flex-nowrap {
   flex-wrap: nowrap;
 }
@@ -1343,6 +1347,10 @@ video {
   justify-content: center;
 }
 
+.justify-between {
+  justify-content: space-between;
+}
+
 .gap-5 {
   gap: 1.25rem;
 }
@@ -1365,6 +1373,14 @@ video {
   white-space: nowrap;
 }
 
+.text-wrap {
+  text-wrap: wrap;
+}
+
+.text-nowrap {
+  text-wrap: nowrap;
+}
+
 .rounded {
   border-radius: 0.25rem;
 }
@@ -1376,6 +1392,15 @@ video {
 .border-white {
   --tw-border-opacity: 1;
   border-color: rgb(255 255 255 / var(--tw-border-opacity, 1));
+}
+
+.bg-black {
+  --tw-bg-opacity: 1;
+  background-color: rgb(0 0 0 / var(--tw-bg-opacity, 1));
+}
+
+.bg-transparent {
+  background-color: transparent;
 }
 
 .bg-white {
@@ -1516,6 +1541,15 @@ video {
   text-align: right;
 }
 
+.text-justify {
+  text-align: justify;
+}
+
+.\!text-base {
+  font-size: 1rem !important;
+  line-height: 1.5rem !important;
+}
+
 .text-2xl\/6 {
   font-size: 1.5rem;
   line-height: 1.5rem;
@@ -1561,9 +1595,9 @@ video {
   color: rgb(75 33 242 / var(--tw-text-opacity, 1));
 }
 
-.text-purple-700 {
+.text-black {
   --tw-text-opacity: 1;
-  color: rgb(126 34 206 / var(--tw-text-opacity, 1));
+  color: rgb(0 0 0 / var(--tw-text-opacity, 1));
 }
 
 .text-white {
@@ -1585,6 +1619,11 @@ video {
 
 .no-underline {
   text-decoration-line: none;
+}
+
+.antialiased {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 .opacity-0 {
@@ -1630,6 +1669,11 @@ video {
 
 .filter {
   filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
+}
+
+.backdrop-filter {
+  -webkit-backdrop-filter: var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);
+  backdrop-filter: var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);
 }
 
 .transition {
@@ -1681,10 +1725,6 @@ video {
   margin-top: 0.4rem;
 }
 
-.group\/link:hover .group-hover\/link\:mt-\[0\.3rem\] {
-  margin-top: 0.3rem;
-}
-
 .group\/link:hover .group-hover\/link\:h-\[1\.2rem\] {
   height: 1.2rem;
 }
@@ -1694,41 +1734,8 @@ video {
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
 
-.group\/link:hover .group-hover\/link\:translate-x-\[4\.7rem\] {
-  --tw-translate-x: 4.7rem;
-  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
-}
-
-.group\/link:hover .group-hover\/link\:translate-x-\[4\.8rem\] {
-  --tw-translate-x: 4.8rem;
-  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
-}
-
-.group\/link:hover .group-hover\/link\:translate-x-\[5\.0rem\] {
-  --tw-translate-x: 5.0rem;
-  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
-}
-
 .group\/link:hover .group-hover\/link\:opacity-100 {
   opacity: 1;
-}
-
-.group\/stripe:hover .group-hover\/stripe\:motion-translate-x-out-\[3\.9rem\] {
-  --motion-end-translate-x: 3.9rem;
-  --motion-translate-out-animation: motion-translate-out calc(var(--motion-translate-duration) * var(--motion-translate-perceptual-duration-multiplier)) var(--motion-translate-timing) var(--motion-translate-delay) both;
-  animation: var(--motion-all-exit-animations);
-}
-
-.group\/stripe:hover .group-hover\/stripe\:motion-translate-x-out-\[4rem\] {
-  --motion-end-translate-x: 4rem;
-  --motion-translate-out-animation: motion-translate-out calc(var(--motion-translate-duration) * var(--motion-translate-perceptual-duration-multiplier)) var(--motion-translate-timing) var(--motion-translate-delay) both;
-  animation: var(--motion-all-exit-animations);
-}
-
-.group\/stripe:hover .group-hover\/stripe\:motion-translate-x-out-\[4\.1rem\] {
-  --motion-end-translate-x: 4.1rem;
-  --motion-translate-out-animation: motion-translate-out calc(var(--motion-translate-duration) * var(--motion-translate-perceptual-duration-multiplier)) var(--motion-translate-timing) var(--motion-translate-delay) both;
-  animation: var(--motion-all-exit-animations);
 }
 
 .group\/stripe:hover .group-hover\/stripe\:motion-translate-x-out-\[4\.3rem\] {
