@@ -145,8 +145,14 @@ if ( ! function_exists( 'dsi_setup' ) ) :
             add_image_size( 'item-thumb', 280, 280 , true);
             add_image_size( 'item-gallery', 730, 485 , true);
             add_image_size( 'vertical-card', 190, 290 , true);
-
             add_image_size( 'banner', 600, 250 , false);
+
+            // Tailwind screen sizes
+            add_image_size( 'sm-16-9', 640, 360 , true); // ninth-hd
+            add_image_size( 'md-16-9',768, 432 , true);
+            add_image_size( 'lg-16-9',1024, 576 , true); // WSVGA
+            add_image_size( 'xl-16-9',1280, 720 , true); // HD/WXGA
+            add_image_size( 'xxl-16-9',1536, 864 , true);
         }
 
         // This theme uses wp_nav_menu()
