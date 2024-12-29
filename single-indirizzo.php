@@ -321,6 +321,15 @@ get_header();
 												</div>
 											</div>
 										<?php }	
+                                        if(in_array("eIDAS", $provider_autenticazione)) {
+											?>
+											<div class="col-4 col-md-3">
+												<div class="note eidas">
+													<img alt="Logo eIDAS" class="svg-filters" width="90" height="64" src="<?php echo esc_url( get_template_directory_uri() . '/assets/img/logo-eidas.png' ); ?>">
+													<p><?php _e("Che cos'è eIDAS?", "design_scuole_italia"); ?><br/><a href="https://www.eid.gov.it/" aria-label="scopri di più su eIDAS (apre pagina su nuova scheda)">Scopri di più</a>.</p>
+												</div>
+											</div>
+										<?php }	
                                         }?>
                                     </div><!-- /row -->
                                 <?php
@@ -384,21 +393,7 @@ get_header();
                                 // struttura responsabile del servizio
                                 //    struttura_responsabile
                                 //    luoghi
-                                $cosa_serve="";
-                                if(trim($cosa_serve) != ""){
-                                    ?>
-                                    <h2 id="art-par-cosa-serve" class="h4"><?php _e( "Cosa serve", "design_scuole_italia" ); ?></h2>
-                                    <div class="row variable-gutters">
-                                        <div class="col-lg-9">
-                                            <div class="card card-bg bg-color rounded mb-3">
-                                                <div class="card-body">
-                                                    <?php echo $cosa_serve; ?>
-                                                </div>
-                                            </div>
-                                        </div><!-- /col-lg-9 -->
-                                    </div><!-- /row -->
-                                    <?php
-                                }
+                               
                                 ?>
 
                                 <?php if($programma){ ?>
@@ -472,6 +467,49 @@ get_header();
 
                                     <?php
                                 }
+				
+				if(trim($cosa_serve) != ""){
+                                    ?>
+                                    <h2 id="art-par-cosa-serve" class="h4"><?php _e( "Cosa serve", "design_scuole_italia" ); ?></h2>
+                                    <div class="row variable-gutters">
+                                        <div class="col-lg-9">
+                                            <div class="card card-bg bg-color rounded mb-3">
+                                                <div class="card-body">
+                                                    <?php echo $cosa_serve; ?>
+                                                </div>
+                                            </div>
+                                        </div><!-- /col-lg-9 -->
+                                    </div><!-- /row -->
+                                    <?php
+                                }
+
+				if(is_array($cosa_serve_list) && count($cosa_serve_list)>0) {
+                                    ?>
+                                    <h2 class="h4"><?php _e("Lista di cosa serve", "design_scuole_italia"); ?></h2>
+                                    <div class="row variable-gutters">
+                                        <div class="col-lg-9">
+											<div class="calendar-vertical mb-5">
+                                                <?php
+                                                foreach ($cosa_serve_list as $oggetto){
+                                                   ?>
+                                                    <div class="calendar-date">
+                                                            <div class="calendar-date-description rounded">
+                                                            <div class="calendar-date-description-content">
+                                                                <?php echo wpautop($oggetto); ?>
+                                                            </div><!-- /calendar-date-description-content -->
+                                                        </div><!-- /calendar-date-description -->
+                                                    </div><!-- /calendar-date -->
+                                                    <?php
+                                                }
+                                                ?>
+                                            </div><!-- /calendar-vertical -->
+                                        </div><!-- /col-lg-9 -->
+                                    </div><!-- /row -->
+                                    <?php
+                                }
+								?>
+                                <?php
+					
                                 // print_r($fasi_scadenze);
                                 if(is_array($fasi_scadenze) && count($fasi_scadenze)>0) {
                                     ?>

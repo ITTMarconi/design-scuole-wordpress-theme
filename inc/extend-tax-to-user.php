@@ -153,7 +153,7 @@ class dsi_UserTaxonomies {
                     <td>
                         <?php if(!empty($terms)):?>
                             <?php foreach($terms as $term):?>
-                                <input type="checkbox" name="<?php echo $key?>" id="<?php echo "{$key}-{$term->slug}"?>" value="<?php echo $term->slug?>" <?php checked(true, is_object_in_term($user->ID, $key, $term))?> />
+                                <input type="checkbox" name="<?php echo $key?>[]" id="<?php echo "{$key}-{$term->slug}"?>" value="<?php echo $term->slug?>" <?php checked(true, is_object_in_term($user->ID, $key, $term))?> />
                                 <label for="<?php echo "{$key}-{$term->slug}"?>"><?php echo $term->name?></label><br />
                             <?php endforeach; // Terms?>
                         <?php else:?>
@@ -174,23 +174,22 @@ class dsi_UserTaxonomies {
     }
 
     /**
-     * Save the custom user taxonomies when saving a users profile
+     * Save the custom user taxonomies when saving a user profile
      *
      * @param Integer $user_id	- The ID of the user to update
      */
     public function save_profile($user_id) {
-// svuoto
-        foreach(self::$taxonomies as $key=>$taxonomy) {
-            wp_set_object_terms($user_id, array(), $key, false);
-        }
+        if (!current_user_can('edit_user', $user_id))
+            return false;
 
         foreach(self::$taxonomies as $key=>$taxonomy) {
-            // Check the current user can edit this user and assign terms for this taxonomy
-            if(!current_user_can('edit_user', $user_id) && current_user_can($taxonomy->cap->assign_terms)) return false;
+            if(!current_user_can($taxonomy->cap->assign_terms))
+                continue;
 
             // Save the data
-            $term	= esc_attr($_POST[$key]);
-            wp_set_object_terms($user_id, array($term), $key, true);
+            $terms	= array_map(fn($term) => esc_html($term), $_POST[$key] ?? []);
+            
+            wp_set_object_terms($user_id, $terms, $key);
             clean_object_term_cache($user_id, $key);
         }
     }

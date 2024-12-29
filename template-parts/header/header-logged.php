@@ -18,12 +18,21 @@ if($last_notification){
 }
 
 $foto_url = get_the_author_meta('_dsi_persona_foto', $current_user->ID);
+<<<<<<< HEAD
 if($foto_url) {
   $image_id = attachment_url_to_postid($foto_url);
 } else {
   $image_id = false;
 }
 
+||||||| d1b2a1d
+if($foto_url)
+    $image_id = attachment_url_to_postid($foto_url);
+=======
+$image_id = null;
+if($foto_url)
+    $image_id = attachment_url_to_postid($foto_url);
+>>>>>>> upstream/main
 $image_url = dsi_get_user_avatar($current_user);
 ?>
 

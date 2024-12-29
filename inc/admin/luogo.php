@@ -7,7 +7,7 @@ function dsi_register_luogo_post_type() {
 
 	/** luogo **/
 	$labels = array(
-		'name'          => _x( 'Luoghi', 'Post Type General Name', 'design_scuole_italia' ),
+		'name'          => _x( 'I luoghi', 'Post Type General Name', 'design_scuole_italia' ),
 		'singular_name' => _x( 'Luogo', 'Post Type Singular Name', 'design_scuole_italia' ),
 		'add_new'       => _x( 'Aggiungi un Luogo', 'Post Type Singular Name', 'design_scuole_italia' ),
 		'add_new_item'  => _x( 'Aggiungi un Luogo', 'Post Type Singular Name', 'design_scuole_italia' ),
@@ -357,10 +357,10 @@ function dsi_add_luogo_metaboxes() {
 	$cmb_aftercontent_luoghi->add_field( array(
 		'id'         => $prefix . 'gallery',
 		'name'       => __( 'Galleria', 'design_scuole_italia' ),
-		'desc'       => __( 'Galleria di immagini', 'design_scuole_italia' ),
+		'desc'       => __( 'Galleria di immagini o video (per i video, verrà mostrata una copertina che corrisponde all\'immagine in evidenza del video, che si può impostare nella sezione "Media" di WordPress; se assente, verrà usata l\'immagine in evidenza del post)', 'design_scuole_italia' ),
 		'type' => 'file_list',
 		// 'preview_size' => array( 100, 100 ), // Default: array( 50, 50 )
-		'query_args' => array( 'type' => 'image' ), // Only images attachment
+        'query_args' => array( 'type' => ['image', 'video'] ), // Only images or videos attachment
 	) );
 
 	$cmb_aftercontent_luoghi->add_field( array(

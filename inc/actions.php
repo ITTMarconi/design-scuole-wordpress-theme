@@ -151,29 +151,44 @@ function dsi_eventi_filters( $query ) {
             $query->set('meta_key', '_dsi_evento_timestamp_inizio' );
             $query->set('orderby', array('meta_value' => 'DESC', 'date' => 'DESC'));
             $query->set( 'meta_query', array(
+                'relation' => 'AND',
                 array(
-                    'key' => '_dsi_evento_timestamp_inizio'
+                    'key' => '_dsi_evento_timestamp_inizio',
+                    'value' => current_datetime()->modify('today')->getTimestamp(),
+                    'compare' => '<',
+                    'type' => 'numeric'
                 ),
                 array(
-                    'key' => '_dsi_evento_timestamp_fine',
-                    'value' => time(),
-                    'compare' => '<=',
-                    'type' => 'numeric'
+                    'relation' => 'OR',
+                    array(
+                        'key' => '_dsi_evento_timestamp_fine',
+                        'value' => current_datetime()->modify('today')->getTimestamp(),
+                        'compare' => '<',
+                        'type' => 'numeric'
+                    ),
+                    array(
+                        'key' => '_dsi_evento_timestamp_fine',
+                        'compare' => 'NOT EXISTS',
+                    ),
                 )
             ));
         }else{
             $query->set('meta_key', '_dsi_evento_timestamp_inizio' );
             $query->set('orderby', array('meta_value' => 'ASC', 'date' => 'ASC'));
             $query->set( 'meta_query', array(
-                array(
-                    'key' => '_dsi_evento_timestamp_inizio'
-                ),
+                'relation' => 'OR',
                 array(
                     'key' => '_dsi_evento_timestamp_fine',
-                    'value' => time(),
+                    'value' => current_datetime()->modify('today')->getTimestamp(),
                     'compare' => '>=',
                     'type' => 'numeric'
-                )
+                ),
+                array(
+                    'key' => '_dsi_evento_timestamp_inizio',
+                    'value' => current_datetime()->modify('today')->getTimestamp(),
+                    'compare' => '>=',
+                    'type' => 'numeric'
+                ),
             ));
 
         }
@@ -207,41 +222,70 @@ add_action( 'pre_get_posts', 'dsi_eventi_filters' );
  * filter for schede progetti
  *  controllo le query sulòle schede progetto e le modifico per estrarre quelle dell'anno in corso
  */
-function dsi_schede_progetti_filters( $query ) {
+function dsi_schede_progetti_filters( WP_Query $query ) {
 
-    if ( ! is_admin() && $query->is_main_query() && is_post_type_archive("scheda_progetto") ) {
+    if ( ! is_admin() && $query->is_main_query() && (is_post_type_archive("scheda_progetto") || (get_queried_object()?->taxonomy ?? null) == "tipologia-progetto") ) {
 
-        $query->set("meta_key", "_dsi_scheda_progetto_is_realizzato");
-        $query->set("orderby", "_dsi_scheda_progetto_is_realizzato");
-        $query->set("order", "desc");
+        $orderby = dsi_get_option("ordinamento_progetti", "didattica") ?? 'date';
+        $order_direction = dsi_get_option("direzione_ordinamento_progetti", "didattica") === 'asc' ? 'asc' : 'desc';
 
+        $query->set("meta_key", "_dsi_scheda_progetto_timestamp_fine");
+        $query->set("orderby", "meta_value_num");
 
-        if(isset($_GET["archive"]) && ($_GET["archive"] == "true")){
+        switch ($orderby) {
+            case 'timestamp_inizio':
+                $query->set("orderby", "meta_value_num");
+                $query->set("meta_key", "_dsi_scheda_progetto_timestamp_inizio");
+                break;
+            case 'timestamp_fine':
+                $query->set("orderby", "meta_value_num");
+                $query->set("meta_key", "_dsi_scheda_progetto_timestamp_fine");
+                break;
+            case 'anno_scolastico':
+                $query->set("orderby", "meta_value_num");
+                $query->set("meta_key", "_dsi_scheda_progetto_anno_scolastico");
+                break;
+            case 'title':
+            case 'date':
+                $query->set("orderby", $orderby);
+                break;
+            case 'realizzato':
+            default:
+                $query->set("orderby", "meta_value");
+                $query->set("meta_key", "_dsi_scheda_progetto_is_realizzato");
+                break;
+        }
 
-            $query->set( 'meta_query', array(
-                'relation' => 'OR',
-                array(
-                    'key' => '_dsi_scheda_progetto_anno_scolastico',
-                    'compare' => 'NOT EXISTS'
-                ),
-                array(
-                    'key' => '_dsi_scheda_progetto_anno_scolastico',
-                    'value' => dsi_get_current_anno_scolastico(),
-                    'compare' => '!=',
-                    'type' => 'numeric'
-                )
-            ));
-        }else{
+        $query->set("order", $order_direction);
 
-            $query->set( 'meta_query', array(
-                array(
-                    'key' => '_dsi_scheda_progetto_anno_scolastico',
-                    'value' => dsi_get_current_anno_scolastico(),
-                    'compare' => '=',
-                    'type' => 'numeric'
-                )
-            ));
+        if(is_post_type_archive("scheda_progetto")){
+            if(isset($_GET["archive"]) && ($_GET["archive"] == "true")){
 
+                $query->set( 'meta_query', array(
+                    'relation' => 'OR',
+                    array(
+                        'key' => '_dsi_scheda_progetto_anno_scolastico',
+                        'compare' => 'NOT EXISTS'
+                    ),
+                    array(
+                        'key' => '_dsi_scheda_progetto_anno_scolastico',
+                        'value' => dsi_get_current_anno_scolastico(),
+                        'compare' => '!=',
+                        'type' => 'numeric'
+                    )
+                ));
+            }else{
+    
+                $query->set( 'meta_query', array(
+                    array(
+                        'key' => '_dsi_scheda_progetto_anno_scolastico',
+                        'value' => dsi_get_current_anno_scolastico(),
+                        'compare' => '=',
+                        'type' => 'numeric'
+                    )
+                ));
+    
+            }
         }
     }
 }
@@ -300,7 +344,13 @@ global $wp_query;
     } elseif ( is_post_type_archive("servizio") ) {
         $title = __("Tutti i servizi", "design_scuole_italia");
     } elseif ( is_post_type_archive("evento") ) {
-        $title = __("Calendario", "design_scuole_italia");
+        $title = __("Calendario eventi", "design_scuole_italia");
+    } elseif ( is_post_type_archive("indirizzo") ) {
+        $title = __("Percorsi di studio", "design_scuole_italia");
+	} elseif ( is_post_type_archive("scheda_progetto") ) {
+        $title = __("I progetti delle classi", "design_scuole_italia");	
+    } elseif ( is_post_type_archive("scheda_didattica") ) {
+        $title = __("Le schede didattiche", "design_scuole_italia");	
     } elseif ( is_tax("tipologia-servizio") ) {
         // $title = __("Servizi per ", "design_scuole_italia").": ".single_term_title('', false);
         $title = single_term_title('', false);

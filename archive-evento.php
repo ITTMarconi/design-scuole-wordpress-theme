@@ -15,16 +15,10 @@ get_header();
 
         <?php get_template_part("template-parts/hero/notizie", "archive"); ?>
 
-
-
-        <section class="section bg-white border-top border-bottom d-block d-lg-none">
-            <div class="container d-flex justify-content-between align-items-center py-3">
-                <h3 class="h6 text-uppercase mb-0 label-filter"><strong><?php _e("Filtri", "design_scuole_italia"); ?></strong></h3>
-                <a class="toggle-search-results-mobile toggle-menu menu-search push-body mb-0" href="#">
-                    <svg class="svg-filters"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-filters"></use></svg>
-                </a>
-            </div>
-        </section>
+        <?php 
+        get_template_part( 'template-parts/search/toggle-search-filters-mobile' );
+        ?>
+        
         <section class="section bg-gray-light">
             <div class="container">
                 <div class="row variable-gutters sticky-sidebar-container">
@@ -55,7 +49,7 @@ get_header();
                         if(is_post_type_archive("evento") && !isset($_GET["date"])) {
                             if (isset($_GET["archive"]) && ($_GET["archive"] == "true")) { ?>
                                 <p><a class="btn btn-block btn-secondary"
-                                      href="<?php echo get_post_type_archive_link("evento"); ?>"><?php _e("Consulta gli eventi futuri", "design_scuole_italia"); ?></a>
+                                      href="<?php echo get_post_type_archive_link("evento"); ?>"><?php _e("Consulta gli eventi in svolgimento e futuri", "design_scuole_italia"); ?></a>
                                 </p>
                             <?php } else { ?>
                                 <p><a class="btn btn-block btn-secondary"

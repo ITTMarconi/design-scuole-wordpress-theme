@@ -13,7 +13,7 @@ if((is_array($progetti) && count($progetti)) || (is_array($scheda_didattica) && 
             <div class="row variable-gutters">
                 <div class="col-lg-4">
                     <div class="h6 mb-3"><?php _e("Didattica", "design_scuole_italia"); ?></div>
-                    <h2 class="text-large mb-4 pr-4"><?php _e("Esplora le risorse didattiche dell'Istituto", "design_scuole_italia"); ?></h2>
+                    <p class="text-large mb-4 pr-4"><?php _e("Esplora le risorse didattiche dell'Istituto", "design_scuole_italia"); ?></p>
                     <?php if (is_home()) { ?>
                         <a class="btn btn-sm btn-outline-bluelectric"
                            href="<?php echo dsi_get_template_page_url("page-templates/didattica.php"); ?>"><?php _e("Vai alla didattica", "design_scuole_italia"); ?></a>
@@ -50,7 +50,7 @@ if((is_array($progetti) && count($progetti)) || (is_array($scheda_didattica) && 
                                                      xlink:href="#svg-books"></use>
                                             </svg>
                                             <div class="card-icon-content">
-                                                <p><strong><?php _e("Progetti", "design_scuole_italia"); ?></strong></p>
+                                                <p><strong><?php _e("I progetti delle classi", "design_scuole_italia"); ?></strong></p>
                                             </div><!-- /card-icon-content -->
                                         </div><!-- /card-body -->
                                     </a>
@@ -72,7 +72,7 @@ if((is_array($progetti) && count($progetti)) || (is_array($scheda_didattica) && 
                                             </svg>
                                             <div class="card-icon-content">
                                                 <p>
-                                                    <strong><?php _e("Schede didattiche", "design_scuole_italia"); ?></strong>
+                                                    <strong><?php _e("Le schede didattiche", "design_scuole_italia"); ?></strong>
                                                 </p>
                                             </div><!-- /card-icon-content -->
                                         </div><!-- /card-body -->

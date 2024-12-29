@@ -2,8 +2,8 @@
 <?php foreach($messages as $message): ?>
     <?php
 
-    if(trim($message['testo_message']) == "") continue;
-    $message_date = strtotime($message['data_message']);
+    if(trim($message['testo_message'] ?? "") == "") continue;
+    $message_date = isset($message['data_message']) ? strtotime($message['data_message']) : false;
     $now = strtotime("now");
     $btn_type =  match($message['colore_message']) {
         'yellow' => 'btn-outline-black',
@@ -31,4 +31,3 @@
         </div>
     </div>
 <?php endforeach; ?>
-

@@ -118,6 +118,12 @@ if(!function_exists("dsi_get_user_avatar")){
 		if(!$user && is_user_logged_in()){
 			$user = wp_get_current_user();
 		}
+        
+        $privacy_hidden = get_user_meta( $user->ID, '_dsi_persona_privacy_hidden', true);
+        
+        if(!$privacy_hidden || $privacy_hidden == "true")
+            return get_avatar_url( $user->ID, array("size" => $size, "force_default" => true) );
+
         $foto_id = null;
 		$foto_url = get_the_author_meta('_dsi_persona_foto', $user->ID);
 		if($foto_url)
@@ -537,15 +543,7 @@ function dsi_get_post_types_grouped($type = "", $tag = false){
 	else
 		$post_types = array("evento", "post","circolare", "documento", "luogo", "scheda_didattica", "scheda_progetto", "servizio", "indirizzo", "struttura", "page", "amm-trasparente"); // todo: programma materia $post_types = array("evento", "post","circolare", "documento", "luogo", "materia", "programma_materia", "scheda_didattica", "scheda_progetto", "servizio", "struttura", "page");
 
-	// rimuovo post types che non hanno la categoria
-	if($tag){
-		if (($key = array_search("page", $post_types)) !== false) {
-			unset($post_types[$key]);
-		}
-
-	}
 	return $post_types;
-
 }
 
 
@@ -719,15 +717,17 @@ function dsi_user_can_sign_circolare($user, $post){
         return true;
     }elseif ($destinatari_circolari == "ruolo"){
         $ruoli_circolari = dsi_get_meta("ruoli_circolari", "", $post->ID);
-        if( array_intersect($ruoli_circolari, $user->roles ) ) {
-            return true;
-        }
-    }elseif ($destinatari_circolari == "gruppo"){
-        $gruppi_circolari = dsi_get_meta("gruppi_circolari", "", $post->ID);
-        if(is_object_in_term($user->ID, "gruppo-utente", $gruppi_circolari)){
-            return true;
-        }
-    }
+		if ($ruoli_circolari) {	
+			if( array_intersect($ruoli_circolari, $user->roles ) ) {
+				return true;
+			}
+		}
+		}elseif ($destinatari_circolari == "gruppo"){
+			$gruppi_circolari = dsi_get_meta("gruppi_circolari", "", $post->ID);
+			if(is_object_in_term($user->ID, "gruppo-utente", $gruppi_circolari)){
+				return true;
+			}
+		}
 
     return false;
 }
@@ -980,16 +980,9 @@ if(!function_exists("dsi_pluralize_string")) {
  * funzione per la gestione del nome autore
  */
 
-function dsi_get_display_name($user_id){
-
+ function dsi_get_display_name($user_id){
     $display = get_the_author_meta('display_name', $user_id);
-    $nome = get_the_author_meta('first_name', $user_id);
-    $cognome = get_the_author_meta('last_name', $user_id);
-    if(($nome != "") && ($cognome != ""))
-        return $nome." ".$cognome;
-    else
-        return $display;
-
+    return $display;
 }
 
 
@@ -1053,6 +1046,7 @@ if(!function_exists("dsi_get_current_group")) {
         if (is_tax()) {
             $taxonomy = get_queried_object() -> taxonomy;
             $term = get_queried_object() -> slug;
+            $tipo_post = '';
             if ($taxonomy == 'tipologia-servizio'){
                $tipo_post = 'servizio';
             }
@@ -1143,5 +1137,102 @@ if(!function_exists("dsi_get_img_from_id_url")) {
         $img .= '/>';
 
         echo $img;
+    }
+}
+
+if (!function_exists("dsi_is_object_in_term_or_term_ancestors")) {
+    /**
+     * Determines if the given object is associated with any of the given terms or with any of the terms' children.
+     * @param int $id ID of the object (post ID, link ID, …).
+     * @param string $taxonomy Single taxonomy name.
+     * @param int|string|array $terms Term ID, slug, or array of such to check against.
+     * @return bool|WP_Error WP_Error on input error.
+     */
+    function dsi_is_object_in_term_or_child_term(int $object_id, string $taxonomy, $terms = null)
+    {
+        $is_object_in_term = is_object_in_term($object_id, $taxonomy, $terms);
+
+        if(is_wp_error($is_object_in_term) || $is_object_in_term)
+            return $is_object_in_term;
+
+        $object_terms = wp_get_object_terms($object_id, $taxonomy);
+
+        if (empty($object_terms)) {
+            return false;
+        }
+
+        $terms = (array) $terms;
+
+        foreach ($object_terms as $object_term) {
+            foreach ($terms as $term) {
+                if (is_numeric($term))
+                    $term_id = (int) $term;
+                else
+                    $term_id = get_term_by('slug', $term, $taxonomy)->term_id;
+
+                if ($term_id && (term_is_ancestor_of($term_id, $object_term, $taxonomy)))
+                    return true;
+            }
+        }
+
+        return false;
+    }
+}
+// Returns a list of image thumbnails settings
+if(!function_exists("dsi_get_img_thumbnails")) {
+    function dsi_get_img_thumbnails() {
+
+        $thumbnails = array(
+          array("name"=>"article-simple-thumb", "title"=>"Miniatura articolo (500*384)", "width"=>500, "height"=>384, "crop"=>true),
+          array("name"=>"item-thumb", "title"=>"Miniatura quadrata (280*280)", "width"=>280, "height"=>280, "crop"=>true),
+          array("name"=>"item-gallery", "title"=>"Miniatura gallery (730*485)", "width"=>730, "height"=>485, "crop"=>true),
+          array("name"=>"vertical-card", "title"=>"Miniatura verticale (190*290)", "width"=>190, "height"=>290, "crop"=>true),
+          array("name"=>"banner", "title"=>"Banner (600*250)", "width"=>600, "height"=>250, "crop"=>false),
+          array("name"=>"banner-cropped", "title"=>"Banner con ritaglio (600*250)", "width"=>600, "height"=>250, "crop"=>true),
+        );
+        
+        return $thumbnails;
+    }
+}
+
+if(!function_exists("dsi_get_progetti_in_luogo")) {
+    /**
+     * Gets all scheda_progetto posts that are associated to the given luogo.
+     * @param int|string $luogo_id ID of luogo post
+     * @return WP_Post[] Array of scheda_progetto posts
+     */
+    function dsi_get_progetti_in_luogo($luogo_id)
+    {
+        $args = array(
+            'post_type' => 'scheda_progetto',
+            'numberposts' => -1,
+            'post_status' => 'publish',
+            'meta_query' => [
+                'relation' => 'AND',
+                [
+                    'key' => '_dsi_scheda_progetto_is_luogo_scuola',
+                    'value'   => 'true',
+                ],
+                [
+                    'relation' => 'OR',
+                    [
+                        'key' => '_dsi_scheda_progetto_link_schede_luoghi',
+                        'value'   => serialize(strval($luogo_id)), // Saved as string
+                        'compare' => 'LIKE'
+                    ],
+                    [
+                        'key' => '_dsi_scheda_progetto_link_schede_luoghi',
+                        'value'   => serialize(intval($luogo_id)), // Saved as integer. Could collide with serialized array indexes in the array
+                        'compare' => 'LIKE'
+                    ],
+                ]
+            ],
+        );
+        $progetti = get_posts($args);
+    
+        //filter progetti by checking that the luogo id is actually in the luoghi array and was not just an index collision in the query
+        $progetti = array_filter($progetti, fn ($progetto) => in_array($luogo_id, get_post_meta($progetto->ID, '_dsi_scheda_progetto_link_schede_luoghi', true)));
+    
+        return $progetti;
     }
 }

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * The template for displaying home
  *
@@ -9,58 +10,69 @@
 
 get_header();
 ?>
-    <main id="main-container" class="main-container redbrown">
-        <?php
-        if ( have_posts() ) :
+<main id="main-container" class="main-container redbrown">
+  <?php
+  if (have_posts()) :
 
-            $messages = dsi_get_option("messages", "home_messages");
-            get_template_part("template-parts/hero/home");
+    $messages = dsi_get_option("messages", "home_messages");
+    if ($messages && !empty($messages)) {
+      get_template_part("template-parts/home/messages");
+    }
+    get_template_part("template-parts/hero/home");
 
-            get_template_part("template-parts/home/banner");
+    get_template_part("template-parts/home/banner");
 
-            get_template_part("template-parts/home/pulsanti");
+    get_template_part("template-parts/home/pulsanti");
 
-            get_template_part("template-parts/home/highlights");
+    get_template_part("template-parts/home/highlights");
 
-            $home_is_selezione_automatica = dsi_get_option("home_is_selezione_automatica", "homepage");
-            if($home_is_selezione_automatica == "false"){
-                get_template_part("template-parts/home/articoli", "manuali");
-            }else{
-                get_template_part("template-parts/home/articoli", "comunicazioni");
-                get_template_part("template-parts/home/articoli", "notizie");
-                get_template_part("template-parts/home/articoli", "rassegna");
-            }
+    $home_is_selezione_automatica = dsi_get_option("home_is_selezione_automatica", "homepage");
+    get_template_part("template-parts/home/articoli", "comunicazioni");
+    get_template_part("template-parts/home/articoli", "notizie");
+    get_template_part("template-parts/home/articoli", "rassegna");
+    get_template_part("template-parts/home/articoli", "eventi");
 
-            ?>
-        <section class="section bg-white">
-        <?php get_template_part("template-parts/hero/servizi"); ?>
-        <?php get_template_part("template-parts/home/list", "servizi"); ?>
-        </section>
-            <?php
-            $visualizzazione_didattica = dsi_get_option("visualizzazione_didattica", "didattica");
-            if($visualizzazione_didattica == "scuole")
-                get_template_part("template-parts/home/didattica", "cicli");
-            else if($visualizzazione_didattica == "indirizzi")
-                get_template_part("template-parts/home/didattica", "cicli-indirizzi");
+    get_template_part("template-parts/home/contenuti-in-evidenza");
 
-              get_template_part("template-parts/home/didattica", "risorse");
+    if ($home_is_selezione_automatica == "true_horizontal") {
+      get_template_part("template-parts/home/novita", "orizzontale");
+    } else if ($home_is_selezione_automatica != "false") {
+      get_template_part("template-parts/home/novita", "verticale");
+    }
 
-//            get_template_part("template-parts/luogo/map");
+  ?>
+    <section class="section bg-white">
+      <?php get_template_part("template-parts/hero/servizi"); ?>
+      <?php get_template_part("template-parts/home/list", "servizi"); ?>
+    </section>
+  <?php
+    $visualizzazione_didattica = dsi_get_option("visualizzazione_didattica", "didattica");
+    if ($visualizzazione_didattica == "scuole")
+      get_template_part("template-parts/home/didattica", "cicli");
+    else if ($visualizzazione_didattica == "indirizzi")
+      get_template_part("template-parts/home/didattica", "cicli-indirizzi");
 
-        endif; // End of the loop.
+    get_template_part("template-parts/home/didattica", "risorse");
 
+  //            get_template_part("template-parts/luogo/map");
 
-		$home_argomenti = dsi_get_option("home_argomenti", "homepage");
+  endif; // End of the loop.
 
-		if (is_array($home_argomenti) && count($home_argomenti)) {
-			?>
-				<section class="section bg-white">
-					<?php get_template_part("template-parts/hero/argomenti"); ?>
-					<?php get_template_part("template-parts/home/list", "argomenti"); ?>
-				</section>
-			<?php
-		}
-        ?>
-    </main>
+  $home_show_argomenti = dsi_get_option("home_show_argomenti", "homepage");
+  if (!$home_show_argomenti) $home_show_argomenti = "true_manual";
+
+  $argomenti = dsi_get_option("home_argomenti", "homepage");
+  if ($home_show_argomenti == "true_evidenza") $argomenti = dsi_get_option("argomenti_evidenza", "argomenti");
+
+  if (is_array($argomenti) && count($argomenti)) {
+  ?>
+    <section class="section bg-white">
+      <?php get_template_part("template-parts/hero/argomenti"); ?>
+      <?php get_template_part("template-parts/home/list", "argomenti"); ?>
+    </section>
+  <?php
+  }
+  ?>
+</main>
 <?php
 get_footer();

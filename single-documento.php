@@ -60,12 +60,22 @@ $user_can_view_post = dsi_members_can_user_view_post(get_current_user_id(), $pos
                         </div><!-- /col-lg-5 col-md-8 -->
                         <div class="col-lg-3 col-md-4 offset-lg-1">
                             <?php get_template_part( "template-parts/single/actions" ); ?>
-                            <?php 
+                            <?php
                                 $badgeclass = "badge-outline-redbrown";
-                                get_template_part( "template-parts/common/badges-argomenti" ); ?>
-
-                        </div><!-- /col-lg-3 col-md-4 offset-lg-1 -->
-                    </div><!-- /row -->
+                                get_template_part( "template-parts/common/badges-argomenti" ); 
+                            ?>
+                        <div class="badges-wrapper badges-main mt-4">
+                            <?php $post_tags = get_the_terms(get_the_ID(), 'tipologia-documento');
+                                if ($post_tags) {
+                                    echo '<h2 class="h4">Tipologia</h2>';
+                                    foreach($post_tags as $tag) {
+                                        echo '<a href="'.get_tag_link($tag->term_id).'" class="badge badge-sm badge-pill badge-outline-redbrown" aria-label="Tipologia: '.$tag->name.'">'. $tag->name .'</a> ';
+                                    }
+                                }
+                            ?>
+				        </div>		
+                    </div><!-- /col-lg-3 col-md-4 offset-lg-1 -->
+                </div><!-- /row -->
                 </div><!-- /container -->
             </section><!-- /section -->
 
@@ -171,11 +181,21 @@ $user_can_view_post = dsi_members_can_user_view_post(get_current_user_id(), $pos
                                                     $autore = get_user_by( "ID", $idutente );
                                                     ?>
                                                     <div class="card card-bg card-avatar rounded">
-                                                        <a href="<?php echo get_author_posts_url( $autore->ID);  ?>">
+                                                        <?php
+															$privacy_hidden = get_user_meta( $autore->ID, '_dsi_persona_privacy_hidden', true);
+                        
+															if($privacy_hidden == "false") {
+																?><a href="<?php echo get_author_posts_url( $autore->ID);  ?>"><?php
+															}
+														?>
                                                             <div class="card-body">
                                                                 <?php get_template_part( "template-parts/autore/card" ); ?>
                                                             </div>
-                                                        </a>
+                                                        <?php
+															if($privacy_hidden == "false") {
+																?></a><?php
+															}
+													   ?>
                                                     </div><!-- /card card-bg card-avatar rounded -->
                                                     <?php
                                                 }
@@ -193,7 +213,27 @@ $user_can_view_post = dsi_members_can_user_view_post(get_current_user_id(), $pos
                                         ?>
                                         <div class="row variable-gutters mb-4">
                                             <div class="col-lg-12">
-                                                <h5 class="text-redbrown"><?php _e("Allegati non disponibili - Albo Annullato", "design_scuole_italia"); ?></h5>
+                                                <h5 class="text-redbrown"><?php _e("Allegati non disponibili - Atto annullato", "design_scuole_italia"); ?></h5>
+                                            </div>
+                                        </div>
+                                        <?php
+                                    } else if (dsi_is_albo($post) && $post->post_status == "scaduto") {
+                                        $servizi_richiesta_atti = dsi_get_option("servizi_richiesta_atti", "setup");
+                                        ?>
+                                        <div class="row variable-gutters mb-4">
+                                            <div class="col-lg-12">
+                                                <h5 class="text-redbrown"><?php _e("Allegati non disponibili - Atto scaduto", "design_scuole_italia"); ?></h5>
+                                                <?php if (is_array($servizi_richiesta_atti) && count($servizi_richiesta_atti) > 0) { ?>
+                                                <p>Puoi richiedere il documento tramite <?php echo count($servizi_richiesta_atti) == 1 ? "il servizio dedicato" : "i servizi dedicati"; ?>.</p>
+                                                <div class="card-deck card-deck-spaced">
+                                                <?php foreach ($servizi_richiesta_atti as $idservizio){
+                                                    $servizio = get_post($idservizio);
+                                                    if($servizio) {
+                                                        get_template_part("template-parts/servizio/card");
+                                                    }
+                                                } ?>
+                                                </div>
+                                                <?php } ?>
                                             </div>
                                         </div>
                                         <?php
@@ -273,7 +313,7 @@ $user_can_view_post = dsi_members_can_user_view_post(get_current_user_id(), $pos
                                 if ( !post_password_required() && is_array( $ufficio ) && count( $ufficio ) > 0 ) { ?>
 
                                     <h2 class="h4" id="art-par-contatti"><?php _e( "Contatti", "design_scuole_italia" ); ?></h2>
-                                    <div class="h6"><?php _e( "Ufficio responsabile del documento", "design_scuole_italia" ); ?></div>
+                                    <div class="h6"><?php _e( "Struttura responsabile del documento", "design_scuole_italia" ); ?></div>
                                     <div class="row variable-gutters mb-4">
                                         <div class="col-lg-12">
                                             <div class="card-deck card-deck-spaced">

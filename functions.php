@@ -139,15 +139,14 @@ if ( ! function_exists( 'dsi_setup' ) ) :
 		 */
 		add_theme_support( 'post-thumbnails' );
 
-        // image size
-        if ( function_exists( 'add_image_size' ) ) {
-            add_image_size( 'article-simple-thumb', 500, 384 , true);
-            add_image_size( 'item-thumb', 280, 280 , true);
-            add_image_size( 'item-gallery', 730, 485 , true);
-            add_image_size( 'vertical-card', 190, 290 , true);
-
-            add_image_size( 'banner', 600, 250 , false);
-        }
+		// image size
+		if ( function_exists( 'add_image_size' ) ) {
+			$thumbnailsizes = dsi_get_img_thumbnails();
+			
+			foreach ($thumbnailsizes as &$size) {
+				add_image_size($size["name"], $size["width"], $size["height"] , $size["crop"]);
+			}
+		}
 
         // This theme uses wp_nav_menu()
 		register_nav_menus( array(
@@ -158,6 +157,7 @@ if ( ! function_exists( 'dsi_setup' ) ) :
 			/*'menu-classe' => esc_html__( 'Sottovoci del menu principale, voce "La mia classe"', 'design_scuole_italia' ),*/
 			'menu-topright' => esc_html__( 'Menu secondario (in alto a destra)', 'design_scuole_italia' ),
 			'menu-footer' => esc_html__( 'Menu a piè di pagina', 'design_scuole_italia' ),
+			'menu-utente' => esc_html__( 'Menu utente', 'design_scuole_italia' ),
 		) );
 
 	}
@@ -439,7 +439,12 @@ function breadcrumb_fix( $string, $arg1 ) {
 		$string = str_replace("Documenti", "Le carte della scuola",$string);
 		$string = str_replace("Strutture", "Organizzazione",$string);
 		$string = str_replace("?post_type=indirizzo","",$string);
-		$string = str_replace("Indirizzo di Studio", "Indirizzi di studio",$string);
+		$string = str_replace("Indirizzo di Studio", "Percorsi di studio",$string);
+		$string = str_replace("Luoghi", "I luoghi",$string);
+		$string = str_replace("Schede Progetti", "I progetti delle classi",$string);
+		$string = str_replace("Schede Didattiche", "Le schede didattiche",$string);
+		$string = str_replace("Tutti i Servizi", "Tutti i servizi",$string);		
+		$string = str_replace("La Storia", "La storia",$string);
 
     return $string;
 }
@@ -452,3 +457,175 @@ function admin_theme_style() {
 add_action('admin_enqueue_scripts', 'admin_theme_style');
 add_action('wp_enqueue_scripts', 'admin_theme_style');
 
+// Verifica se l'utente è abilitato a vedere il contenuto della circolare
+function circolare_access($post_ID) {
+
+$is_pubblica = dsi_get_meta("is_pubblica");
+$destinatari_circolari = "";
+$destinatari_circolari =  dsi_get_meta("destinatari_circolari");
+$user = wp_get_current_user();
+$current_user_roles = (array) $user->roles;
+if($destinatari_circolari == "ruolo"){
+	$allowed_roles = dsi_get_meta("ruoli_circolari"); 
+	
+	if ($allowed_roles) {
+		$c = array_intersect($allowed_roles,$current_user_roles);
+		if (count($c) > 0) {
+			$can_view = "true";
+		} 
+		else {
+			$can_view = "false";
+		}
+	}
+	else {
+		$can_view = "false";
+	}
+}
+if($destinatari_circolari == "gruppo"){
+	$users = array();
+	
+	$gruppi_circolari = dsi_get_meta("gruppi_circolari");
+	
+	$users = get_objects_in_term( $gruppi_circolari, "gruppo-utente" );
+	if (in_array($user->ID,$users )) {
+		$can_view = "true";
+	} else {
+		$can_view = "false";
+	}	
+}
+if($destinatari_circolari == "all"){
+	$can_view = "true";
+}
+if ( $is_pubblica == "true" || ($is_pubblica == "false" && is_user_logged_in() &&  $can_view == "true") ){
+	$accesso_circolare = "true";
+	} else {
+	$accesso_circolare = "false";
+}
+return $accesso_circolare;
+}
+
+
+// Add custom checkbox attachment field
+function add_custom_protect_from_public_access_to_attachment_fields_to_edit( $form_fields, $post ) {
+    $protect_from_public_access = (bool) get_post_meta($post->ID, 'protect_from_public_access', true);
+	$ext = dsi_get_option("protect_from_public_access_extensions", "setup");
+	
+    $form_fields['protect_from_public_access'] = array(
+        'label' => 'Proteggi dall\'accesso esterno',
+        'input' => 'html',
+        'html' => '<input type="checkbox" ' . ($ext == "" ? 'disabled' : '') . ' id="attachments-'.$post->ID.'-protect_from_public_access" name="attachments['.$post->ID.'][protect_from_public_access]" value="1"'.($protect_from_public_access ? ' checked="checked"' : '').' /> ',
+        'value' => $protect_from_public_access,
+        'helps' => $ext == "" ? '<strong>Non &egrave; possibile proteggere il percorso del file dall\'accesso esterno. </strong> Vai in <a href="admin.php?page=setup">Configurazioni</a> e inserisci una o pi&ugrave; estensioni in base ai documenti riservati presenti nei media. Potrai selezionare l\'opzione e rendere accessibile l\'URL solo da utenti registrati' : 'Se l\'estensione del file &egrave; '. $ext .' (estensioni configurabili in <a href="admin.php?page=setup">Configurazioni</a>) e l\'opzione viene selezionata, il percorso del file sar&agrave; accessibile solo da utenti registrati.'
+    );
+	return $form_fields;
+}
+add_filter('attachment_fields_to_edit', 'add_custom_protect_from_public_access_to_attachment_fields_to_edit', null, 2); 
+
+// Save custom checkbox attachment field
+function save_protect_from_public_access_attachment_field($post, $attachment) { 
+    $db_protect_from_public_access = (bool) get_post_meta($post['ID'], 'protect_from_public_access', true);
+
+    if( isset($attachment['protect_from_public_access']) ){  
+        update_post_meta($post['ID'], 'protect_from_public_access', sanitize_text_field( $attachment['protect_from_public_access'] ) );  
+    }else{
+		delete_post_meta($post['ID'], 'protect_from_public_access' );
+    }
+    return $post;
+}
+add_filter('attachment_fields_to_save', 'save_protect_from_public_access_attachment_field', null, 2);
+
+function reserved_file_check(){
+	if($_GET && isset($_GET['action']) && $_GET['action'] == "reservedfilecheck"){
+		$baseurl = wp_get_upload_dir()['baseurl'];
+		$basedir = wp_get_upload_dir()['basedir'];
+		$filename = $baseurl . '/' . $_GET['file'];
+		$filepath = $basedir . '/' . $_GET['file'];
+
+		$fileid = attachment_url_to_postid( $filename );
+
+		if($fileid != 0) {
+			$filedata = get_post($fileid);
+
+			$protect_from_public_access = (bool) get_post_meta($filedata->ID, 'protect_from_public_access', true);
+
+			if($protect_from_public_access && !is_user_logged_in()) 
+				die();
+		}
+
+		if(file_exists($filepath)) {			
+			//Define header information
+			header('Content-Description: File Transfer');
+			header('Content-Type: application/octet-stream');
+			header("Cache-Control: no-cache, must-revalidate");
+			header("Expires: 0");
+			header('Content-Disposition: attachment; filename="'.basename($filepath).'"');
+			header('Content-Length: ' . filesize($filepath));
+			header('Pragma: public');
+
+			ob_clean();
+
+			//Clear system output buffer
+			flush();
+
+			//Read the size of the file
+			readfile($filepath);
+
+			//Terminate from the script
+			die();
+		}
+	}
+}
+add_action( 'init', 'reserved_file_check', 10, 2);
+
+// aggiungi data elements alla pagina note-legali
+function insert_data_attribute_note_legali( $content ) {
+	if (is_page( 'note-legali')) {
+		$search  = array('<h2>Licenza dei contenuti', '<p>In applicazione del principio');
+		$replace = array('<h2 data-element="legal-notes-section">Licenza dei contenuti', '<p data-element="legal-notes-body">In applicazione del principio');
+	return str_replace($search, $replace, $content);
+
+	}   
+	else return $content; 
+	}
+add_filter('the_content', 'insert_data_attribute_note_legali');
+
+// anonimizza i dati in caso di opzione privacy attiva
+function rest_remove_extra_user_data($response, $user, $request) {
+	$privacy_hidden = get_user_meta( $response->data['id'], '_dsi_persona_privacy_hidden', true);
+
+	if(!$privacy_hidden || $privacy_hidden == 'true') {
+		$response->data['name'] = 'Protected user';
+
+    	unset($response->data['link']);
+    	unset($response->data['slug']);
+    	unset($response->data['avatar_urls']);
+	}
+
+	return $response;
+}
+add_filter("rest_prepare_user", "rest_remove_extra_user_data", 12, 3);
+
+//redireziona gli utenti alla pagina iniziale dopo il login (se non sono impostati redirect)
+function dsi_login_redirect( $redirect_to, $request, $user ) {
+	// Senza impostare il redirect a 'wp-admin' (nonostante $redirect_to punti a quella pagina di default),
+	// gli utenti sottoscrittori che effetuano il login si ritroverebbero in /wp-admin/profile.php, che può essere disorientante.
+	return str_ends_with($redirect_to, '/wp-admin/') ? 'wp-admin' : $redirect_to;
+}
+
+add_filter( 'login_redirect', 'dsi_login_redirect', 10, 3 );
+
+//riscrivi il meta title nella pagina dei risultati della ricerca
+function custom_search_title($title) {
+    if ( is_search() ) {
+        // Get the search query
+        $search_query = get_search_query();
+
+        if ( empty($search_query) ) {
+            $title['title'] = esc_html__('Risultati della ricerca', 'design_scuole_italia'); 
+        } else {
+            $title['title'] = sprintf(esc_html__('Risultati della ricerca per "%s"', 'design_scuole_italia'), $search_query);
+        }
+	}
+    return $title;
+}
+add_filter('document_title_parts', 'custom_search_title');

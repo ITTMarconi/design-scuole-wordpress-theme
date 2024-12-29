@@ -141,13 +141,26 @@ function dsi_add_persone_metaboxes() {
 	) );
 
 	$cmb_user->add_field( array(
+		'name'    => __( 'Protezione privacy', 'design_scuole_italia' ),
+		'id'      => $prefix . 'privacy_hidden',
+		'desc'     => __( 'L\'opzione permette di nascondere le informazioni sensibili dell\'utente.' , 'design_scuole_italia' ),
+		'type'    => 'radio_inline',
+		'options'          => array(
+			'true' => __( 'Si', 'design_scuole_italia' ),
+			'false'     => __( 'No', 'design_scuole_italia' ),
+		),
+		'default' => 'true',
+		'attributes'    => array(
+			'required'    => 'required'
+		),
+	) );
+
+	$cmb_user->add_field( array(
 		'name'    => __( 'Foto della Persona', 'design_scuole_italia' ),
 		'desc'    => __( 'Inserire una fotografia che ritrae il soggetto descritto nella scheda', 'design_scuole_italia' ),
 		'id'      => $prefix . 'foto',
-		'type'    => 'file',
+		'type'    => 'file'
 	) );
-
-
 
 	$cmb_user->add_field( array(
 		'name'    => __( 'Ruolo nell\'organizzazione *', 'design_scuole_italia' ),
@@ -430,3 +443,57 @@ add_action( 'admin_print_scripts-profile.php', 'dsi_utente_admin_script', 11 );
 function dsi_utente_admin_script() {
 		wp_enqueue_script( 'utente-admin-script', get_template_directory_uri() . '/inc/admin-js/persona.js' );
 }
+
+/* WYSIWYG biography */
+function dsi_wysiwyg_bio($user)
+{
+	if (!current_user_can('edit_posts'))
+		return;
+?>
+	<table class="form-table">
+		<tr>
+			<th><label for="description"><?php _e('Biographical Info'); ?></label></th>
+			<td>
+				<?php
+				$description = get_user_meta($user->ID, 'description', true);
+				wp_editor($description, 'description');
+				?>
+				<p class="description"><?php _e('Share a little biographical information to fill out your profile. This may be shown publicly.'); ?></p>
+			</td>
+		</tr>
+	</table>
+<?php
+}
+add_action('show_user_profile', 'dsi_wysiwyg_bio');
+add_action('edit_user_profile', 'dsi_wysiwyg_bio');
+
+
+function dsi_wysiwyg_bio_save_filters()
+{
+	if (!current_user_can('edit_posts'))
+		return;
+	remove_all_filters('pre_user_description');
+}
+add_action('admin_init', 'dsi_wysiwyg_bio_save_filters');
+
+function dsi_wysiwyg_bio_load_js( $hook ) {
+	if ( !current_user_can('edit_posts') )
+		return;
+
+	if ( $hook == 'profile.php' || $hook == 'user-edit.php' ) {
+		wp_enqueue_script(
+			'wysiwyg-bio-admin-script', 
+			get_template_directory_uri() . '/inc/admin-js/persona-wysiwyg-bio.js', 
+			array('jquery'), 
+			false, 
+			true
+		);
+	}
+}
+add_action( 'admin_enqueue_scripts', 'dsi_wysiwyg_bio_load_js', 10, 1 );
+
+add_filter('get_the_author_description', 'wptexturize');
+add_filter('get_the_author_description', 'convert_chars');
+add_filter('get_the_author_description', 'wpautop');
+
+/* end WYSIWYG biography */

@@ -8,7 +8,7 @@ function dsi_register_evento_post_type() {
 
 	/** evento **/
 	$labels = array(
-		'name'                  => _x( 'Eventi', 'Post Type General Name', 'design_scuole_italia' ),
+		'name'                  => _x( 'Calendario eventi', 'Post Type General Name', 'design_scuole_italia' ),
 		'singular_name'         => _x( 'Evento', 'Post Type Singular Name', 'design_scuole_italia' ),
 		'add_new'               => _x( 'Aggiungi un Evento', 'Post Type Singular Name', 'design_scuole_italia' ),
 		'add_new_item'               => _x( 'Aggiungi un Evento', 'Post Type Singular Name', 'design_scuole_italia' ),
@@ -255,10 +255,10 @@ function dsi_add_eventi_metaboxes() {
 	$cmb_undercontent->add_field( array(
 		'id'         => $prefix . 'gallery',
 		'name'       => __( 'Galleria', 'design_scuole_italia' ),
-		'desc'       => __( 'Galleria di immagini', 'design_scuole_italia' ),
+		'desc'       => __( 'Galleria di immagini o video (per i video, verrà mostrata una copertina che corrisponde all\'immagine in evidenza del video, che si può impostare nella sezione "Media" di WordPress; se assente, verrà usata l\'immagine in evidenza del post)', 'design_scuole_italia' ),
 		'type' => 'file_list',
 		// 'preview_size' => array( 100, 100 ), // Default: array( 50, 50 )
-		'query_args' => array( 'type' => 'image' ), // Only images attachment
+        'query_args' => array( 'type' => ['image', 'video'] ), // Only images or videos attachment
 	) );
 
 	$cmb_undercontent->add_field( array(
@@ -555,7 +555,7 @@ function dsi_add_eventi_metaboxes() {
 add_action( 'edit_form_after_title', 'sdi_evento_add_content_after_title' );
 function sdi_evento_add_content_after_title($post) {
 	if($post->post_type == "evento")
-		_e('<span><i>il <b>Titolo</b> è il <b>Nome dell\'Evento</b></span><br><br>', 'design_scuole_italia' );
+		_e('<span><i>il <b>Titolo</b> è il <b>Nome dell\'Evento</b></i></span><br><br>', 'design_scuole_italia' );
 }
 
 /**

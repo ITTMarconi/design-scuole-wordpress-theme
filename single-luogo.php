@@ -37,6 +37,11 @@ $user_can_view_post = dsi_members_can_user_view_post(get_current_user_id(), $pos
         $servizi_presenti = dsi_get_meta("servizi_presenti");
         $servizi_altro = dsi_get_meta("servizi_altro");
 
+        $option_mostra_progetti = dsi_get_option("mostra_progetti_in_luogo", "luoghi") ?? false;
+        $progetti_presenti = $option_mostra_progetti ? dsi_get_progetti_in_luogo($post->ID) : [];
+
+        $show_altre_info = trim($altre_info) || !empty($progetti_presenti);
+
         $modalita_accesso = dsi_get_meta("modalita_accesso");
         $gestito_da  = dsi_get_meta("gestito_da");
         $gestito_da_nome  = dsi_get_meta("gestito_da_nome");
@@ -92,8 +97,8 @@ $user_can_view_post = dsi_members_can_user_view_post(get_current_user_id(), $pos
                         <div class="col-lg-3 col-md-4 aside-border px-0">
                             <aside class="aside-main aside-sticky">
                                 <div class="aside-title" id="place-detail">
-                                    <a class="toggle-link-list" data-toggle="collapse" href="#lista-paragrafi" role="button" aria-expanded="true" aria-controls="lista-paragrafi" aria-label="apri/chiudi indice della pagina">
-                                        <span><?php _e("Dettagli del luogo", "design_scuole_italia"); ?> <?php the_title(); ?></span>
+                                    <a class="toggle-link-list" data-toggle="collapse" href="#lista-paragrafi" role="button" aria-expanded="true" aria-controls="lista-paragrafi" aria-label="apri/chiudi indice del luogo">
+                                        <span><?php _e("Indice del luogo", "design_scuole_italia"); ?> <?php the_title(); ?></span>
                                         <svg class="icon icon-toggle svg-arrow-down-small"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-arrow-down-small"></use></svg>
                                     </a>
                                 </div>
@@ -135,7 +140,7 @@ $user_can_view_post = dsi_members_can_user_view_post(get_current_user_id(), $pos
                                                 <a class="list-item scroll-anchor-offset" href="#art-par-gestione" title="Vai al paragrafo <?php _e("Gestito da", "design_scuole_italia"); ?>"><?php _e("Gestito da", "design_scuole_italia"); ?></a>
                                             </li>
                                         <?php } ?>
-                                        <?php if(trim($altre_info) != ""){ ?>
+                                        <?php if($show_altre_info){ ?>
                                             <li>
                                                 <a class="list-item scroll-anchor-offset" href="#art-par-altre-info" title="<?php _e("Vai al paragrafo", "design_scuole_italia"); ?> <?php _e("Ulteriori informazioni", "design_scuole_italia"); ?>"><?php _e("Ulteriori informazioni", "design_scuole_italia"); ?></a>
                                             </li>
@@ -386,11 +391,21 @@ $user_can_view_post = dsi_members_can_user_view_post(get_current_user_id(), $pos
                                                 $autore = get_user_by("ID", $idutente);
                                                 ?>
                                                 <div class="card card-bg card-avatar rounded">
-                                                    <a href="<?php echo get_author_posts_url( $autore->ID);  ?>">
+                                                    <?php
+														$privacy_hidden = get_user_meta( $autore->ID, '_dsi_persona_privacy_hidden', true);
+                        
+														if($privacy_hidden == "false") {
+															?><a href="<?php echo get_author_posts_url( $autore->ID);  ?>"><?php
+														}
+													?>
                                                         <div class="card-body">
                                                             <?php get_template_part("template-parts/autore/card"); ?>
                                                         </div>
-                                                    </a>
+                                                    <?php
+														if($privacy_hidden == "false") {
+															?></a><?php
+														}
+                                                    ?>
                                                 </div><!-- /card card-bg card-avatar rounded -->
                                                 <?php
                                             }
@@ -416,13 +431,26 @@ $user_can_view_post = dsi_members_can_user_view_post(get_current_user_id(), $pos
                                 <?php } ?>
                                 <?php
 
-                                if(trim($altre_info) != ""){
+                                if($show_altre_info){
                                     ?>
                                     <h2 class="h4" id="art-par-altre-info"><?php _e("Ulteriori informazioni", "design_scuole_italia"); ?></h2>
                                     <div class="row variable-gutters">
                                         <div class="col-lg-9 wysiwig-text">
                                             <?php echo wpautop($altre_info); ?>
                                         </div><!-- /col-lg-9 -->
+
+                                        <?php if(!empty($progetti_presenti)){ ?>
+                                        <div class="col-lg-12">
+                                            <h3 class="h5">Progetti nel luogo</h3>
+                                            <div class="mt-3 card-deck card-deck-spaced">
+                                                <?php
+                                                foreach ( $progetti_presenti as $progetto ) {
+                                                    get_template_part("template-parts/progetto/card");
+                                                }
+                                                ?>
+                                            </div><!-- /card-deck card-deck-spaced -->
+                                        </div><!-- /col-lg-12 -->
+                                        <?php } ?>
                                     </div><!-- /row -->
                                     <?php
                                 }
@@ -434,7 +462,7 @@ $user_can_view_post = dsi_members_can_user_view_post(get_current_user_id(), $pos
                                         <div class="col-lg-9">
                                             <div class="big-data-rounded-icon">
                                                 <div class="big-data-rounded-icon-wrapper">
-                                                    <svg width="100%" height="100%" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:1.41421;">
+                                                    <svg width="100%" height="100%" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:1.41421;">
                                                     <rect id="Rectangle-path" x="0" y="0.035" width="32" height="32" style="fill:none;"/>
                                                         <path d="M4.294,2.738l2.602,-2.602c0.085,-0.074 0.127,-0.123 0.328,-0.136l17.552,0c0.02,0.001 0.041,0.003 0.061,0.004c0.198,0.039 0.152,0.032 0.267,0.132l2.621,2.621c0.165,0.065 0.197,0.165 0.215,0.406l0,28.354c-0.026,0.36 -0.124,0.439 -0.463,0.463l-9.453,0c-1.348,0.045 -2.698,0 -4.047,0l-9.454,0c-0.359,-0.026 -0.438,-0.123 -0.463,-0.463l0,-28.354c0.019,-0.26 0.076,-0.374 0.234,-0.425Zm22.72,0.888l-22.028,0l0,27.428l8.513,0c-0.037,-1.645 0.013,-3.292 0.013,-4.938c0.008,-0.241 0.192,-0.437 0.431,-0.461c1.371,-0.047 2.743,-0.047 4.114,0c0.228,0.023 0.407,0.202 0.43,0.43c0.057,1.655 0.011,3.313 0.002,4.969l8.525,0l0,-27.428Zm-9.452,22.953l-3.124,0l0,4.475l3.124,0l0,-4.475Zm-6.261,-7.676c0.23,0.02 0.415,0.203 0.435,0.436c0.04,1.358 0.001,2.718 0.001,4.077c-0.007,0.24 -0.193,0.441 -0.436,0.462c-1.358,0.04 -2.718,0.001 -4.077,0.001c-0.241,-0.007 -0.441,-0.196 -0.462,-0.436c-0.04,-1.359 -0.001,-2.718 -0.001,-4.077c0.007,-0.241 0.196,-0.442 0.436,-0.463c1.367,-0.039 2.737,-0.039 4.104,0Zm6.751,0c0.23,0.02 0.415,0.203 0.435,0.436c0.04,1.358 0.001,2.718 0.001,4.077c-0.007,0.24 -0.193,0.441 -0.436,0.462c-1.358,0.04 -2.718,0.001 -4.077,0.001c-0.241,-0.007 -0.441,-0.196 -0.462,-0.436c-0.04,-1.359 -0.001,-2.718 -0.001,-4.077c0.007,-0.241 0.193,-0.441 0.436,-0.463c1.367,-0.039 2.737,-0.039 4.104,0Zm6.751,0c0.23,0.02 0.415,0.203 0.435,0.436c0.04,1.358 0.001,2.718 0.001,4.077c-0.007,0.24 -0.193,0.441 -0.436,0.462c-1.358,0.04 -2.718,0.001 -4.077,0.001c-0.241,-0.007 -0.441,-0.193 -0.462,-0.436c-0.04,-1.359 -0.001,-2.718 -0.001,-4.077c0.007,-0.241 0.193,-0.441 0.436,-0.463c1.367,-0.039 2.737,-0.039 4.104,0Zm-13.992,0.925l-3.124,0l0,3.125l3.124,0l0,-3.125Zm6.751,0l-3.124,0l0,3.125l3.124,0l0,-3.125Zm6.751,0l-3.124,0l0,3.125l3.124,0l0,-3.125Zm-13.012,-7.676c0.231,0.021 0.415,0.205 0.435,0.436c0.04,1.358 0.001,2.718 0.001,4.077c-0.007,0.241 -0.196,0.441 -0.436,0.462c-1.358,0.04 -2.718,0.001 -4.077,0.001c-0.241,-0.007 -0.441,-0.196 -0.462,-0.436c-0.04,-1.358 -0.001,-2.718 -0.001,-4.077c0.007,-0.241 0.193,-0.441 0.436,-0.463c1.367,-0.039 2.737,-0.039 4.104,0Zm6.751,0c0.23,0.021 0.415,0.203 0.435,0.436c0.04,1.358 0.001,2.718 0.001,4.077c-0.007,0.24 -0.193,0.441 -0.436,0.462c-1.358,0.04 -2.718,0.001 -4.077,0.001c-0.241,-0.007 -0.441,-0.193 -0.462,-0.436c-0.04,-1.358 -0.001,-2.718 -0.001,-4.077c0.007,-0.241 0.196,-0.442 0.436,-0.463c1.367,-0.039 2.737,-0.039 4.104,0Zm6.751,0c0.23,0.021 0.415,0.203 0.435,0.436c0.04,1.358 0.001,2.718 0.001,4.077c-0.007,0.24 -0.193,0.441 -0.436,0.462c-1.358,0.04 -2.718,0.001 -4.077,0.001c-0.241,-0.007 -0.441,-0.193 -0.462,-0.436c-0.04,-1.358 -0.001,-2.718 -0.001,-4.077c0.007,-0.241 0.196,-0.442 0.436,-0.463c1.367,-0.039 2.737,-0.039 4.104,0Zm-13.992,0.926l-3.124,0l0,3.124l3.124,0l0,-3.124Zm6.751,0l-3.124,0l0,3.124l3.124,0l0,-3.124Zm6.751,0l-3.124,0l0,3.124l3.124,0l0,-3.124Zm0.49,-7.676c0.23,0.02 0.415,0.202 0.435,0.435c0.04,1.358 0.001,2.718 0.001,4.077c-0.007,0.241 -0.193,0.441 -0.436,0.462c-1.358,0.04 -2.718,0.001 -4.077,0.001c-0.241,-0.007 -0.442,-0.196 -0.462,-0.436c-0.04,-1.358 -0.001,-2.718 -0.001,-4.077c0.007,-0.241 0.193,-0.441 0.436,-0.462c1.367,-0.04 2.737,-0.04 4.104,0Zm-13.502,0c0.231,0.02 0.415,0.204 0.435,0.435c0.04,1.358 0.001,2.718 0.001,4.077c-0.007,0.241 -0.196,0.441 -0.436,0.462c-1.358,0.04 -2.718,0.001 -4.077,0.001c-0.241,-0.007 -0.441,-0.193 -0.462,-0.436c-0.04,-1.358 -0.001,-2.718 -0.001,-4.077c0.007,-0.241 0.196,-0.441 0.436,-0.462c1.367,-0.04 2.737,-0.04 4.104,0Zm6.751,0c0.231,0.02 0.415,0.204 0.435,0.435c0.04,1.358 0.001,2.718 0.001,4.077c-0.007,0.241 -0.193,0.441 -0.436,0.462c-1.358,0.04 -2.718,0.001 -4.077,0.001c-0.241,-0.007 -0.441,-0.196 -0.462,-0.436c-0.04,-1.358 -0.001,-2.718 -0.001,-4.077c0.007,-0.241 0.196,-0.441 0.436,-0.462c1.367,-0.04 2.737,-0.04 4.104,0Zm-7.241,0.925l-3.124,0l0,3.124l3.124,0l0,-3.124Zm13.502,0l-3.124,0l0,3.124l3.124,0l0,-3.124Zm-6.751,0l-3.124,0l0,3.124l3.124,0l0,-3.124Zm-11.921,-3.627l20.718,0l-1.775,-1.774l-17.168,0l-1.775,1.774Z"/>
                                                 </svg>

@@ -7,7 +7,7 @@ function dsi_register_scheda_progetto_post_type() {
 
 	/** scheda **/
 	$labels = array(
-		'name'          => _x( 'Schede Progetti', 'Post Type General Name', 'design_scuole_italia' ),
+		'name'          => _x( 'I progetti delle classi', 'Post Type General Name', 'design_scuole_italia' ),
 		'singular_name' => _x( 'Scheda Progetto', 'Post Type Singular Name', 'design_scuole_italia' ),
 		'add_new'       => _x( 'Aggiungi una Scheda', 'Post Type Singular Name', 'design_scuole_italia' ),
 		'add_new_item'  => _x( 'Aggiungi una nuova Scheda', 'Post Type Singular Name', 'design_scuole_italia' ),
@@ -349,10 +349,10 @@ function dsi_add_scheda_progetto_metaboxes() {
     $cmb_undercontent->add_field( array(
         'id'         => $prefix . 'gallery',
         'name'       => __( 'Galleria', 'design_scuole_italia' ),
-        'desc'       => __( 'Galleria di immagini  significative relative al progetto, corredate da didascalia', 'design_scuole_italia' ),
+        'desc'       => __( 'Galleria di immagini o video significativi relativi al progetto, corredati da didascalia (per i video, verrà mostrata una copertina che corrisponde all\'immagine in evidenza del video, che si può impostare nella sezione "Media" di WordPress; se assente, verrà usata l\'immagine in evidenza del post)', 'design_scuole_italia' ),
         'type' => 'file_list',
         // 'preview_size' => array( 100, 100 ), // Default: array( 50, 50 )
-        'query_args' => array( 'type' => 'image' ), // Only images attachment
+        'query_args' => array( 'type' => ['image', 'video'] ), // Only images or videos attachment
     ) );
 
 
