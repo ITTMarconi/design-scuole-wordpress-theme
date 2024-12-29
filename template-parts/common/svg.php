@@ -112,8 +112,8 @@
             d="M18.48,32l0,-14.576l4.912,0l0.736,-5.696l-5.648,0l0,-3.648c0,-1.6 0.464,-2.768 2.832,-2.768l2.992,0l0,-5.088c-1.456,-0.154 -2.92,-0.229 -4.384,-0.224c-4.352,0 -7.328,2.656 -7.328,7.52l0,4.192l-4.896,0l0,5.712l4.896,0l0,14.576l5.888,0Z"
             style="fill-rule:nonzero;" />
         </symbol>
-        <symbol id="it-social-youtube" viewBox="0 0 32 32">
-            <rect id="Rectangle-path-youtube" x="0" y="0.035" width="32" height="32" style="fill:none;"/>
+        <symbol id="it-social-youtube" viewBox="0 0 32 24">
+            <rect id="Rectangle-path-youtube" x="0" y="0.050" width="32" height="26" style="fill:none;"/>
             <path d="m31.77573,8.22108c0,-2.60747 -2.11214,-4.72101 -4.71821,-4.72101l-22.13523,0c-2.60606,0 -4.71821,2.11355 -4.71821,4.72101l0,12.65813c0,2.60747 2.11214,4.72101 4.71821,4.72101l22.13523,0c2.60606,0 4.71821,-2.11355 4.71821,-4.72101l0,-12.65813zm-18.94299,11.66993l0,-11.89023l9.01616,5.94494l-9.01616,5.94529z" style="fill-rule:nonzero;"/>
         </symbol>
         <symbol id="it-social-instagram" viewBox="0 0 32 32">
