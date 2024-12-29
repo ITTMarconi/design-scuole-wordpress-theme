@@ -9,7 +9,8 @@
     "postversion": "echo \"You can now publish your tag with 'git push --follow-tags'\"",
     "minify:css": "node scripts/minify-css.js",
     "minify:js": "node scripts/minify-js.js",
-    "tail": "tailwindcss -i ./assets-src/css/tail.css -o ./assets/css/tail.css --watch"
+    "tail": "tailwindcss -i ./assets-src/css/tail.css -o ./assets/css/tail.css --watch",
+    "css": "npm-run-all --parallel tail minify:css"
   },
   "repository": {
     "type": "git",
@@ -27,10 +28,12 @@
   "devDependencies": {
     "autoprefixer": "^10.4.20",
     "clean-css-cli": "^5.6.1",
+    "npm-run-all": "^4.1.5",
     "postcss": "^8.4.49",
     "replace-in-file": "^6.3.5",
+    "serve": "^14.2.4",
     "tailwindcss": "^3.4.17",
-    "uglify-js": "^3.17.4",
-    "tailwindcss-motion": "^1.0.0"
+    "tailwindcss-motion": "^1.0.0",
+    "uglify-js": "^3.17.4"
   }
 }
