@@ -1,12 +1,12 @@
 <div id="pre-header">
     <div class="container">
-        <div class="row variable-gutters flex flex-nowrap min-h-12">
+        <div class="row variable-gutters flex flex-nowrap items-center  min-h-12">
             <div class="grow pl-2">
                 <a href="https://www.miur.gov.it/" target="_blank" aria-label="MIUR - Collegamento esterno - Apre su nuova scheda">
                     <strong>Ministero dell'Istruzione e del Merito</strong>
                 </a>
             </div><!-- /col-6 -->
-            <div class="d-flex align-items-center justify-content-end">
+            <div class="d-flex align-items-center justify-content-end pr-[0.5rem] md:pr-[1rem]">
 
                 <?php
                 /*

@@ -13230,7 +13230,6 @@ button.icon-text {
   padding: 0;
   margin: 0;
   font-weight: 700;
-  line-height: 40px;
   color: var(--pre-header-fg);
   background-color: var(--pre-header-bg);
   font-size: 0.875rem;
