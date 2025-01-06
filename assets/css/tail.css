@@ -1347,6 +1347,10 @@ video {
   justify-content: center;
 }
 
+.gap-2 {
+  gap: 0.5rem;
+}
+
 .gap-5 {
   gap: 1.25rem;
 }
@@ -1766,13 +1770,6 @@ video {
 @media (min-width: 768px) {
   .md\:pr-\[1rem\] {
     padding-right: 1rem;
-  }
-}
-
-@media (min-width: 992px) {
-  .min-\[992px\]\:translate-y-2 {
-    --tw-translate-y: 0.5rem;
-    transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
   }
 }
 
