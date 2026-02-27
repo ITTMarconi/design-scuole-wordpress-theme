@@ -15574,6 +15574,9 @@ button.icon-text {
     padding-right: 0;
   }
 }
+.article-wrapper b,.article-wrapper strong {
+    font-weight: 600;
+}
 .article-wrapper {
   font-size: 1.13rem;
   padding-bottom: 50px;
@@ -15619,6 +15622,14 @@ button.icon-text {
 .article-wrapper p {
   font-family: Lora, Georgia, serif;
   margin: 0 0 20px 0;
+}
+.article-wrapper li
+{
+    margin-left: 2rem;
+}
+.article-wrapper ul {
+  font-family: Lora, Georgia, serif;
+  list-style: disc;
 }
 @media (max-width: 767.98px) {
   .article-wrapper p {
