@@ -458,3 +458,8 @@ function admin_theme_style() {
 add_action('admin_enqueue_scripts', 'admin_theme_style');
 add_action('wp_enqueue_scripts', 'admin_theme_style');
 
+add_action( 'after_setup_theme', 'set_default_media_link_to_file' );
+function set_default_media_link_to_file() {
+    update_option( 'image_default_link_type', 'file' );
+}
+
