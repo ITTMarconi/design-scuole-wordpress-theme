@@ -25,8 +25,8 @@
 }
 
 .home .card {
-    min-height: 250px;
-    max-height: 250px;
+    min-height: 280px;
+    max-height: 280px;
 }
 
 .home .card-noicon {
@@ -37,4 +37,8 @@
 .home .card-icon-main {
     min-height: 100px;
     max-height: 100px;
+}
+
+.card-content h3.h5 {
+	margin-top:0;
 }
