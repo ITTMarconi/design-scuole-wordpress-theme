@@ -15,7 +15,7 @@
 
     <div class="p-2 home-message <?php echo $message['colore_message'] ?>">
         <div class="home-message-content">
-            <p class="msg !text-base flex justify-start items-center">
+            <p class="msg flex justify-start items-center">
                 <?php if(array_key_exists('icona_message', $message) && $message['icona_message']): ?>
                 <svg id="alert" viewBox="0 0 492.963 492.963">
                     <path d="M246.458,169.582c-11.5,0-19.1,9.6-19.1,19.1v114.8c0,11.5,7.6,19.101,19.1,19.101s19.101-9.601,19.101-19.101v-114.8C265.559,177.182,257.958,169.582,246.458,169.582z"/>
@@ -25,7 +25,7 @@
                 <?php endif; ?>
                 <strong><?php echo nl2br($message['testo_message']) ?></strong>
                 <?php if($message['link_message']): ?>
-                    <a href="<?php echo $message['link_message']; ?>" target="_blank" class="btn btn-sm <?php echo $btn_type; ?> ml-3">Apri</a>
+                    <a href="<?php echo $message['link_message']; ?>" target="_blank" class="btn btn-md <?php echo $btn_type; ?> ml-3">Apri</a>
                 <?php endif; ?>
             </p>
         </div>
