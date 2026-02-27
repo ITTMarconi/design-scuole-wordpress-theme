@@ -26,6 +26,8 @@ $theme_locations = get_nav_menu_locations();
 	<?php } ?>
     
 	<?php wp_head(); ?>
+	<script defer data-domain="marconirovereto.it" src="https://plausibile.marconirovereto.it/js/script.js"></script>
+
 </head>
 <body <?php body_class(); ?>>
 
