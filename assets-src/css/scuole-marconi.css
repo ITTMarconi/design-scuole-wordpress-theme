@@ -2634,9 +2634,10 @@ Old bluelectric: new #6B0DDE #250DDE #4B21F2
 }
 .home-message.transparent,
 .home-message.transparent .msg svg {
-  background-color: #ffffffad;
-  color: var(--redbrown) !important;
-  fill: var(--redbrown) !important;
+    background-color: #0e000082;
+    color: #dfd2d1 !important;
+    fill: #dfd2d1 !important;
+    font-size: 1.4rem;
 }
 .btn {
   display: inline-block;
@@ -4055,12 +4056,11 @@ fieldset:disabled a.btn {
     0 0 0 0.2rem rgba(81, 117, 141, 0.5);
 }
 .btn-outline-redbrown {
-  color: var(--redbrown);
-  background-color: transparent;
-  background-image: none;
-  box-shadow:
-    inset 0 0 0 1px var(--redbrown),
-    1px 1px 1px rgba(0, 0, 0, 0.3);
+    color: #ffffff;
+    background-color: transparent;
+    background-image: none;
+    box-shadow: inset 0 0 0 1px #ffffff, 1px 1px 1px rgba(0, 0, 0, .3);
+
 }
 .btn-outline-redbrown:hover {
   color: #fff;
@@ -4693,6 +4693,13 @@ fieldset:disabled a.btn {
 .btn-lg {
   padding: 0.5rem 1rem;
   font-size: 1.125rem;
+  line-height: 1.6;
+  border-radius: 8px;
+}
+.btn.btn-md {
+  padding: 0.5rem 1rem;
+  font-size: 1.125rem;
+  font-weight: bold;
   line-height: 1.6;
   border-radius: 8px;
 }
@@ -16128,7 +16135,7 @@ button.icon-text {
   position: relative;
   z-index: 0;
   min-height: 480px;
-  display: flex;
+  display: block;
   align-items: center;
 }
 @media (max-width: 767.98px) {
@@ -16237,7 +16244,7 @@ button.icon-text {
   z-index: 0;
   min-height: 570px;
   overflow: hidden;
-  display: flex;
+  display: block;
   flex-direction: column;
 }
 
@@ -16397,19 +16404,30 @@ button.icon-text {
 
 /* styles for hero text added element */
 .hero-text {
-  font-size: 4rem;
+  font-size: 3rem;
   font-weight: 700;
   letter-spacing: -1.8px;
-  color: #fff;
+  color: #8ff609;
   padding: 0;
   line-height: 1.17;
   text-shadow: 3px 4px 6px black;
   text-align: center;
   flex-grow: 1;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  justify-content: flex-end;
+  align-items: flex-start;
+  flex-direction: column;
 }
+h2.hero-text span:nth-child(2) {
+    color: #f89a09;
+}
+h2.hero-text span:nth-child(3) {
+    color: #999;
+  font-size: 2rem;
+  font-weight: 400;
+  font-style: italic;
+}
+
 /*** End of Hero customization ***/
 
 .section-hero-blue {
