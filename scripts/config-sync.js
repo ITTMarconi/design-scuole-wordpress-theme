@@ -26,6 +26,6 @@ try {
   changedFiles = changedFiles.concat(replaceInFile(configCssOptions))
   console.info('Modified files:', changedFiles.join(', '))
 } catch (error) {
-  console.error(e)
+  console.error(error)
   process.exit(1)
 }
