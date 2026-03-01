@@ -11,7 +11,7 @@
     "minify:js": "node scripts/minify-js.js",
     "tail:watch": "tailwindcss -i ./assets-src/css/tail.css -o ./assets/css/tail.css --watch",
     "tail:build": "tailwindcss -i ./assets-src/css/tail.css -o ./assets/css/tail.css --minify",
-    "build:css": "npm-run-all --parallel tail:build minify:css",
+    "build:css": "npm run tail:build && npm run minify:css",
     "import:md": "node scripts/md-import.js"
   },
   "repository": {
