@@ -15455,6 +15455,11 @@ button.icon-text {
   position: relative;
   min-height: 480px;
 }
+.article-title .title-img {
+  width: auto;
+  height: auto;
+  max-width: 100%;
+}
 @media (max-width: 767.98px) {
   .article-title {
     min-height: auto;
