@@ -39,3 +39,4 @@ design-scuole-wordpress-theme-stubs.php
 
 # Import script credentials — never commit
 .env
+assets/css/tail.css
