@@ -6,7 +6,7 @@ $luoghi = dsi_get_meta("luoghi");
 $persone = dsi_get_meta("persone");
 $numerazione_circolare = dsi_get_meta("numerazione_circolare");
 
-$image_url = get_the_post_thumbnail_url($post, "item-gallery");
+$image_url = get_the_post_thumbnail_url($post, "full");
 $autore = get_user_by("ID", $post->post_author);
 $has_thumb = has_post_thumbnail($post);
 ?>
@@ -30,7 +30,7 @@ $has_thumb = has_post_thumbnail($post);
         </div><!-- /col -->
         <?php if($has_thumb): ?>
         <div class="md:w-1/2 flex items-center justify-center py-8 px-4">
-            <img class="title-img object-contain max-w-full max-h-[260px] md:max-h-[440px]" src="<?php echo esc_url($image_url); ?>" alt="<?php echo esc_attr(get_the_title()); ?>" loading="lazy">
+            <img class="title-img max-w-full max-h-[260px] md:max-h-[440px]" src="<?php echo esc_url($image_url); ?>" alt="<?php echo esc_attr(get_the_title()); ?>" loading="lazy">
         </div><!-- /col -->
         <?php endif; ?>
     </div>
