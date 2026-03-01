@@ -36,3 +36,6 @@ error_log
 design-scuole-wordpress-theme-stubs.php
 
 .php-cs-fixer.cache
+
+# Import script credentials — never commit
+.env

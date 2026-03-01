@@ -73,6 +73,11 @@ require get_template_directory() . '/inc/activation.php';
 require get_template_directory() . '/inc/actions.php';
 
 /**
+ * REST API extensions (Markdown import support)
+ */
+require get_template_directory() . '/inc/rest-api.php';
+
+/**
  * Gutenberg editor rules
  */
 require get_template_directory() . '/inc/gutenberg.php';
