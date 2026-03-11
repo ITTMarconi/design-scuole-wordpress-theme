@@ -2,37 +2,39 @@
 global $posts, $see_all_link, $card_type, $title;
 ?>
 <section class="group/stripe mb-4 px-2 w-full">
-  <header class="px-4 text-xl/5 flex items-end justify-start">
-    <a class="group/link relative inline-flex items-baseline
-      no-underline
-      hover:no-underline
-      cursor-pointer" href="<?php echo $see_all_link; ?>">
+  <header class="px-4 flex items-center justify-start">
+    <a class="group/link flex items-center no-underline hover:no-underline cursor-pointer w-full" href="<?php echo $see_all_link; ?>">
       <div class="text-2xl/6 font-semibold"><?php echo $title; ?></div>
-      <div class="text-base/6 text-[#4b21f2] font-semibold cursor-pointer inline-block opacity-0 pl-2
-        group-hover/link:opacity-100
-        group-hover/link:motion-preset-slide-right"
-        aria-label="Vedi tutti:"><?php _e('Vedi tutti','design_scuole_italia'); ?></div>
-      <div class="absolute text-[#4b21f2] right-28 inline-flex items-center justify-center opacity-0
-        transition duration-1000 ease-out
 
-        group-hover/link:translate-x-[4.6rem]
-        group-hover/stripe:motion-opacity-out-100
-        group-hover/stripe:motion-duration-[2.00s]/opacity
-        group-hover/stripe:motion-translate-x-out-[4.3rem]
-        group-hover/stripe:motion-duration-[1.00s]/translate
-        group-hover/stripe:motion-ease-out-cubic
-        ">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-          fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="square" stroke-linejoin="miter"
-          class="h-[1.7rem] group-hover/link:h-[1.2rem] group-hover/link:mt-[0.4rem] icon icon-tabler icons-tabler-outline icon-tabler-chevron-right">
-          <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-          <path d="M9 6l6 6l-6 6" />
-        </svg>
+      <!-- Chevron: sits right after title (before "Vedi tutti" in DOM) -->
+      <!-- Opacity: appears on stripe hover -->
+      <!-- Size: shrinks fast on link hover -->
+      <!-- Slide: translates right past "Vedi tutti" after it has appeared -->
+      <div class="opacity-0 transition-opacity duration-500 ease-in-out inline-flex
+        group-hover/stripe:opacity-100">
+        <div class="transition-transform duration-500 ease-in-out
+          text-[#4b21f2] inline-flex items-center pl-0
+          group-hover/link:translate-x-[5.75rem] group-hover/link:delay-[450ms]">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+            fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="square" stroke-linejoin="miter"
+            class="transition-all duration-200 ease-in-out h-7 w-7
+              group-hover/link:h-5 group-hover/link:w-5
+              icon icon-tabler icons-tabler-outline icon-tabler-chevron-right">
+            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+            <path d="M9 6l6 6l-6 6" />
+          </svg>
+        </div>
       </div>
+
+      <!-- "Vedi tutti": typewriter effect — steps(10) reveals one character at a time -->
+      <div class="text-base/6 text-[#4b21f2] font-semibold whitespace-nowrap overflow-hidden
+        max-w-0 transition-[max-width] duration-500 [transition-timing-function:steps(10,jump-both)]
+        group-hover/link:max-w-[5.5rem] group-hover/link:pl-1"
+        aria-label="Vedi tutti:"><?php _e('Vedi tutti','design_scuole_italia'); ?></div>
     </a>
   </header>
-  <div class="flex flex-nowrap items-start gap-5 relative z-0 w-full overflow-x-auto overflow-y-hidden 
-        scrolling-auto snap-mandatory snap-x px-2 py-2 
+  <div class="flex flex-nowrap items-start gap-5 relative z-0 w-full overflow-x-auto overflow-y-hidden
+        scrolling-auto snap-mandatory snap-x px-2 py-2
         [&::-webkit-scrollbar]:hidden
         [&::-webkit-scrollbar]:w-2
         [&::-webkit-scrollbar-track]:rounded-full
