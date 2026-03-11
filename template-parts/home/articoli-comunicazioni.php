@@ -28,6 +28,13 @@ $args = array(
     'posts_per_page' => $home_numero_comunicazioni,
 );
 $posts = get_posts($args);
+
+// Put circolari flagged "in evidenza" first
+usort($posts, function($a, $b) {
+    $a_ev = get_post_meta($a->ID, '_dsi_circolare_in_evidenza', true) ? 0 : 1;
+    $b_ev = get_post_meta($b->ID, '_dsi_circolare_in_evidenza', true) ? 0 : 1;
+    return $a_ev - $b_ev;
+});
 $see_all_link = get_post_type_archive_link('circolare');
 $card_type = "circolare-thumb";
 $title = "Comunicazioni";
