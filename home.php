@@ -28,6 +28,7 @@ get_header();
             }else{
                 get_template_part("template-parts/home/articoli", "comunicazioni");
                 get_template_part("template-parts/home/articoli", "notizie");
+                get_template_part("template-parts/home/articoli", "il-guglielmo");
                 get_template_part("template-parts/home/articoli", "rassegna");
             }
 
