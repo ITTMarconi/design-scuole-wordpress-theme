@@ -28,8 +28,8 @@ global $posts, $see_all_link, $card_type, $title;
 
       <!-- "Vedi tutti": typewriter effect — steps(10) reveals one character at a time -->
       <div class="text-base/6 text-[#4b21f2] font-semibold whitespace-nowrap overflow-hidden
-        max-w-0 transition-[max-width] duration-500 [transition-timing-function:steps(10,jump-both)]
-        group-hover/link:max-w-[5.5rem] group-hover/link:pl-1"
+        ![max-width:0px] transition-[max-width] duration-500 [transition-timing-function:steps(10,jump-both)]
+        group-hover/link:![max-width:5.5rem] group-hover/link:pl-1"
         aria-label="Vedi tutti:"><?php _e('Vedi tutti','design_scuole_italia'); ?></div>
     </a>
   </header>
