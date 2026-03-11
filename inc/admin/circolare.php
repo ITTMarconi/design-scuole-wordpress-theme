@@ -76,6 +76,20 @@ function dsi_add_circolare_metaboxes() {
 
     $prefix = '_dsi_circolare_';
 
+    $cmb_sidebar = new_cmb2_box( array(
+        'id'           => $prefix . 'box_in_evidenza',
+        'title'        => __( 'In evidenza', 'design_scuole_italia' ),
+        'object_types' => array( 'circolare' ),
+        'context'      => 'side',
+        'priority'     => 'high',
+    ) );
+    $cmb_sidebar->add_field( array(
+        'id'   => $prefix . 'in_evidenza',
+        'name' => __( 'In evidenza nella homepage', 'design_scuole_italia' ),
+        'desc' => __( 'Mostra questa circolare in cima alla sezione "Comunicazioni"', 'design_scuole_italia' ),
+        'type' => 'checkbox',
+    ) );
+
     $cmb_abstrat = new_cmb2_box( array(
         'id'           => $prefix . 'box_abstract',
         'object_types' => array( 'circolare' ),
