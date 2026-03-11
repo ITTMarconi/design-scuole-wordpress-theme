@@ -49,6 +49,16 @@ if ($giorni_per_filtro != '' || $giorni_per_filtro > 0) {
 }
 // Retrieve the posts for all news types
 $posts = get_posts($args);
+
+// Put sticky posts first (WordPress "in evidenza" / sticky flag)
+$sticky_ids = get_option('sticky_posts');
+if (!empty($sticky_ids) && !empty($posts)) {
+    usort($posts, function($a, $b) use ($sticky_ids) {
+        $a_sticky = in_array($a->ID, $sticky_ids) ? 0 : 1;
+        $b_sticky = in_array($b->ID, $sticky_ids) ? 0 : 1;
+        return $a_sticky - $b_sticky;
+    });
+}
 // Set the column width for the news type section
 $see_all_link = "/tipologia-articolo/il-guglielmo/";
 $card_type = "horizontal-thumb";
