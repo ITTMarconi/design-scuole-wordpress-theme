@@ -9,6 +9,7 @@ $numerazione_circolare = dsi_get_meta("numerazione_circolare");
 $image_url = get_the_post_thumbnail_url($post, "full");
 $autore = get_user_by("ID", $post->post_author);
 $has_thumb = has_post_thumbnail($post);
+$is_guglielmo = has_term('il-guglielmo', 'tipologia-articolo', $post);
 ?>
 <section class="section bg-white article-title<?php echo $has_thumb ? ' article-title-author' : ' article-title-small flex items-center'; ?>">
     <div class="flex flex-col md:flex-row w-full">
@@ -17,6 +18,7 @@ $has_thumb = has_post_thumbnail($post);
                 <h1><?php the_title(); ?></h1>
                 <p class="mb-0"><?php echo dsi_get_meta("descrizione"); ?></p>
             </div><!-- /title-content -->
+            <?php if (!$is_guglielmo) { ?>
             <div class="card card-avatar card-comments">
                 <div class="card-body p-0">
                     <?php get_template_part("template-parts/autore/card"); ?>
@@ -27,6 +29,7 @@ $has_thumb = has_post_thumbnail($post);
                     <?php } ?>
                 </div><!-- /card-body -->
             </div><!-- /card card-avatar -->
+            <?php } ?>
         </div><!-- /col -->
         <?php if($has_thumb): ?>
         <div class="md:w-1/2 flex items-center justify-center py-8 px-4">
