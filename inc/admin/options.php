@@ -433,6 +433,17 @@ function dsi_register_main_options_metabox()
       'data-conditional-value' => "true",
     ),
   ));
+  $home_options->add_field(array(
+    'id' => $prefix . 'home_numero_guglielmo',
+    'name' => __('Numero di articoli de Il Guglielmo', 'design_scuole_italia'),
+    'desc' => __('Numero di articoli de Il Guglielmo da mostrare', 'design_scuole_italia'),
+    'type' => 'text_small',
+    'default' => '5',
+    'attributes' => array(
+      'data-conditional-id' => $prefix . 'home_is_selezione_automatica',
+      'data-conditional-value' => "true",
+    ),
+  ));
   /*
     $home_options->add_field(array(
         'id' => $prefix . 'home_rassegna_carousel_speed',

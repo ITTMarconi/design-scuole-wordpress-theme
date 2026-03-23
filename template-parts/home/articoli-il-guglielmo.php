@@ -11,8 +11,8 @@ $data_limite_filtro = strtotime('-' . $giorni_per_filtro . ' day');
 // @customization Custom extra Home fields - #Marconi-theme
 // This are the parameters for the carousel of notizie(max 2 types only selected in another section) and cirolari
 
-// Rassegna carousel settings
-$home_numero = dsi_get_option('home_numero_rassegna', 'homepage');
+// Il Guglielmo carousel settings
+$home_numero = dsi_get_option('home_numero_guglielmo', 'homepage');
 $home_numero = intval($home_numero);
 if (!$home_numero) {
     $home_numero = 5;
@@ -26,6 +26,7 @@ if (!$home_numero) {
 $args = array(
   'post_type'           => 'post',
   'posts_per_page'      => $home_numero,
+  'ignore_sticky_posts' => false,
   'tax_query'           => array(
     array(
       'taxonomy' => 'tipologia-articolo',

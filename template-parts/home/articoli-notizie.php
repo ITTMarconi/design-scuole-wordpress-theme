@@ -45,6 +45,7 @@ $term_ids = array_map(
 $args = array(
 'post_type'           => 'post',
 'posts_per_page'      => $home_numero_notizie,
+'ignore_sticky_posts' => false,
 'tax_query'           => array(
   array(
     'taxonomy' => 'tipologia-articolo',
