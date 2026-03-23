@@ -107,12 +107,14 @@
         <div class="row variable-gutters mb-3">
             <div class="col-lg-12 text-left text-md-center footer-text">
 
-                <?php if($contatti_indirizzo) { 
-                  $address = urlencode($contatti_indirizzo); 
+                <?php if($contatti_indirizzo) { ?>
+                <div class="inline-flex items-center gap-2">
+                  <?php $address = urlencode($contatti_indirizzo);
                   echo $icon_indirizzo; ?>
                 <a class="text-underline-hover" href="<?php echo 'https://www.google.com/maps/search/?api=1&query=' . $address . ';' ?>" aria-label="Ricerca l\'indirizzo dell\'Istituto su Google Maps" target="_blank"  title="Visualizza su Google Maps">
                     <?php echo $contatti_indirizzo; ?>
                 </a>
+                </div>
                 <?php } ?>
 
                 <?php if($contatti_centralino || $contatti_PEO || $contatti_PEC) { ?>
