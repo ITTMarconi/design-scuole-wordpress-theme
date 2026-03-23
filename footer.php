@@ -32,7 +32,43 @@
         </div><!-- /row -->
         <div class="row variable-gutters mb-3">
             <div class="col-lg-3">
-                <?php dynamic_sidebar( 'footer-1' ); ?>
+                <!-- Link Esterni -->
+                <div class="footer-list">
+                    <h2 class="h3">Link Esterni</h2>
+                    <?php
+                    if ( has_nav_menu( 'link-esterni' ) ) {
+                        wp_nav_menu(array(
+                            'theme_location' => 'link-esterni',
+                            'container' => 'div',
+                            'container_class' => 'menu-link-esterni-container',
+                            'menu_class' => 'menu'
+                        ));
+                    } else {
+                        // Fallback: try to get menu by name
+                        wp_nav_menu(array(
+                            'menu' => 'link-esterni',
+                            'container' => 'div',
+                            'container_class' => 'menu-link-esterni-container',
+                            'menu_class' => 'menu'
+                        ));
+                    }
+                    ?>
+                </div>
+                
+                <!-- Archivi -->
+                <div class="footer-list">
+                    <div class="wp-block-group">
+                        <div class="wp-block-group__inner-container is-layout-flow wp-block-group-is-layout-flow">
+                            <h2 class="wp-block-heading">Archivi</h2>
+                            <ul class="wp-block-archives-list wp-block-archives">
+                                <?php wp_get_archives(array('type' => 'monthly', 'limit' => 36)); ?>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Tipologia Articoli (replaces Categories) -->
+                <?php get_template_part("template-parts/footer/tipologia-articoli"); ?>
             </div><!-- /col-lg-3 -->
             <div class="col-lg-3">
                 <?php dynamic_sidebar( 'footer-2' ); ?>
