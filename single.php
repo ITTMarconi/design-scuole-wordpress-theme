@@ -37,20 +37,21 @@ get_header();
                         <div class="title-content">
                             <h1><?php the_title(); ?></h1>
                         </div><!-- /title-content -->
-                        <div class="card card-avatar card-comments">
-                            <div class="card-body p-0">
-                                <?php get_template_part("template-parts/autore/card"); ?>
-				<?php if(dsi_get_option("show_contatore_commenti", "setup") != "false") { ?>    
-                                <?php if ( comments_open() || get_comments_number() ){
-                                    ?>
-                                    <div class="comments ml-auto">
-                                        <p><?php echo $post->comment_count; ?></p>
-                                    </div><!-- /comments -->
-                                    <?php
-                                } ?>
-				<?php } ?>    
-                            </div><!-- /card-body -->
-                        </div><!-- /card card-avatar -->
+							<div class="card card-avatar card-comments">
+								<div class="card-body p-0">
+									<?php get_template_part("template-parts/autore/card"); ?>
+									<?php /* Commentati i commenti
+									if(dsi_get_option("show_contatore_commenti", "setup") != "false") { ?>    
+									<?php if ( comments_open() || get_comments_number() ){
+										?>
+										<div class="comments ml-auto">
+											<p><?php echo $post->comment_count; ?></p>
+										</div><!-- /comments -->
+										<?php
+									} ?>
+									<?php } */ ?>    
+								</div><!-- /card-body -->
+							</div><!-- /card card-avatar -->
                     </div><!-- /col-md-6 -->
                 </div><!-- /row -->
             </div><!-- /container -->
@@ -75,10 +76,10 @@ get_header();
                                         <?php
                                         //the_post_navigation();
 
-                                        // If comments are open or we have at least one comment, load up the comment template.
-                                        if ( comments_open() || get_comments_number() ) :
+                                        // Commentati i commenti
+                                        /* if ( comments_open() || get_comments_number() ) :
 	                                        comments_template();
-                                        endif;
+                                        endif; */
 
                                         ?>
 

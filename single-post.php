@@ -83,6 +83,7 @@ $user_can_view_post = dsi_members_can_user_view_post(get_current_user_id(), $pos
                                     }
                                     ?>
                                 <?php } ?>
+                                <?php /* Commentati i commenti
                                 <div class="row variable-gutters">
                                 <?php if(dsi_get_option("show_contatore_commenti", "setup") != "false") { ?>
                                 <?php if ( comments_open() || get_comments_number() ){ ?>
@@ -94,8 +95,9 @@ $user_can_view_post = dsi_members_can_user_view_post(get_current_user_id(), $pos
                                         ?>
                                     </div>
                                     <?php } ?>
-		                        <?php } ?>
+	                        <?php } ?>
                                 </div>
+                                */ ?>
                                 <div class="row variable-gutters">
                                     <div class="col-lg-12">
                                         <?php get_template_part( "template-parts/single/bottom" ); ?>

@@ -28,7 +28,8 @@ if(!$image_url)
         <small class="card-date"><?php echo date_i18n("d F Y", strtotime($post->post_date)); ?></small>
         <h3><a href="<?php echo get_permalink($post); ?>" ><?php echo get_the_title($post); ?></a></h3>
         <?php
-        if(!empty($tempo_apprendimento) || get_comment_count($post->ID)["approved"] > 0) {
+        // Commentati i commenti - rimossa la condizione sui commenti
+        if(!empty($tempo_apprendimento)) {
             ?>
             <ul class="list-icon">
                 <?php
@@ -39,13 +40,13 @@ if(!$image_url)
                     <?php
                 }
                 ?>
-                <?php
+                <?php /* Commentati i commenti
                 if(get_comment_count($post->ID)["approved"] > 0) {
                     ?>
                     <li class="icon-comments"><?php echo get_comment_count($post->ID)["approved"]; ?></li>
                     <?php
                 }
-                ?>
+                */ ?>
             </ul>
         <?php
         }

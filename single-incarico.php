@@ -43,6 +43,7 @@ get_header();
                                 ?>
                             </div>
                         </div>
+                        <?php /* Commentati i commenti
                         <div class="row variable-gutters">
                             <?php if(dsi_get_option("show_contatore_commenti", "setup") != "false") { ?>
                             <div class="col-lg-12">
@@ -54,6 +55,7 @@ get_header();
                             </div>
                             <?php } ?>
                         </div>
+                        */ ?>
                         <div class="row variable-gutters">
                             <div class="col-lg-12">
                                 <?php get_template_part( "template-parts/single/bottom" ); ?>

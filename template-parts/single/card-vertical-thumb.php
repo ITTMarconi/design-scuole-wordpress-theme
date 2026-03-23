@@ -38,7 +38,7 @@ $image_url = get_the_post_thumbnail_url($post, "vertical-card");
 	</div><!-- /card-body -->
 	<div class="card-comments-wrapper">
 		<?php get_template_part("template-parts/autore/card"); ?>
-        <?php
+        <?php /* Commentati i commenti
         if($post->post_type == "post") {
 	        ?>
             <div class="comments">
@@ -46,6 +46,6 @@ $image_url = get_the_post_thumbnail_url($post, "vertical-card");
             </div><!-- /comments -->
 	        <?php
         }
-            ?>
+            */ ?>
 	</div><!-- /card-comments-wrapper -->
 </div><!-- /card --><?php
