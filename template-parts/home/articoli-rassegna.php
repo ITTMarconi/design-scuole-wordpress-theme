@@ -33,44 +33,75 @@ $term_ids = array_map(
     $tipologie
 );
 
-// Set the arguments for the query
-$args = array(
-  'post_type'           => 'post',
-  'posts_per_page'      => $home_numero,
-  'ignore_sticky_posts' => false,
-  'tax_query'           => array(
-    array(
-      'taxonomy' => 'tipologia-articolo',
-      'field'    => 'term_id',
-      'terms'    => $term_ids,
-    ),
-  ),
-);
-// Filter the query by the number of days specified in the option
-if ($giorni_per_filtro != '' || $giorni_per_filtro > 0) {
-    $filter = array(
-    'date_query' => array(
-      array(
-        'after'     => '-' . $giorni_per_filtro . ' day',
-        'inclusive' => true,
-      ),
-    ),
-    );
-    // Merge the filter arguments with the query arguments
-    $args   = array_merge($args, $filter);
-}
-// Retrieve the posts for all news types
-$posts = get_posts($args);
-
-// Put sticky posts first (WordPress "in evidenza" / sticky flag)
+// Get sticky post IDs
 $sticky_ids = get_option('sticky_posts');
-if (!empty($sticky_ids) && !empty($posts)) {
-    usort($posts, function($a, $b) use ($sticky_ids) {
-        $a_sticky = in_array($a->ID, $sticky_ids) ? 0 : 1;
-        $b_sticky = in_array($b->ID, $sticky_ids) ? 0 : 1;
-        return $a_sticky - $b_sticky;
-    });
+
+// Query 1: Get sticky posts of these taxonomies
+$sticky_posts = array();
+if (!empty($sticky_ids)) {
+    $sticky_args = array(
+        'post_type'           => 'post',
+        'posts_per_page'      => -1,
+        'post__in'            => $sticky_ids,
+        'tax_query'           => array(
+            array(
+                'taxonomy' => 'tipologia-articolo',
+                'field'    => 'term_id',
+                'terms'    => $term_ids,
+            ),
+        ),
+    );
+    
+    // Apply date filter if set
+    if ($giorni_per_filtro != '' || $giorni_per_filtro > 0) {
+        $sticky_args['date_query'] = array(
+            array(
+                'after'     => '-' . $giorni_per_filtro . ' day',
+                'inclusive' => true,
+            ),
+        );
+    }
+    
+    $sticky_posts = get_posts($sticky_args);
 }
+
+// Calculate how many regular posts to fetch
+$num_sticky = count($sticky_posts);
+$remaining_slots = max(0, $home_numero - $num_sticky);
+
+// Query 2: Get regular posts (excluding sticky ones)
+$regular_posts = array();
+if ($remaining_slots > 0) {
+    $regular_args = array(
+        'post_type'           => 'post',
+        'posts_per_page'      => $remaining_slots,
+        'post__not_in'        => $sticky_ids,
+        'orderby'             => 'date',
+        'order'               => 'DESC',
+        'tax_query'           => array(
+            array(
+                'taxonomy' => 'tipologia-articolo',
+                'field'    => 'term_id',
+                'terms'    => $term_ids,
+            ),
+        ),
+    );
+    
+    // Apply date filter if set
+    if ($giorni_per_filtro != '' || $giorni_per_filtro > 0) {
+        $regular_args['date_query'] = array(
+            array(
+                'after'     => '-' . $giorni_per_filtro . ' day',
+                'inclusive' => true,
+            ),
+        );
+    }
+    
+    $regular_posts = get_posts($regular_args);
+}
+
+// Merge: sticky posts first, then regular posts
+$posts = array_merge($sticky_posts, $regular_posts);
 // Set the column width for the news type section
 $see_all_link = "/tipologia-articolo/rassegna-stampa/";
 $card_type = "horizontal-thumb";
