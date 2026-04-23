@@ -34,7 +34,12 @@ $is_guglielmo = has_term('il-guglielmo', 'tipologia-articolo', $post);
         </div><!-- /col -->
         <?php if($has_thumb): ?>
         <div class="md:w-1/2 flex items-center justify-center py-8 px-4">
-            <img class="title-img max-w-full max-h-[260px] md:max-h-[440px]" src="<?php echo esc_url($image_url); ?>" alt="<?php echo esc_attr(get_the_title()); ?>" loading="lazy">
+            <a href="<?php echo esc_url($image_url); ?>"
+               class="ittm-lightbox-gallery__link"
+               data-ittm-lightbox-trigger
+               data-ittm-gallery-index="0">
+                <img class="title-img max-w-full max-h-[260px] md:max-h-[440px]" src="<?php echo esc_url($image_url); ?>" alt="<?php echo esc_attr(get_the_title()); ?>" loading="lazy">
+            </a>
         </div><!-- /col -->
         <?php endif; ?>
     </div>

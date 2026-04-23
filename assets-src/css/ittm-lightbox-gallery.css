@@ -1,0 +1,243 @@
+/* ==========================================================================
+   ITTM Lightbox Gallery — thumbnail grid + modal overlay
+   ========================================================================== */
+
+/* ── Gallery grid ──────────────────────────────────────────────────────── */
+
+.ittm-lightbox-gallery {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+  margin: 2rem 0;
+}
+
+@media (min-width: 768px) {
+  .ittm-lightbox-gallery {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.ittm-lightbox-gallery__item {
+  margin: 0;
+}
+
+.ittm-lightbox-gallery__link {
+  display: block;
+  text-decoration: none;
+}
+
+.ittm-lightbox-gallery__image {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+/* ── WordPress image blocks ─────────────────────────────────────────━━━ */
+
+/* Linked images inside wp-block-image: remove default link styling */
+.wp-block-image a[href]:focus {
+  outline: 2px solid #06c;
+  outline-offset: 2px;
+}
+
+/* Unlinked images: JS adds cursor:pointer via inline style,
+   but this rule ensures it matches even before JS runs on hover */
+figure.wp-block-image:not(:has(a[href])) img {
+  cursor: pointer;
+}
+
+/* ── Body scroll lock when modal is open ──────────────────────────────── */
+
+body.ittm-lightbox-open {
+  overflow: hidden;
+}
+
+/* ── Modal overlay ─────────────────────────────────────────────────────── */
+
+.ittm-lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+}
+
+.ittm-lightbox__backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.82);
+}
+
+.ittm-lightbox__dialog {
+  position: relative;
+  z-index: 1;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 3.5rem 1rem 1rem;
+  box-sizing: border-box;
+}
+
+.ittm-lightbox__close {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  z-index: 10000;
+  appearance: none;
+  border: 0;
+  background: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  cursor: pointer;
+  border-radius: 999px;
+  width: 44px;
+  height: 44px;
+  font-size: 1.75rem;
+  font-weight: 700;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.15s;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+}
+
+.ittm-lightbox__close:hover,
+.ittm-lightbox__close:focus-visible {
+  background: rgba(255, 255, 255, 0.3);
+  outline: 2px solid #fff;
+}
+
+.ittm-lightbox__content {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  max-width: 100%;
+  flex: 1 1 auto;
+  min-height: 0;
+}
+
+.ittm-lightbox__figure {
+  margin: 0;
+  text-align: center;
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.ittm-lightbox__image {
+  max-width: 100%;
+  max-height: 70vh;
+  width: auto;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+  border-radius: 4px;
+}
+
+.ittm-lightbox__caption,
+.ittm-lightbox__counter {
+  color: #fff;
+  margin-top: 0.5rem;
+}
+
+.ittm-lightbox__counter {
+  text-align: center;
+  flex-shrink: 0;
+  padding-bottom: 0.5rem;
+}
+
+/* ── Navigation arrows (desktop: beside the image) ──────────────────────── */
+
+.ittm-lightbox__prev,
+.ittm-lightbox__next {
+  appearance: none;
+  border: 0;
+  background: rgba(255, 255, 255, 0.12);
+  color: #fff;
+  cursor: pointer;
+  border-radius: 999px;
+  width: 48px;
+  height: 48px;
+  font-size: 1.5rem;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: background 0.15s;
+}
+
+.ittm-lightbox__prev:hover,
+.ittm-lightbox__next:hover,
+.ittm-lightbox__prev:focus-visible,
+.ittm-lightbox__next:focus-visible {
+  background: rgba(255, 255, 255, 0.25);
+  outline: none;
+}
+
+/* Hide nav arrows but preserve layout space for single-image galleries */
+.ittm-lightbox__prev[hidden],
+.ittm-lightbox__next[hidden] {
+  visibility: hidden;
+  pointer-events: none;
+}
+
+/* ── Mobile: overlay arrows on image, compact spacing ──────────────────── */
+
+@media (max-width: 576px) {
+  .ittm-lightbox__dialog {
+    padding: 3rem 0.25rem 0.5rem;
+  }
+
+  .ittm-lightbox__close {
+    top: 0.5rem;
+    right: 0.5rem;
+    width: 44px;
+    height: 44px;
+    font-size: 1.5rem;
+  }
+
+  /* Position arrows over the image edges on mobile */
+  .ittm-lightbox__content {
+    position: relative;
+  }
+
+  .ittm-lightbox__prev,
+  .ittm-lightbox__next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 2;
+    background: rgba(0, 0, 0, 0.45);
+    width: 40px;
+    height: 40px;
+    font-size: 1.25rem;
+  }
+
+  .ittm-lightbox__prev {
+    left: 0.25rem;
+  }
+
+  .ittm-lightbox__next {
+    right: 0.25rem;
+  }
+
+  .ittm-lightbox__prev[hidden],
+  .ittm-lightbox__next[hidden] {
+    display: none;
+  }
+
+  .ittm-lightbox__image {
+    max-height: 65vh;
+  }
+
+  .ittm-lightbox__caption {
+    font-size: 0.875rem;
+  }
+
+  .ittm-lightbox__counter {
+    font-size: 0.875rem;
+  }
+}

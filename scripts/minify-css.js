@@ -5,6 +5,7 @@ const CSS_SOURCES = [
   "./assets-src/css/scuole-marconi.css",
   "./assets-src/css/overrides.css",
   "./assets-src/css/admin-style.css",
+  "./assets-src/css/ittm-lightbox-gallery.css",
 ];
 
 CSS_SOURCES.forEach((path) => {

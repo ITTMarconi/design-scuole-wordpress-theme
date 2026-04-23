@@ -270,6 +270,31 @@ function dsi_scripts() {
 }
 add_action( 'wp_enqueue_scripts', 'dsi_scripts' );
 
+/**
+ * Enqueue lightbox gallery assets on singular pages only.
+ */
+add_action( 'wp_enqueue_scripts', function () {
+	if ( ! is_singular() ) {
+		return;
+	}
+
+	wp_enqueue_style(
+		'ittm-lightbox-gallery',
+		get_template_directory_uri() . '/assets/css/ittm-lightbox-gallery.css',
+		array(),
+'1.3.0'
+	);
+
+	wp_enqueue_script(
+		'ittm-lightbox-gallery',
+		get_template_directory_uri() . '/assets/js/ittm-lightbox-gallery.js',
+		array(),
+'1.3.0',
+		true
+	);
+} );
+
+
 function console_log ($output, $msg = "log") {
     echo '<script> console.log("'. $msg .'",'. json_encode($output) .')</script>';
 };
