@@ -33,7 +33,7 @@ $user_can_view_post = dsi_members_can_user_view_post(get_current_user_id(), $pos
                         <div class="col-lg-9 col-md-8 order-lg-1">
                             <article class="article-wrapper pt-4">
                                 <div class="row variable-gutters">
-                                    <div class="col-lg-8 wysiwig-text">
+                                    <div class="col-lg-10 wysiwig-text">
                                         <?php
                                         the_content();
                                         ?>
