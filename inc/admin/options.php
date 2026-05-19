@@ -269,6 +269,13 @@ function dsi_register_main_options_metabox()
     'type' => 'text_url',
   ));
 
+  $alerts_options->add_group_field($alerts_group_id, array(
+    'id' => $prefix . 'classe_message',
+    'name'        => __('Classe CSS personalizzata', 'design_scuole_italia'),
+    'desc' => __('Classe CSS aggiuntiva per il contenitore del messaggio (es. my-custom-style)', 'design_scuole_italia'),
+    'type' => 'text',
+  ));
+
 
   /**
    * Registers options page "Home".

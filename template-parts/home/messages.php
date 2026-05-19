@@ -13,7 +13,7 @@
     
     if (($message_date != "") && ($message_date <= $now)) continue; ?>
 
-    <div class="p-2 home-message <?php echo $message['colore_message'] ?>">
+    <div class="p-2 home-message <?php echo $message['colore_message']; if (!empty($message['classe_message'])) echo ' ' . esc_attr($message['classe_message']); ?>">
         <div class="home-message-content">
             <p class="msg flex justify-start items-center">
                 <?php if(array_key_exists('icona_message', $message) && $message['icona_message']): ?>
