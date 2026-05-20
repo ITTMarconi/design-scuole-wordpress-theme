@@ -50,7 +50,22 @@
     }
   });
 
-  if (!galleryEls.length && !standaloneTriggers.length && !wpImageLinks.length && !wpUnlinkedImages.length) return;
+  // Classic Editor images: <a href="image.jpg"><img class="...wp-image-..." /></a>
+  // WordPress adds wp-image-* class to all media library images regardless of editor
+  var classicImageLinks = [];
+  Array.prototype.forEach.call(document.querySelectorAll('img[class*="wp-image-"]'), function (img) {
+    // Skip if already inside a lightbox gallery or block-image
+    if (img.closest('.ittm-lightbox-gallery')) return;
+    if (img.closest('.wp-block-image')) return;
+    if (img.closest('[data-ittm-lightbox-trigger]')) return;
+
+    var link = img.closest('a[href]');
+    if (link && isImageUrl(link.getAttribute('href'))) {
+      classicImageLinks.push(link);
+    }
+  });
+
+  if (!galleryEls.length && !standaloneTriggers.length && !wpImageLinks.length && !wpUnlinkedImages.length && !classicImageLinks.length) return;
 
   /* ── Build gallery data grouped by data-ittm-gallery ID ────────── */
 
@@ -139,6 +154,19 @@
       alt: img.getAttribute('alt') || '',
     });
     wpTriggerLinks.push(figure);
+  });
+
+  // Classic Editor images: <a href="image.jpg"><img class="wp-image-..." /></a>
+  Array.prototype.forEach.call(classicImageLinks, function (link) {
+    var href = link.getAttribute('href');
+    if (!href || !isImageUrl(href)) return;
+
+    var img = link.querySelector('img');
+    wpItems.push({
+      href: href,
+      alt: img ? (img.getAttribute('alt') || '') : '',
+    });
+    wpTriggerLinks.push(link);
   });
 
   if (wpItems.length) {
