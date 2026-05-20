@@ -15458,6 +15458,10 @@ button.icon-text {
 .page-id-698 .article-title {
   min-height: auto;
 }
+.page-id-698 .article-title .col-md-6 {
+  flex: 0 0 100%;
+  max-width: 100%;
+}
 .article-title .title-img {
   width: auto;
   height: auto;
