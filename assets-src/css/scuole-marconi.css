@@ -15455,6 +15455,9 @@ button.icon-text {
   position: relative;
   min-height: 480px;
 }
+.page-id-698 .article-title {
+  min-height: auto;
+}
 .article-title .title-img {
   width: auto;
   height: auto;
