@@ -1,6 +1,32 @@
 @import "tailwindcss";
 @plugin "tailwindcss-motion";
 
+/* Restore Bootstrap Italia container — Tailwind's .container conflicts */
+.container {
+  padding-right: 6px;
+  padding-left: 6px;
+}
+@media (min-width: 576px) {
+  .container {
+    max-width: 540px;
+  }
+}
+@media (min-width: 768px) {
+  .container {
+    max-width: 668px;
+  }
+}
+@media (min-width: 992px) {
+  .container {
+    max-width: 960px;
+  }
+}
+@media (min-width: 1200px) {
+  .container {
+    max-width: 1184px;
+  }
+}
+
 /* Your custom styles here */
 
 /* --- Safelist for admin-entered custom classes --- */                                          
