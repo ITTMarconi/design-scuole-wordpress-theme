@@ -524,7 +524,7 @@ function marconi_preload_hero_image() {
     if ( ! is_home() && ! is_front_page() ) return;
     $img = dsi_get_option( 'immagine', 'la_scuola' );
     if ( $img ) {
-        echo '<link rel="preload" as="image" href="' . esc_url( $img ) . '">' . "\n";
+        echo '<link rel="preload" as="image" fetchpriority="high" href="' . esc_url( $img ) . '">' . "\n";
     }
 }
 add_action( 'wp_head', 'marconi_preload_hero_image', 1 );
