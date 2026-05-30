@@ -532,6 +532,22 @@ function marconi_preload_critical_css() {
 }
 add_action('wp_head', 'marconi_preload_critical_css', 1);
 
+// Preload the critical Titillium Web font weights so the browser fetches them
+// immediately at <head> parse time, bypassing debloat's AJAX-based CSS injection
+// chain that otherwise delays font discovery by ~500ms.
+function marconi_preload_critical_fonts() {
+    $base = get_template_directory_uri() . '/assets/fonts/Titillium_Web/';
+    $fonts = [
+        'titillium-web-v10-latin-ext_latin-regular.woff2',
+        'titillium-web-v10-latin-ext_latin-700.woff2',
+        'titillium-web-v10-latin-ext_latin-600.woff2',
+    ];
+    foreach ( $fonts as $font ) {
+        echo '<link rel="preload" as="font" type="font/woff2" crossorigin href="' . esc_url( $base . $font ) . '">' . "\n";
+    }
+}
+add_action( 'wp_head', 'marconi_preload_critical_fonts', 1 );
+
 // Preload the homepage hero background image so the browser fetches it during
 // <head> parsing instead of after CSS is applied — improving LCP.
 function marconi_preload_hero_image() {
