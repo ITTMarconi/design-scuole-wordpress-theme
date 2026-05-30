@@ -132,6 +132,7 @@
 
         $contatti_CF = dsi_get_option("contatti_CF", "contacts");
         $contatti_meccanografico = dsi_get_option("contatti_meccanografico", "contacts");
+        $contatti_url_meccanografico = dsi_get_option("contatti_url_meccanografico", "contacts");
         $contatti_IPA = dsi_get_option("contatti_IPA", "contacts");
         $contatti_CUF = dsi_get_option("contatti_CUF", "contacts");
         $contatti_AOO = dsi_get_option("contatti_AOO", "contacts");
@@ -195,7 +196,7 @@
                             <li><abbr title="Codice Fiscale">CF</abbr>: <?php echo $contatti_CF; ?></li>
                         <?php } ?>
                         <?php if($contatti_meccanografico) { ?>
-                            <li><abbr title="Codice meccanografico di istituto">CM</abbr>: <a class="text-underline-hover" href="https://cercalatuascuola.istruzione.it/cercalatuascuola/ricerca/risultati?tipoRicerca=RAPIDA&rapida=<?php echo str_replace(' ', '', $contatti_meccanografico); ?>"><?php echo $contatti_meccanografico; ?></a></li>
+                            <li><abbr title="Codice meccanografico di istituto">CM</abbr>: <a class="text-underline-hover" href="<?php echo esc_url($contatti_url_meccanografico); ?>"><?php echo $contatti_meccanografico; ?></a></li>
                         <?php } ?>
                         <?php if($contatti_IPA) { ?>
                             <li><abbr title="Codice Indice delle Pubbliche Amministrazioni">IPA</abbr>: <?php echo $contatti_IPA; ?></li>

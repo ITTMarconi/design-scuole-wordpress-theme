@@ -161,6 +161,13 @@ function dsi_register_main_options_metabox()
   ));
 
   $contacts_options->add_field(array(
+    'id' => $prefix . 'contatti_url_meccanografico',
+    'name' => 'URL ricerca codice meccanografico',
+    'desc' => 'URL completo della pagina della scuola sul portale ministeriale a cui collegare il codice meccanografico (es. https://unica.istruzione.gov.it/cercalatuascuola/istituti/TNTF02000G/...).',
+    'type' => 'text_url',
+  ));
+
+  $contacts_options->add_field(array(
     'id' => $prefix . 'contatti_IPA',
     'name' => 'Codice Indice delle Pubbliche Amministrazioni (IPA)',
     'type' => 'text',
