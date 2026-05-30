@@ -21,7 +21,7 @@ $testo_argomenti = dsi_get_option("testo_argomenti", "setup");
 			</defs>
             </svg>
 		</div>
-		<div class="container">
+		<div class="wrapper">
             <div class="row variable-gutters">
                 <div class="col-md-5">
                     <div class="hero-title text-left">

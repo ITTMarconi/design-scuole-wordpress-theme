@@ -7,7 +7,7 @@ if(is_array($indirizzi_didattica) && count($indirizzi_didattica)>0) {
 ?>
 
     <section class="section section-padding py-0 bg-bluelectric section-tabs-bg">
-        <div class="container">
+        <div class="wrapper">
             <div class="row variable-gutters">
                 <div class="col">
                     <div class="responsive-tabs-wrapper padding-top-200">

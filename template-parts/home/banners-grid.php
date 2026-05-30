@@ -6,7 +6,7 @@ if ($visualizza_banner_in_fondo == 'si') {
   $class        = 'single-banner';
 ?>
   <section class="section section-footer">
-    <div class="container grid-container">
+    <div class="wrapper grid-container">
       <?php
       foreach ($banner_group as $banner) {
         $image_url = wp_get_attachment_image_url($banner['banner_id'], 'medium');

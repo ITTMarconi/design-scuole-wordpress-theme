@@ -9,7 +9,7 @@ if(is_array($posts) && count($posts)) {
     ?>
     <section class="section bg-white">
     <section class="section bg-linear-vertical-blue-light">
-        <div class="container py-5">
+        <div class="wrapper py-5">
             <div class="row variable-gutters">
                 <div class="col">
                     <div class="section-title text-center mb-4">

@@ -5,7 +5,7 @@ $visualizza_highlights = dsi_get_option("visualizza_highlights", "homepage");
 if ($visualizza_highlights == "si") {
     $highlights_group = dsi_get_option("highlights_group", "homepage");
     ?>
-    <div class="highlights_group container position-relative">
+    <div class="highlights_group wrapper position-relative">
         <div class="d-flex justify-content-center flex-column variable-gutters mb-3">
             <?php
             foreach ($highlights_group as $highlight) {

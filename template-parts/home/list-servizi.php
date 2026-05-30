@@ -3,7 +3,7 @@ global $servizio;
 $home_servizi_manuali = dsi_get_option("home_servizi_manuali", "homepage");
 
 ?>
-<div class="container position-relative slided-top">
+<div class="wrapper position-relative slided-top">
     <div class="row variable-gutters mb-4">
         <?php
         $home_is_selezione_automatica_servizi = dsi_get_option("home_is_selezione_automatica_servizi", "homepage");

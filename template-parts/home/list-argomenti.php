@@ -3,7 +3,7 @@ global $argomento;
 $home_argomenti = dsi_get_option("home_argomenti", "homepage");
 
 ?>
-<div class="container position-relative slided-top">
+<div class="wrapper position-relative slided-top">
     <div class="row variable-gutters mb-4">
         <?php
                 foreach ($home_argomenti as $idargomento){

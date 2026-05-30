@@ -9,7 +9,7 @@ if((is_array($progetti) && count($progetti)) || (is_array($scheda_didattica) && 
     ?>
 
     <section class="section bg-white py-5">
-        <div class="container">
+        <div class="wrapper">
             <div class="row variable-gutters">
                 <div class="col-lg-4">
                     <div class="h6 mb-3"><?php _e("Didattica", "design_scuole_italia"); ?></div>

@@ -10,7 +10,7 @@
  */
 ?>
 <footer id="footer-wrapper" class="footer-wrapper">
-    <div class="container">
+    <div class="wrapper">
         <div class="row variable-gutters mb-5">
             <div class="col logos-wrapper">
                 <img class="ue-logo"
