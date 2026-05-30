@@ -20,7 +20,7 @@ get_header();
         set_views($post->ID); ?>
 
             <section class="section bg-white">
-                <div class="container">
+                <div class="wrapper">
                     <div class="row variable-gutters">
                         <div class="col-md-12 article-title-author-container">
                             <div class="title-content">

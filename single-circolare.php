@@ -39,7 +39,7 @@ $numerazione_circolare = dsi_get_meta("numerazione_circolare");
             ?>
 
             <section class="section bg-white py-5">
-                <div class="container border-top">
+                <div class="wrapper border-top">
                     <div class="row variable-gutters">
 
                         <div class="col-lg-9 col-md-8 order-lg-1">

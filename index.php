@@ -28,7 +28,7 @@ get_header();
 		</section><!-- /section -->
 
 		<section class="section bg-gray-light">
-			<div class="container">
+			<div class="wrapper">
 				<div class="row variable-gutters d-flex justify-content-center">
 					<div class="col-lg-8 pt84">
 						<?php

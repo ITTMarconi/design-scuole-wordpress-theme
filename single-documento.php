@@ -33,7 +33,7 @@ $user_can_view_post = dsi_members_can_user_view_post(get_current_user_id(), $pos
             $riferimenti_normativi = dsi_get_meta("riferimenti_normativi");
             ?>
             <section class="section bg-white py-2 py-lg-3 py-xl-5">
-                <div class="container">
+                <div class="wrapper">
                     <div class="row variable-gutters">
                         <div class="col-12 col-sm-3 col-lg-2 d-none d-sm-block">
                             <div class="section-thumb mx-3">
