@@ -509,8 +509,11 @@ function marconi_preload_critical_css() {
     foreach (['dsi-boostrap-italia', 'itt-scuole-marconi'] as $handle) {
         if (!isset($wp_styles->registered[$handle])) continue;
         $style = $wp_styles->registered[$handle];
-        $ver   = $style->ver ? '?ver=' . $style->ver : '';
-        echo '<link rel="preload" href="' . esc_url($style->src . $ver) . '" as="style">' . "\n";
+        // Match WordPress's exact version logic: fall back to default_version when none is set,
+        // so the preload URL is identical to the <link rel="stylesheet"> href WordPress emits.
+        $ver = $style->ver ?: $wp_styles->default_version;
+        $url = add_query_arg('ver', $ver, $style->src);
+        echo '<link rel="preload" href="' . esc_url($url) . '" as="style">' . "\n";
     }
 }
 add_action('wp_head', 'marconi_preload_critical_css', 1);
