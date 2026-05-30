@@ -536,15 +536,19 @@ add_action('wp_head', 'marconi_preload_critical_css', 1);
 // immediately at <head> parse time, bypassing debloat's AJAX-based CSS injection
 // chain that otherwise delays font discovery by ~500ms.
 function marconi_preload_critical_fonts() {
-    $base = get_template_directory_uri() . '/assets/fonts/Titillium_Web/';
-    $fonts = [
+    $tw_base = get_template_directory_uri() . '/assets/fonts/Titillium_Web/';
+    $tw_fonts = [
         'titillium-web-v10-latin-ext_latin-regular.woff2',
         'titillium-web-v10-latin-ext_latin-700.woff2',
         'titillium-web-v10-latin-ext_latin-600.woff2',
+        'titillium-web-v10-latin-ext_latin-300.woff2',
     ];
-    foreach ( $fonts as $font ) {
-        echo '<link rel="preload" as="font" type="font/woff2" crossorigin href="' . esc_url( $base . $font ) . '">' . "\n";
+    foreach ( $tw_fonts as $font ) {
+        echo '<link rel="preload" as="font" type="font/woff2" crossorigin href="' . esc_url( $tw_base . $font ) . '">' . "\n";
     }
+    // FontAwesome solid — top of the critical request chain after Titillium preloads
+    $fa = get_template_directory_uri() . '/assets/fonts/fontawesome/fa-solid-900.woff2';
+    echo '<link rel="preload" as="font" type="font/woff2" crossorigin href="' . esc_url( $fa ) . '">' . "\n";
 }
 add_action( 'wp_head', 'marconi_preload_critical_fonts', 1 );
 
