@@ -156,7 +156,7 @@
                 <?php if($contatti_centralino || $contatti_PEO || $contatti_PEC) { ?>
                     <ul class="list-inline">
                         <?php if($contatti_centralino) { ?>
-                            <li class="list-inline-item inline-flex items-center gap-2">
+                            <li class="inline-flex items-center gap-2">
                                 <?php echo $icon_centralino; ?>
                                 <a class="text-underline-hover" href="tel:<?php echo str_replace(' ', '', $contatti_centralino); ?>" aria-label="numero del centralino">
                                     <?php echo $contatti_centralino; ?>
@@ -164,14 +164,14 @@
                             </li>
                         <?php } ?>
                         <?php if($contatti_fax) { ?>
-                            <li class="list-inline-item inline-flex items-center gap-2">
+                            <li class="inline-flex items-center gap-2">
                                 <?php echo $icon_fax; ?>
                                 <?php echo $contatti_fax; ?>
                             </li>
                         <?php } ?>
 
                         <?php if($contatti_PEO) { ?>
-                            <li class="list-inline-item inline-flex items-center gap-2">
+                            <li class="inline-flex items-center gap-2">
                                 <?php echo $icon_PEO; ?>
                                 <a class="text-underline-hover" href="mailto:<?php echo str_replace(' ', '', $contatti_PEO); ?>" aria-label="indirizzo email istituzionale dell\'Istituto">
                                     <?php echo $contatti_PEO; ?>
@@ -179,7 +179,7 @@
                             </li>
                         <?php } ?>
                         <?php if($contatti_PEC) { ?>
-                            <li class="list-inline-item inline-flex items-center gap-2">
+                            <li class="inline-flex items-center gap-2">
                                 <?php echo $icon_PEC; ?>
                                 <a class="text-underline-hover" href="mailto:<?php echo str_replace(' ', '', $contatti_PEC); ?>" aria-label="indirizzo email PEC">
                                     <?php echo $contatti_PEC; ?>
