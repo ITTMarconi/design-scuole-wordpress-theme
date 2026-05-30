@@ -487,6 +487,20 @@ function admin_theme_style() {
 }
 add_action('admin_enqueue_scripts', 'admin_theme_style');
 
+// Self-hosted FontAwesome 5.15.4 with font-display:swap.
+// Replaces the Better Font Awesome plugin's CDN version to eliminate the
+// third-party DNS lookup and the font-display:block render delay.
+add_action( 'wp_enqueue_scripts', function () {
+    wp_dequeue_style( 'bfa-font-awesome' );
+    wp_deregister_style( 'bfa-font-awesome' );
+    wp_enqueue_style(
+        'marconi-font-awesome',
+        get_template_directory_uri() . '/assets/css/fontawesome.css',
+        [],
+        '5.15.4'
+    );
+}, 20 );
+
 // Disable WordPress emoji scripts — unnecessary on modern browsers.
 function marconi_disable_emojis() {
     remove_action('wp_head', 'print_emoji_detection_script', 7);
