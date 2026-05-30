@@ -11,7 +11,7 @@ title="Logo Provincia Autonoma di Trento"
    viewBox="0 0 300 470"
    xmlns="http://www.w3.org/2000/svg"
    xmlns:svg="http://www.w3.org/2000/svg">
-  <title id="title">Logo Provincia Autonoma di Trento</title>
+  <title id="logo-pat-title">Logo Provincia Autonoma di Trento</title>
       />
   <g
      transform="translate(-349.59 -5.754)"

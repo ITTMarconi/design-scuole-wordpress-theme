@@ -112,23 +112,27 @@ jQuery(document).ready(function($) {
 			$(this).toggleClass('active');
 			$list.toggleClass('open');
 		});
-		
-		// Add keyboard accessibility
+
+		// Add keyboard accessibility — start collapsed
 		$heading.attr('tabindex', '0').attr('role', 'button').attr('aria-expanded', 'false');
 		$list.attr('aria-hidden', 'true');
-		
+		// Links inside a collapsed aria-hidden container must not be reachable via Tab
+		$list.find('a').attr('tabindex', '-1');
+
 		$heading.on('keydown', function(e) {
 			if (e.key === 'Enter' || e.key === ' ') {
 				e.preventDefault();
 				$(this).trigger('click');
 			}
 		});
-		
-		// Update aria attributes on toggle
+
+		// Update aria attributes and focusability on toggle
 		$heading.on('click', function() {
 			var isOpen = $list.hasClass('open');
 			$(this).attr('aria-expanded', isOpen);
 			$list.attr('aria-hidden', !isOpen);
+			// Restore or remove tab reachability to match visibility
+			$list.find('a').attr('tabindex', isOpen ? '0' : '-1');
 		});
 	}
 });
