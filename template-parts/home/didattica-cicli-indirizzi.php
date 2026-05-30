@@ -20,7 +20,7 @@ if(is_array($indirizzi_didattica) && count($indirizzi_didattica)>0) {
                         <p><?php _e("A.S.", "design_scuole_italia"); ?> <?php echo dsi_convert_anno_scuola(dsi_get_current_anno_scolastico()) ; ?></p>
                     </div><!-- /title-section -->
                     <div class="tabs-img">
-                        <img class="img-fluid" src="<?php echo get_template_directory_uri(); ?>/assets/img/didattica-mockup.webp">
+                        <img class="img-fluid" src="<?php echo get_template_directory_uri(); ?>/assets/img/didattica-mockup.webp" alt="<?php _e('La nostra offerta formativa', 'design_scuole_italia'); ?>">
                     </div>
                     <div class="responsive-tabs responsive-tabs-aside padding-bottom-200">
                             <ul>
@@ -77,7 +77,7 @@ if(is_array($indirizzi_didattica) && count($indirizzi_didattica)>0) {
                                         ?>
                                         <hr/>
                                                 <div class="accordion-large-title accordion-header">
-                                                    <h3><a href="javascript:void(0)"><?php echo $struttura->post_title; ?></a></h3>
+                                                    <h3><a href="<?php echo get_permalink($struttura); ?>"><?php echo $struttura->post_title; ?></a></h3>
                                                 </div><!-- /accordion-large-title -->
                                                 <div class="accordion-large-content accordion-content">
                                                     <?php echo wpautop($descrizione); ?>

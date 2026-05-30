@@ -25,7 +25,7 @@ if(is_array($scuole_didattica) && count($scuole_didattica)>0) {
 
                         </div><!-- /title-section -->
                         <div class="tabs-img">
-                            <img class="img-fluid" src="<?php echo  get_template_directory_uri(); ?>/assets/img/didattica-mockup.webp">
+                            <img class="img-fluid" src="<?php echo get_template_directory_uri(); ?>/assets/img/didattica-mockup.webp" alt="<?php _e('La nostra offerta formativa', 'design_scuole_italia'); ?>">
                         </div>
                         <div class="responsive-tabs responsive-tabs-aside padding-bottom-200">
                             <ul>
@@ -59,7 +59,7 @@ if(is_array($scuole_didattica) && count($scuole_didattica)>0) {
                                         ?>
                                                     <hr/>
                                                     <div class="accordion-large-title accordion-header">
-                                                        <h3><a href="javascript:void(0)"><?php echo $indirizzo->post_title; ?></a></h3>
+                                                        <h3><a href="<?php echo get_permalink($indirizzo); ?>"><?php echo $indirizzo->post_title; ?></a></h3>
                                                     </div><!-- /accordion-large-title -->
                                                     <div tabindex="0" class="accordion-large-content accordion-content">
                                                         <?php echo wpautop($descrizione); ?>
