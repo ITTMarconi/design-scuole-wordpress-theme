@@ -133,3 +133,10 @@
 .banner img {
     max-height: 18ch;
 }
+
+span.gdm-drivefile-embed {
+    display: grid;
+    grid-template-columns: 2rem 1fr;
+    align-items: center;
+}
+
