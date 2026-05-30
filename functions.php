@@ -486,7 +486,34 @@ function admin_theme_style() {
     wp_enqueue_style('admin-style', get_template_directory_uri() . '/assets/css/admin-style.css');
 }
 add_action('admin_enqueue_scripts', 'admin_theme_style');
-add_action('wp_enqueue_scripts', 'admin_theme_style');
+
+// Disable WordPress emoji scripts — unnecessary on modern browsers.
+function marconi_disable_emojis() {
+    remove_action('wp_head', 'print_emoji_detection_script', 7);
+    remove_action('admin_print_scripts', 'print_emoji_detection_script');
+    remove_action('wp_print_styles', 'print_emoji_styles');
+    remove_action('admin_print_styles', 'print_emoji_styles');
+    remove_filter('the_content_feed', 'wp_staticize_emoji');
+    remove_filter('comment_text_rss', 'wp_staticize_emoji');
+    remove_filter('wp_mail', 'wp_staticize_emoji_for_email');
+    add_filter('tiny_mce_plugins', function($plugins) {
+        return is_array($plugins) ? array_diff($plugins, ['wpemoji']) : [];
+    });
+}
+add_action('init', 'marconi_disable_emojis');
+
+// Preload the two heaviest theme CSS files so the browser fetches them
+// as soon as it sees the <head>, before plugin stylesheets push them down the queue.
+function marconi_preload_critical_css() {
+    global $wp_styles;
+    foreach (['dsi-boostrap-italia', 'itt-scuole-marconi'] as $handle) {
+        if (!isset($wp_styles->registered[$handle])) continue;
+        $style = $wp_styles->registered[$handle];
+        $ver   = $style->ver ? '?ver=' . $style->ver : '';
+        echo '<link rel="preload" href="' . esc_url($style->src . $ver) . '" as="style">' . "\n";
+    }
+}
+add_action('wp_head', 'marconi_preload_critical_css', 1);
 
 add_action( 'after_setup_theme', 'set_default_media_link_to_file' );
 function set_default_media_link_to_file() {
