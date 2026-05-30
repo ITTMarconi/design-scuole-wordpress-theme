@@ -11320,6 +11320,7 @@ button.icon-text {
   z-index: 1;
   width: 100%;
   box-shadow: 0 0.1rem 1.55rem rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease, padding 0.3s ease;
 }
 #main-header::after {
   display: block;
@@ -11332,9 +11333,11 @@ button.icon-text {
   left: 0;
   z-index: 5;
 }
+/*
 #main-header.is-sticky .header-social {
   display: none;
 }
+*/
 .cbp-spmenu-vertical.cbp-spmenu-left.zoom {
   width: 225px;
 }
@@ -11706,6 +11709,7 @@ button.icon-text {
 }
 .is-sticky .logo-header {
   margin-right: 20px;
+  transition: margin-right 0.3s ease;
 }
 @media (max-width: 991.98px) {
   .is-sticky .logo-header {
@@ -11721,6 +11725,7 @@ button.icon-text {
   height: 72px;
   display: block;
   fill: #455b71;
+  transition: width 0.3s ease, height 0.3s ease;
 }
 .is-sticky .logo-header svg {
   width: 40px;
@@ -11740,6 +11745,7 @@ button.icon-text {
   line-height: 1.29;
   letter-spacing: 0;
   margin: 0 0 0 25px;
+  transition: font-size 0.3s ease, margin-left 0.3s ease;
 }
 .is-sticky .logo-header .h1,
 .is-sticky .logo-header h1 {
@@ -11765,6 +11771,7 @@ button.icon-text {
   font-size: 18px;
   position: relative;
   z-index: 1;
+  transition: height 0.3s ease, opacity 0.3s ease, padding 0.3s ease;
 }
 #sub-nav::after {
   display: block;
@@ -11774,6 +11781,9 @@ button.icon-text {
 #main-header.is-sticky #sub-nav {
   height: 0;
   overflow: hidden;
+  opacity: 0;
+  padding-top: 0;
+  padding-bottom: 0;
 }
 #sub-nav ul {
   list-style: none;
@@ -15239,7 +15249,7 @@ h2.hero-text span:nth-child(3) {
 .header-social {
   display: none;
 }
-@media (min-width: 992px) {
+@media (min-width: 640px) {
   .header-social {
     display: flex;
   }
@@ -15247,6 +15257,7 @@ h2.hero-text span:nth-child(3) {
 .header-social .header-social-wrapper {
   display: flex;
   align-items: center;
+  gap: 0.5rem;
 }
 .header-social a {
   color: #455b71;

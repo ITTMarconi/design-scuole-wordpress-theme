@@ -1,6 +1,15 @@
 @import "tailwindcss";
 @plugin "tailwindcss-motion";
 
+/* Create your own custom container name */
+@utility wrapper {
+  @apply container;
+  
+  /* You can optionally append default behaviors here */
+  margin-inline: auto;
+  padding-inline: 1rem;
+}
+
 /* Restore Bootstrap Italia container — Tailwind's .container conflicts */
 .container {
   padding-right: 6px;
@@ -30,7 +39,7 @@
 /* Your custom styles here */
 
 /* --- Safelist for admin-entered custom classes --- */                                          
-@source inline("text-[2rem] bg-red-100 text-xl text-2xl text-3xl text-4xl text-white font-bold rounded-lg shadow-lg border border-red-500 inline-flex items-center gap-2");
+@source inline("text-[2rem] bg-red-100 text-xl text-2xl text-3xl text-4xl text-white font-bold rounded-lg shadow-lg border border-red-500 inline-flex items-center gap-2 p-10 pl-10 px-10");
 /* Add any utility classes you might use in the home-message custom class field */
 /* inline-flex items-center gap-2 — used in footer contact widget <li> elements (stored in DB) */
 

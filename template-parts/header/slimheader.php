@@ -1,5 +1,5 @@
 <div id="pre-header">
-    <div class="container">
+    <div class="wrapper px-10">
         <div class="row variable-gutters flex flex-nowrap items-center  min-h-12">
             <div class="grow pl-2">
                 <a href="https://www.miur.gov.it/" target="_blank" aria-label="MIUR - Collegamento esterno - Apre su nuova scheda">

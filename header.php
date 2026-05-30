@@ -56,8 +56,8 @@ if(is_search() || is_archive())
     <?php get_template_part("template-parts/common/skiplink"); ?>
     <header id="main-header" class="bg-white">
         <?php get_template_part("template-parts/header/slimheader"); ?>
-        <div class="container header-top">
-            <div class="row variable-gutters">
+        <div class="wrapper header-top">
+            <div class="row">
                 <div class="col-12 d-flex align-items-center">
                     <button class="hamburger hamburger--spin-r toggle-menu menu-left push-body d-xl-none" type="button" aria-label="apri chiudi navigazione">
                         <span class="hamburger-box">
@@ -228,7 +228,7 @@ if(is_search() || is_archive())
         </div><!-- /container -->
 
         <div class="bg-white d-none d-xl-block header-bottom" id="sub-nav">
-            <div class="container">
+            <div class="wrapper">
                 <div class="row variable-gutters">
                     <div class="col nav-container">
                         <nav aria-label="Principale" class="main-nav" id="menu-principale">
