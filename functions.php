@@ -518,6 +518,17 @@ function marconi_preload_critical_css() {
 }
 add_action('wp_head', 'marconi_preload_critical_css', 1);
 
+// Preload the homepage hero background image so the browser fetches it during
+// <head> parsing instead of after CSS is applied — improving LCP.
+function marconi_preload_hero_image() {
+    if ( ! is_home() && ! is_front_page() ) return;
+    $img = dsi_get_option( 'immagine', 'la_scuola' );
+    if ( $img ) {
+        echo '<link rel="preload" as="image" href="' . esc_url( $img ) . '">' . "\n";
+    }
+}
+add_action( 'wp_head', 'marconi_preload_hero_image', 1 );
+
 add_action( 'after_setup_theme', 'set_default_media_link_to_file' );
 function set_default_media_link_to_file() {
     update_option( 'image_default_link_type', 'file' );
