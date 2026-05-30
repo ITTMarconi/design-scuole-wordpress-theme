@@ -130,6 +130,20 @@
     margin-bottom: 5px;
 }
 
+/* Footer contact icons: the widget HTML uses Tailwind's inline-flex/items-center/gap-2
+   on <li> elements, but those classes are stored in the DB and invisible to Tailwind's
+   file scanner, so they are absent from tail.css. Replicate the effect here. */
+#footer-wrapper .footer-list ul li.list-inline-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+#footer-wrapper .footer-list ul li.list-inline-item svg {
+    flex-shrink: 0;
+    display: inline-block;
+}
+
 .banner img {
     max-height: 18ch;
 }
