@@ -4,9 +4,6 @@
 
 global $posts, $see_all_link, $card_type, $title;
 
-error_log("articoli-rassegna.php");
-
-
 $id_tipologia_comunicazioni = dsi_get_option('tipologia_comunicazioni', 'notizie');
 $giorni_per_filtro  = dsi_get_option('giorni_per_filtro', 'homepage');
 $data_limite_filtro = strtotime('-' . $giorni_per_filtro . ' day');

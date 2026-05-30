@@ -2,14 +2,9 @@
 
 // global $calendar_card;
 
-error_log("articoli-rassegna.php");
-
-
 $tipologie_notizie  = dsi_get_option('tipologie_notizie', 'notizie');
-error_log("tipologie_notizie: " . print_r($tipologie_notizie, true));
 
 $tipologie_rassegna  = dsi_get_option('tipologie_rassegna', 'notizie');
-error_log("tipologie_rassegna: " . print_r($tipologie_rassegna, true));
 
 $id_tipologia_comunicazioni = dsi_get_option('tipologia_comunicazioni', 'notizie');
 $giorni_per_filtro  = dsi_get_option('giorni_per_filtro', 'homepage');

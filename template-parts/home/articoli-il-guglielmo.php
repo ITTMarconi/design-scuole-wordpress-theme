@@ -3,8 +3,6 @@
 // global $calendar_card;
 global $posts, $see_all_link, $card_type, $title;
 
-error_log("articoli-il-guglielmo.php");
-
 $giorni_per_filtro  = dsi_get_option('giorni_per_filtro', 'homepage');
 $data_limite_filtro = strtotime('-' . $giorni_per_filtro . ' day');
 

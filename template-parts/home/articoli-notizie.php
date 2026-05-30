@@ -3,11 +3,7 @@
 // global $calendar_card;
 global $posts, $see_all_link, $card_type, $title;
 
-error_log("articoli-notizie.php");
-
-
 $tipologie_notizie  = dsi_get_option('tipologie_notizie', 'notizie');
-error_log("tipologie_notizie: " . print_r($tipologie_notizie, true));
 
 $giorni_per_filtro  = dsi_get_option('giorni_per_filtro', 'homepage');
 $data_limite_filtro = strtotime('-' . $giorni_per_filtro . ' day');

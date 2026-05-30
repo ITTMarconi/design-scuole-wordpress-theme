@@ -3,8 +3,6 @@
 // global $calendar_card;
 global $posts, $see_all_link, $card_type, $title;
 
-error_log("articoli-rassegna.php");
-
 $giorni_per_filtro  = dsi_get_option('giorni_per_filtro', 'homepage');
 $data_limite_filtro = strtotime('-' . $giorni_per_filtro . ' day');
 
@@ -12,7 +10,6 @@ $data_limite_filtro = strtotime('-' . $giorni_per_filtro . ' day');
 // This are the parameters for the carousel of notizie(max 2 types only selected in another section) and cirolari
 
 $tipologie = dsi_get_option('tipologie_rassegna', 'notizie');
-error_log("tipologie_rassegna: " . print_r($tipologie_rassegna, true));
 
 // Rassegna carousel settings
 $home_numero = dsi_get_option('home_numero_rassegna', 'homepage');
