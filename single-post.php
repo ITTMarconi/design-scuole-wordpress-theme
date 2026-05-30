@@ -27,7 +27,7 @@ $user_can_view_post = dsi_members_can_user_view_post(get_current_user_id(), $pos
             ?>
 
             <section class="section bg-white py-5">
-                <div class="container">
+                <div class="wrapper">
                     <div class="row variable-gutters">
                         <?php if($user_can_view_post): ?>
                         <div class="col-lg-9 col-md-8 order-lg-1">

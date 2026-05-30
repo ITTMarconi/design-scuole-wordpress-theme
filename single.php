@@ -31,7 +31,7 @@ get_header();
                     <section class="section bg-white article-title">
                         <div class="title-img" style="background-image: url('<?php echo $fallback_image_url; ?>');"></div>
                 <?php } ?>
-            <div class="container">
+            <div class="wrapper">
                 <div class="row variable-gutters">
                     <div class="col-md-6 article-title-author-container">
                         <div class="title-content">
