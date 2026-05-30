@@ -14400,10 +14400,6 @@ button.icon-text {
  *************************************/
 
 .section-hero-marconi {
-  background: transparent;
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
   color: #fff;
   position: relative;
   z-index: 0;
@@ -14413,13 +14409,29 @@ button.icon-text {
   flex-direction: column;
 }
 
+/* Full-cover <img> replacing the old background-image inline style */
+.section-hero-marconi__bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  z-index: 0;
+}
+
 /* Hero Text Customization */
 
 .section-hero-marconi::before {
   background-image: none;
-  /* opacity: 0.5 !important; */
   background-color: #000 !important;
   backdrop-filter: blur(2px);
+  z-index: 1;
+}
+
+.section-hero-marconi .hero-text,
+.section-hero-marconi .hero-title {
+  z-index: 2;
 }
 
 .section-hero-marconi .hero-title {
