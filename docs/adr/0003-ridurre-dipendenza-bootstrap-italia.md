@@ -60,6 +60,9 @@ né `!important`, e ogni componente riscritto "esce" da BI restando isolato.
 2. **Tailwind-first** sui componenti nuovi (già regola in `design-system.md`).
 3. **Inventario della superficie BI** realmente usata: griglia, utility,
    componenti, e dipendenze JS. Serve per pianificare con dati.
+   → Fatto: `bootstrap-italia-inventory.md` (runtime reale = **v1.6.2 / BS4 /
+   jQuery**; la griglia è la dipendenza più pervasiva, il JS di BI è delimitato
+   a modali/collapse/carousel).
 4. **PoC dei cascade layers** in locale: dichiarare l'ordine dei layer e
    avvolgere BI nel layer `vendor`, **misurare cosa si rompe** (specificità,
    `!important`, ordine), senza deploy.
