@@ -30,8 +30,20 @@
 }
 
 .home .card-noicon {
-    min-height: 100px;
-    max-height: 100px;
+    /* min-height keeps a comfortable tap target / baseline rhythm; max-height
+       removed because it clipped longer descriptions. Rows still equalize via
+       flex stretch on desktop, so the grid stays tidy. */
+    min-height: 72px;
+}
+/* Fill the card and vertically center the content: title-only cards (es. Argomenti)
+   no longer leave a void below, and cards stretched to match a taller sibling stay centered. */
+.home .card-noicon > a {
+    display: flex;
+    flex: 1 1 auto;
+    align-items: center;
+}
+.home .card-noicon .card-body {
+    width: 100%;
 }
 
 .home .card-icon-main {

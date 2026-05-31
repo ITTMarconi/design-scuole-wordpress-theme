@@ -6,7 +6,9 @@ global $argomento;
             <div class="card-body">
                 <div class="card-icon-content" id="card-desc-argomento-<?php echo $argomento->term_id; ?>">
                     <p><strong><?php echo $argomento->name; ?></strong></p>
-                    <small><?php echo $argomento->description; ?></small>
+                    <?php if (trim($argomento->description) !== "") { ?>
+                        <small><?php echo $argomento->description; ?></small>
+                    <?php } ?>
                 </div><!-- /card-icon-content -->
             </div><!-- /card-body -->
         </a>
