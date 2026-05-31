@@ -209,7 +209,60 @@ Old bluelectric: new #6B0DDE #250DDE #4B21F2
 	*/
 
   --footer-bg: var(--petrol);
+
+  /* =====================================================================
+   * STRATO SEMANTICO (ADR 0002) — token per RUOLO, non per colore.
+   * Referenziano i primitivi sopra. Il CSS dei componenti deve usare
+   * QUESTI, non i colori grezzi. Il tema scuro ridefinirà solo questo
+   * blocco sotto [data-theme="dark"] (vedi stub in fondo al file).
+   * Fase 1: mappatura sul tema chiaro attuale — nessun cambiamento visivo.
+   * ===================================================================== */
+
+  /* Superfici */
+  --color-surface: var(--white); /* #fff — sfondo pagina */
+  --color-surface-raised: var(--white); /* card / elementi sollevati */
+  --color-surface-sunken: #f5f5f5; /* sfondi incassati / bande chiare */
+
+  /* Testo */
+  --color-text: var(--black); /* #333 — testo principale */
+  --color-text-muted: #5c6f82; /* testo secondario / metadati */
+  --color-text-on-brand: var(--white); /* testo su superfici di brand */
+
+  /* Bordi */
+  --color-border: #e3e4e6; /* bordi neutri (card, divisori) */
+  --color-border-strong: #cacacc; /* bordi più marcati */
+
+  /* Brand e accenti */
+  --color-brand: var(--redbrown); /* rosso Marconi WCAG */
+  --color-brand-hover: var(--redbrown-dark);
+  --color-accent: var(--petrol); /* accento neutro di default */
+
+  /* Accenti di sezione (riusano la palette per-sezione esistente) */
+  --color-section-scuola: var(--redbrown);
+  --color-section-servizi: var(--purplelight);
+  --color-section-didattica: var(--bluelectric);
+  --color-section-verde: var(--greendark);
 }
+
+/* =======================================================================
+ * STUB TEMA SCURO (ADR 0002, fase 3) — NON ATTIVO.
+ * Quando si avvierà l'iniziativa dark, ridefinire QUI solo i token
+ * semantici. Nessun elemento usa [data-theme="dark"] al momento, quindi
+ * questo blocco non ha effetti finché non lo si popola e si applica
+ * l'attributo. Lasciato commentato per documentare l'intento.
+ * =======================================================================
+[data-theme="dark"] {
+  --color-surface: #17324d;
+  --color-surface-raised: #1f3d5c;
+  --color-surface-sunken: #122538;
+  --color-text: #f5f5f5;
+  --color-text-muted: #b1b1b3;
+  --color-border: #3a5365;
+  --color-border-strong: #51758d;
+  --color-brand: var(--rosso-logo-marconi-original);
+  --color-text-on-brand: #fff;
+}
+*/
 
 .bg-gray-gradient {
   background: #f5f5f5;
