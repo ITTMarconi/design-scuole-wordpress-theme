@@ -225,6 +225,7 @@ Old bluelectric: new #6B0DDE #250DDE #4B21F2
 
   /* Testo */
   --color-text: var(--black); /* #333 — testo principale */
+  --color-heading: var(--dark); /* #17324d — titoli (più scuri del corpo) */
   --color-text-muted: #5c6f82; /* testo secondario / metadati */
   --color-text-on-brand: var(--white); /* testo su superfici di brand */
 
@@ -242,6 +243,7 @@ Old bluelectric: new #6B0DDE #250DDE #4B21F2
   --color-section-servizi: var(--purplelight);
   --color-section-didattica: var(--bluelectric);
   --color-section-verde: var(--greendark);
+  --color-section-argomenti: var(--petrol);
 }
 
 /* =======================================================================
@@ -256,6 +258,7 @@ Old bluelectric: new #6B0DDE #250DDE #4B21F2
   --color-surface-raised: #1f3d5c;
   --color-surface-sunken: #122538;
   --color-text: #f5f5f5;
+  --color-heading: #eaf0f6;
   --color-text-muted: #b1b1b3;
   --color-border: #3a5365;
   --color-border-strong: #51758d;
