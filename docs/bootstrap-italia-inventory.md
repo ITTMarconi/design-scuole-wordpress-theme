@@ -108,9 +108,13 @@ Il markup usa convenzioni **Bootstrap 4** (`data-toggle` / `data-target` /
 
 ## 4. Raccomandazione
 
-0. **Purge come vittoria rapida** (vedi §0bis): usiamo ~6% di BI → un build step
-   di tree-shaking (con safelist delle classi aggiunte da JS) può tagliare ~470 KB
-   a ~30–50 KB **senza cambi visivi**, subito e indipendentemente dai layer.
+0. **Purge — ✅ IMPLEMENTATO** (vedi §0bis): `scripts/purge-bootstrap.js`
+   (`npm run purge:bs`, dentro `npm run build`) genera
+   `assets/css/bootstrap-italia.purged.css` (**459 KB → 66 KB**, versione
+   conservativa). `functions.php` serve il purgato, con **fallback** al file
+   completo se assente. Il file completo resta in repo come sorgente. Se manca una
+   regola: aggiungila alla safelist in `scripts/purge-bootstrap.js` e rilancia
+   `npm run purge:bs`, oppure togli temporaneamente il purgato per tornare al completo.
 1. **`@layer` prima** (ADR-0003): mette BI in un layer basso così i nostri
    override vincono puliti mentre sostituiamo. Sblocca tutto il resto.
 2. **Vittorie facili**: icone (fatte), bottoni, card — già per metà nostre.
