@@ -75,6 +75,33 @@ né `!important`, e ogni componente riscritto "esce" da BI restando isolato.
 > Non introdurre i layer come *prima* mossa a freddo: prima la base (token,
 > Tailwind-first, inventario), poi i layer.
 
+## Risultati del PoC (2026-05-31) — esito: **GO, con 1 prerequisito**
+
+**Metodo:** sul dev, BI ri-iniettato in un `@layer` (throwaway, nessun deploy),
+con `url()` riscritte in assoluto per non falsare il test. Diff dei
+`getComputedStyle` sui soli elementi **HTML visibili** (esclusi sprite icone e
+`display:none`), su due pagine: home e una single (servizio).
+
+**Risultato:** nessuna rottura di **colore, sfondo, bordo, ombra, display o
+layout** in nessuna delle due pagine.
+- Home: **91 / 1180** elementi visibili cambiano.
+- Single servizio: **20 / 700** — e **zero** cambiamenti "pesanti" (solo tipografia).
+
+**Causa unica dei cambiamenti:** una regola globale in `tail.css`
+(`h1–h6 { @apply text-2xl font-semibold mb-2 mt-4 }`) oggi **soppressa da BI**.
+Abbassando BI di priorità, quella regola si attiva e irrigidisce **tutti** i
+titoli (`font-weight 400→600`, dimensione/`line-height` diversi). È un footgun
+latente a prescindere dai layer.
+
+**`!important` di BI:** invariato — i layer non lo toccano, quindi le utility
+`!important` continuano a comportarsi **esattamente come adesso**: nessuna
+rottura da lì.
+
+**Prerequisito prima del rollout:** mettere in sicurezza quella regola titoli
+(scoparla ai contesti voluti o rimuoverla). **Caveat:** PoC su 2 pagine;
+estendere a pagine con form/modali/carousel prima di introdurre i layer in
+produzione.
+
 ## Conseguenze
 
 **Positive**
