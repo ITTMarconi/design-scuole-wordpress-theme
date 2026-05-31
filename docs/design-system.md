@@ -39,6 +39,35 @@ codice **nuovo o modificato**, però, segue da subito queste best practice:
 - **Niente conversioni "di passaggio"**: si modernizza solo il codice che si sta
   effettivamente riscrivendo.
 
+### CSS moderno: cosa adottare (sito pubblico, vincoli di accessibilità)
+
+Il pubblico è ampio (non solo browser evergreen) e valgono gli obblighi di
+accessibilità della PA: l'adozione delle feature va decisa in base al supporto,
+non alla moda.
+
+- **Adottare ora** (Baseline, basso rischio): proprietà logiche
+  (`margin-inline`, `padding-block`, `inset`), `gap`, intrinsic sizing
+  (`min-content`, `fit-content`), `aspect-ratio`, `:has()`, custom properties /
+  token, `:focus-visible`, `prefers-reduced-motion`, unità `rem`.
+- **Selettivo** (utile, ma con criterio): container queries per i componenti
+  (dimensionare sul contenitore, non sul viewport — Tailwind v4 le espone);
+  `@property` per animare in modo fluido variabili tipizzate (es. gradienti).
+- **Solo progressive enhancement** (supporto non garantito): View Transitions
+  API, scroll-driven animations, `@scope`, style queries. Mai come unico
+  percorso: sempre con fallback funzionante.
+
+**Due trappole da ricordare:**
+
+- **`clamp()` per il testo deve contenere un termine `rem`.** Un `clamp()`
+  basato solo su `vw` **disattiva lo zoom** e viola la WCAG 1.4.4. Forma
+  corretta: `clamp(1rem, 4vw + 0.5rem, 2rem)`.
+- **`@layer` + Bootstrap Italia.** Gli stili *non* in layer **vincono** su
+  quelli in layer. Bootstrap Italia è un file compilato non in layer: se
+  mettiamo i nostri override in un `@layer` e lasciamo BI fuori, **vince BI**
+  (l'opposto di ciò che vogliamo). Inoltre le utility `!important` di BI
+  ignorano del tutto i layer. Quindi `@layer` conviene solo se importiamo anche
+  BI dentro un layer (modifica di build) — non va introdotto a cuor leggero.
+
 ## 1. Token di colore
 
 I token sono definiti come **CSS custom properties** nel blocco `:root` di
