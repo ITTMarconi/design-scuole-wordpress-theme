@@ -65,6 +65,13 @@ const OUT = "./assets/css/bootstrap-italia.purged.css";
         /^push-body/,   // jPushMenu body states
         /menu-open/,
         /^splide/,      // Splide classes (BI carousel rules reference them)
+        // Pagination is generated at runtime by WordPress (paginate_links / the
+        // theme walker), so its classes + the [aria-current] current-page rule
+        // are not visible to static scanning. Keep the whole family.
+        /pagination/,
+        /page-link/,
+        /page-item/,
+        /page-numbers/,
       ],
     },
   });
