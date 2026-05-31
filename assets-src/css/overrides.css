@@ -66,6 +66,29 @@
     align-items: stretch;
     height: 100%;
     padding: 18px 20px;
+    position: relative;
+    z-index: 1; /* keep content above the watermark */
+}
+/* Decorative service icon, set per-service in admin (_dsi_servizio_icona).
+   Sits in the bottom-right corner, cropped by the card, filling the space
+   that title-only cards would otherwise leave empty. */
+.home .card-noicon .svc-wm {
+    position: absolute;
+    right: -14px;
+    bottom: -18px;
+    width: 120px;
+    height: 120px;
+    color: var(--purplelight);
+    fill: currentColor;
+    opacity: 0.08;
+    z-index: 0;
+    pointer-events: none;
+    transition: opacity 0.22s ease, transform 0.22s ease;
+}
+.home .card-noicon:hover .svc-wm,
+.home .card-noicon:focus-within .svc-wm {
+    opacity: 0.13;
+    transform: scale(1.05) rotate(-3deg);
 }
 .home .card-noicon .card-body {
     padding: 0;
@@ -127,11 +150,14 @@
 @media (prefers-reduced-motion: reduce) {
     .home .card-noicon,
     .home .card-noicon::before,
-    .home .card-noicon .svc-arrow {
+    .home .card-noicon .svc-arrow,
+    .home .card-noicon .svc-wm {
         transition: none;
     }
     .home .card-noicon:hover,
-    .home .card-noicon:focus-within {
+    .home .card-noicon:focus-within,
+    .home .card-noicon:hover .svc-wm,
+    .home .card-noicon:focus-within .svc-wm {
         transform: none;
     }
 }

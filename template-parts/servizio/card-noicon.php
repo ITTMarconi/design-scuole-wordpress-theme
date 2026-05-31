@@ -3,6 +3,10 @@ global $servizio;
 if($servizio->post_status == "publish") {
     ?>
     <div class="card card-bg card-noicon rounded">
+        <?php $icona = dsi_get_meta("icona", '_dsi_servizio_', $servizio->ID);
+        if (trim($icona) !== "") { ?>
+            <svg class="svc-wm" aria-hidden="true" focusable="false"><use xlink:href="#<?php echo esc_attr($icona); ?>"></use></svg>
+        <?php } ?>
         <a href="<?php echo get_permalink($servizio); ?>">
             <div class="card-body">
                 <div class="card-icon-content" id="card-desc-<?php echo $servizio->ID; ?>">

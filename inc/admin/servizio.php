@@ -136,6 +136,40 @@ function dsi_add_servizi_metaboxes() {
         'remove_default' => 'true'
     ) );
 
+    $cmb_sottotitolo->add_field( array(
+        'id'      => $prefix . 'icona',
+        'name'    => __( 'Icona (watermark in home)', 'design_scuole_italia' ),
+        'desc'    => __( 'Icona decorativa mostrata in filigrana nella card del Servizio in home page. Lascia vuoto per non mostrare alcuna icona.', 'design_scuole_italia' ),
+        'type'    => 'select',
+        'default' => '',
+        'options' => array(
+            ''                => __( '— Nessuna —', 'design_scuole_italia' ),
+            'it-comment'      => 'Dialogo / Ascolto',
+            'it-user'         => 'Persona',
+            'it-calendar'     => 'Calendario',
+            'it-clock'        => 'Orario',
+            'it-file'         => 'Documento',
+            'it-files'        => 'Documenti',
+            'it-folder'       => 'Cartella',
+            'it-note'         => 'Modulo / Nota',
+            'it-pencil'       => 'Compilazione',
+            'it-tool'         => 'Assistenza tecnica',
+            'it-piattaforme'  => 'Piattaforme',
+            'it-presentation' => 'Didattica',
+            'it-chart-line'   => 'Dati / Statistiche',
+            'it-card'         => 'Tessera / Servizio',
+            'it-list'         => 'Elenco',
+            'it-settings'     => 'Impostazioni',
+            'it-mail'         => 'Posta',
+            'it-inbox'        => 'Richieste',
+            'it-key'          => 'Accesso',
+            'it-search'       => 'Ricerca',
+            'it-bookmark'     => 'Risorsa',
+            'it-video'        => 'Video',
+            'it-camera'       => 'Foto',
+        ),
+    ) );
+
 
 
 	$cmb_sottotitolo->add_field( array(
