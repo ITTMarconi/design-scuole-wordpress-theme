@@ -64,8 +64,8 @@ if (!empty($argo_tags)) :
         3 => 'text-lg px-5 py-2 font-bold',
     );
 ?>
-<div class="wrapper position-relative slided-top">
-    <div class="flex flex-wrap justify-start md:justify-center items-center gap-3 mb-4 px-2">
+<div class="wrapper position-relative slided-top argomenti-cloud">
+    <div class="flex flex-wrap justify-center items-center gap-3 mb-4 px-2">
         <?php foreach ($argo_tags as $tag) :
             $tier = $tier_of[$tag->term_id];
             $count_label = sprintf(_n('%s contenuto', '%s contenuti', $tag->count, 'design_scuole_italia'), number_format_i18n($tag->count));
