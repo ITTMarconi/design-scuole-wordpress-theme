@@ -20,6 +20,25 @@
 - Preferire le utility Tailwind al nuovo CSS custom quando possibile (vedi
   `CLAUDE.md`).
 
+### Convenzioni per il codice NUOVO
+
+Il tema è in **refactoring graduale**: il codice esistente non va convertito in
+blocco: le modernizzazioni avvengono quando una sezione viene riscritta. Il
+codice **nuovo o modificato**, però, segue da subito queste best practice:
+
+- **Unità**: `rem` per spaziature e dimensioni legate al testo (min-height,
+  padding, gap). `px` solo per bordi/hairline e piccoli dettagli decorativi
+  fissi (raggi, blur delle ombre, micro-offset). Le utility Tailwind sono già
+  rem-based: preferirle per i componenti nuovi.
+- **Accessibilità**: `:focus-visible`, fallback `prefers-reduced-motion`,
+  informazioni essenziali come testo reale (mai solo dentro le immagini).
+- **Token, non numeri magici**: usare le CSS custom properties / token semantici
+  (vedi §1) invece di valori hardcoded.
+- **CSS moderno** dove serve davvero: `clamp()` per dimensioni fluide, proprietà
+  logiche, `gap`, ecc.
+- **Niente conversioni "di passaggio"**: si modernizza solo il codice che si sta
+  effettivamente riscrivendo.
+
 ## 1. Token di colore
 
 I token sono definiti come **CSS custom properties** nel blocco `:root` di
