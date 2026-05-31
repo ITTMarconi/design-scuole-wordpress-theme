@@ -160,6 +160,48 @@
     max-height: 18ch;
 }
 
+/* Footer funding/partner logos (banner_group option) sit on the dark petrol
+   footer. The uploaded logos are inconsistent (some have a white background
+   baked in, others are transparent with dark text, wildly different sizes).
+   Give each a uniform white rounded panel with a capped height so they read
+   consistently regardless of the source image. */
+.section-footer .grid-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 16px;
+}
+.section-footer .grid-item {
+    flex: 0 1 200px;
+}
+.section-footer .banner {
+    background: #fff;
+    border-radius: 8px;
+    padding: 14px 18px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.section-footer .banner a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+.section-footer .banner figure {
+    margin: 0;
+    width: 100%;
+}
+.section-footer .banner img {
+    max-height: 56px;
+    width: auto;
+    max-width: 100%;
+    object-fit: contain;
+    margin: 0 auto;
+    display: block;
+}
+
 span.gdm-drivefile-embed {
     display: grid;
     grid-template-columns: 2rem 1fr;
