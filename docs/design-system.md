@@ -113,39 +113,33 @@ di contrasto (tutti AAA), perché usati per il testo dei menu.
 | `--black-alpha` | `rgba(0,0,0,0.075)` |
 | `--black-alpha-dark` | `rgba(0,0,0,0.125)` |
 
-### 1.4 Livello semantico — ⚠️ DA CONSOLIDARE
+### 1.4 Livello semantico — `--color-*` (ADR-0002)
 
-Esiste un primo abbozzo di token **semantici** (per ruolo, non per colore), ma è
-**incompleto, duplicato e in parte commentato**:
+Lo strato semantico (token per **ruolo**, non per colore) esiste nel blocco
+`:root` di `scuole-marconi.css` e referenzia i primitivi sopra. È l'unico strato
+che il **tema scuro** dovrà ridefinire (vedi stub `[data-theme="dark"]` in fondo
+al file).
 
-```css
---text: #ffffff;
---background: #a41212;
---primary: #2a552a;
---secondary: #7c19aa;
---accent: #5abcd3;
-/* + una seconda variante alternativa lasciata in commento */
-```
+| Token semantico | Mappa su | Ruolo |
+|-----------------|----------|-------|
+| `--color-surface` / `--color-surface-raised` | `--white` | sfondo pagina / card |
+| `--color-surface-sunken` | `#f5f5f5` | sfondi incassati |
+| `--color-text` | `--black` | testo principale |
+| `--color-heading` | `--dark` | titoli (più scuri del corpo) |
+| `--color-text-muted` | `#5c6f82` | testo secondario / metadati |
+| `--color-text-on-brand` | `--white` | testo su superfici di brand |
+| `--color-border` / `--color-border-strong` | `#e3e4e6` / `#cacacc` | bordi |
+| `--color-brand` / `--color-brand-hover` | `--redbrown` | accento istituzionale |
+| `--color-accent` | `--petrol` | accento neutro |
+| `--color-section-{scuola,servizi,didattica,verde,argomenti}` | palette per-sezione | accenti di sezione |
 
-**Problema:** la maggior parte del CSS usa direttamente i colori di brand
-(`--redbrown`, `#fff`, `#333`, valori grezzi…) invece di token semantici per
-ruolo. Questo è l'ostacolo principale al tema scuro.
-
-**Obiettivo del consolidamento** (vedi `adr/0002-token-semantici-per-theming.md`):
-introdurre uno strato semantico completo e usarlo ovunque, ad esempio:
-
-| Token semantico (proposto) | Significato |
-|----------------------------|-------------|
-| `--color-surface` | sfondo delle superfici |
-| `--color-surface-raised` | sfondo di card/elementi sollevati |
-| `--color-text` | testo principale |
-| `--color-text-muted` | testo secondario |
-| `--color-border` | bordi |
-| `--color-brand` | accento istituzionale (rosso Marconi) |
-| `--color-accent` | accento secondario di sezione |
-
-I colori grezzi restano come **token primitivi**; i token semantici li
-referenziano. Il tema scuro ridefinisce **solo** lo strato semantico.
+**Stato (fase 2 in corso):** i componenti che controlliamo noi — card Servizi e
+bottone `.btn-scopri` (`overrides.css`) — **consumano già** i token. Resta da
+migrare il grosso di `scuole-marconi.css`, che usa ancora colori di brand e
+valori grezzi: è l'ultimo ostacolo al tema scuro, da fare **file per file** a
+parità visiva (i token mappano sui valori attuali, quindi la migrazione non
+cambia nulla a occhio). I one-off decorativi (stop dei gradienti, ombre tinte)
+restano grezzi finché non serviranno nel tema scuro.
 
 ## 2. Tipografia
 
