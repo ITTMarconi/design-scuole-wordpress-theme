@@ -23,6 +23,11 @@ $home_servizi_manuali = dsi_get_option("home_servizi_manuali", "homepage");
             if (is_array($home_servizi_manuali) && count($home_servizi_manuali)) {
                 foreach ($home_servizi_manuali as $idservizio){
                  $servizio = get_post($idservizio);
+                    // Skip services that are missing or not published, otherwise an
+                    // empty column would take a grid slot and break the layout.
+                    if (!$servizio || $servizio->post_status !== "publish") {
+                        continue;
+                    }
                     ?>
                     <div class="col-lg-4 mb-4">
                         <?php get_template_part("template-parts/servizio/card", "noicon"); ?>
