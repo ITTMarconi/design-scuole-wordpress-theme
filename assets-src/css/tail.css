@@ -43,11 +43,13 @@
 /* Add any utility classes you might use in the home-message custom class field */
 /* inline-flex items-center gap-2 — used in footer contact widget <li> elements (stored in DB) */
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
+/* Tipografia dei titoli SOLO nel contenuto redazionale (corpo articolo / blocchi),
+   NON globale. Da globale sovrascriveva i titoli istituzionali (header, hero,
+   sezioni) ed era soppressa solo per caso da Bootstrap Italia: un footgun emerso
+   nel PoC dei cascade layers (vedi adr/0003). :where() tiene la specificità a
+   0,0,1 — identica alla vecchia regola bare — così i titoli del contenuto restano
+   invariati, mentre quelli istituzionali tornano liberi. */
+:where(.article-wrapper, .wysiwig-text) :is(h1, h2, h3, h4, h5, h6),
+:is(h1, h2, h3, h4, h5, h6):where(.wp-block-heading) {
   @apply text-2xl font-semibold mb-2 mt-4;
 }
