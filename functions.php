@@ -50,6 +50,7 @@ if ( ! function_exists ( 'dsi_get_tipologia_articoli_options' ) ) {
  * Utils functions
  */
 require get_template_directory() . '/inc/utils.php';
+require get_template_directory() . '/inc/marconi-servizio-icons.php';
 
 /**
  * Notifications functions
