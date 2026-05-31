@@ -796,7 +796,6 @@ function dsi_register_main_options_metabox()
       'type' => 'radio_inline',
       'options' => array(
         'youtube' => __('Youtube', 'design_scuole_italia'),
-        'vimeo' => __('Vimeo', 'design_scuole_italia'),
         'local' => __('Sul server', 'design_scuole_italia'),
       ),
       'default' => "local"

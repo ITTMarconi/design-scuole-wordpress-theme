@@ -264,7 +264,7 @@ function dsi_add_eventi_metaboxes() {
 	$cmb_undercontent->add_field( array(
 		'id'         => $prefix . 'video',
 		'name'       => __( 'Video', 'design_scuole_italia' ),
-		'desc'       => __( 'Inserisci la url di un servizio di streaming video (es: youtube, vimeo) - Qui la lista: <a href="https://codex.wordpress.org/Embeds">https://codex.wordpress.org/Embeds</a>', 'design_scuole_italia' ),
+		'desc'       => __( 'Inserisci la url di un servizio di streaming video (es: YouTube) - Qui la lista: <a href="https://codex.wordpress.org/Embeds">https://codex.wordpress.org/Embeds</a>', 'design_scuole_italia' ),
 		'type' => 'oembed',
 
 	) );
