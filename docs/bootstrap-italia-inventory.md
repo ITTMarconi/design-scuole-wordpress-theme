@@ -50,6 +50,13 @@ reale dal CSS di BI.
 - **Caveat misura**: euristica (match dei selettori, non paint reale); con più
   tipi di pagina e stati la % salirebbe un po', ma resta nettamente **<10%**.
 
+**PoC purge (misurato sul dev):** simulazione PurgeCSS token-based (classi/id del
+DOM su 3 pagine + safelist JS) → **413 regole tenute su 5183 (8%)**, **6,6% dei
+byte** → stima **459 KB → ~30 KB** (≈ −93%), senza cambiamenti visivi. La safelist
+usata: `show, fade, collapse, collapsing, is-active, is-sticky, sticked-menu,
+menu-open, modal-open, modal-backdrop, push-body*, dropdown(-menu), focus--mouse,
+zoom, utils-moved, …` — da completare e testare per l'implementazione reale.
+
 ## 1. Superficie CSS (per magnitudine)
 
 | Area | Occorrenze | Note |
