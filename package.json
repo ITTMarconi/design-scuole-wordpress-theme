@@ -4,7 +4,8 @@
   "description": "Tema Wordpress delle Scuole Italiane",
   "main": "index.js",
   "scripts": {
-    "build": "npm run minify:css && npm run minify:js && npm run tail:build",
+    "build": "npm run minify:css && npm run minify:js && npm run tail:build && npm run purge:bs",
+    "purge:bs": "node scripts/purge-bootstrap.js",
     "version": "node scripts/config-sync.js && git add style.css && git add README.md",
     "postversion": "echo \"You can now publish your tag with 'git push --follow-tags'\"",
     "minify:css": "node scripts/minify-css.js",
@@ -34,6 +35,7 @@
     "gray-matter": "^4.0.3",
     "marked": "^12.0.2",
     "npm-run-all": "^4.1.5",
+    "purgecss": "^8.0.0",
     "replace-in-file": "^6.3.5",
     "tailwindcss": "^4.2.1",
     "tailwindcss-motion": "^1.1.1",

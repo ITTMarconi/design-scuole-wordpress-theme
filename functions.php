@@ -230,7 +230,12 @@ function dsi_scripts() {
 
 	wp_enqueue_style( 'dsi-wp-style', get_stylesheet_uri() );
 	wp_enqueue_style( 'dsi-font', get_template_directory_uri() . '/assets/css/fonts.css');
-	wp_enqueue_style( 'dsi-boostrap-italia', get_template_directory_uri() . '/assets/css/bootstrap-italia.css');
+	// Serve the tree-shaken Bootstrap Italia (~6% is actually used; see
+	// docs/bootstrap-italia-inventory.md). The full vendor file stays in the
+	// repo as source/fallback: if the purged copy is missing, use the full one.
+	$dsi_bi_purged = get_template_directory() . '/assets/css/bootstrap-italia.purged.css';
+	$dsi_bi_file   = file_exists( $dsi_bi_purged ) ? 'bootstrap-italia.purged.css' : 'bootstrap-italia.css';
+	wp_enqueue_style( 'dsi-boostrap-italia', get_template_directory_uri() . '/assets/css/' . $dsi_bi_file, [], '7.1');
 //	wp_enqueue_style( 'dsi-scuole', get_template_directory_uri() . '/assets/css/scuole.css');
   wp_enqueue_style( 'itt-scuole-marconi', get_template_directory_uri() . '/assets/css/scuole-marconi.css', [], '7.1');
 	wp_enqueue_style( 'dsi-overrides', get_template_directory_uri() . '/assets/css/overrides.css');
