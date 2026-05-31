@@ -11668,6 +11668,27 @@ button.icon-text {
 }
 .is-sticky .sticky-main-nav {
   display: block;
+  /* Fade + slide in instead of popping (the nav is moved here by JS and the
+     container is toggled display:none -> block, which can't transition). */
+  animation: dsiStickyNavIn 0.4s ease both;
+}
+@keyframes dsiStickyNavIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  #sub-nav {
+    transition: none;
+  }
+  .is-sticky .sticky-main-nav {
+    animation: none;
+  }
 }
 @media (max-width: 1199.98px) {
   .is-sticky .sticky-main-nav {
@@ -11824,7 +11845,13 @@ button.icon-text {
   font-size: 18px;
   position: relative;
   z-index: 1;
-  transition: height 0.3s ease, opacity 0.3s ease, padding 0.3s ease;
+  /* Explicit height so the bar can ANIMATE closed when the header becomes
+     sticky: the JS moves the nav into .sticky-main-nav, which collapses a
+     height:auto bar instantly. Desktop-only bar (.d-xl-block), single nav row.
+     overflow stays visible here so the mega-menu dropdowns are not clipped;
+     overflow:hidden is applied only in the sticky (collapsing) state below. */
+  height: 47px;
+  transition: height 0.4s ease, opacity 0.35s ease, padding 0.4s ease;
 }
 #sub-nav::after {
   display: block;
