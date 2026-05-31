@@ -136,6 +136,42 @@
     }
 }
 
+/* "Scopri di più" button — same magenta language as the service cards:
+   pill shape, sliding arrow, and a fill+lift on hover/focus. */
+.btn-scopri {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    border-radius: 9999px;
+    padding: 10px 22px;
+    box-shadow: inset 0 0 0 1.5px var(--purplelight);
+    transition: background 0.2s ease, color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+}
+.btn-scopri:hover,
+.btn-scopri:focus {
+    background: var(--purplelight);
+    color: #fff;
+    box-shadow: 0 10px 24px rgba(146, 23, 171, 0.22);
+    transform: translateY(-2px);
+}
+.btn-scopri .btn-arrow {
+    display: inline-flex;
+    transition: transform 0.2s ease;
+}
+.btn-scopri:hover .btn-arrow,
+.btn-scopri:focus .btn-arrow {
+    transform: translateX(4px);
+}
+@media (prefers-reduced-motion: reduce) {
+    .btn-scopri {
+        transition: none;
+    }
+    .btn-scopri:hover,
+    .btn-scopri:focus {
+        transform: none;
+    }
+}
+
 .home .card-icon-main {
     min-height: 100px;
     max-height: 100px;
