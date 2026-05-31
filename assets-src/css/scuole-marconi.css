@@ -11842,15 +11842,18 @@ button.icon-text {
   font-weight: 700;
 }
 #sub-nav {
-  font-size: 18px;
+  font-size: 1.125rem; /* 18px at the default root, but scales with user font size */
   position: relative;
   z-index: 1;
   /* Explicit height so the bar can ANIMATE closed when the header becomes
      sticky: the JS moves the nav into .sticky-main-nav, which collapses a
-     height:auto bar instantly. Desktop-only bar (.d-xl-block), single nav row.
-     overflow stays visible here so the mega-menu dropdowns are not clipped;
-     overflow:hidden is applied only in the sticky (collapsing) state below. */
-  height: 47px;
+     height:auto bar instantly (content-based tricks like max-height / grid
+     1fr->0fr don't work once the nav is gone). Expressed in rem so it scales
+     with the font above, instead of clipping when the user enlarges text.
+     Desktop-only bar (.d-xl-block), single nav row. overflow stays visible
+     here so the mega-menu dropdowns are not clipped; overflow:hidden is
+     applied only in the sticky (collapsing) state below. */
+  height: 2.9375rem; /* ~47px */
   transition: height 0.4s ease, opacity 0.35s ease, padding 0.4s ease;
 }
 #sub-nav::after {
