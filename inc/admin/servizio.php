@@ -144,6 +144,7 @@ function dsi_add_servizi_metaboxes() {
         'default' => '',
         'options' => array(
             ''                => __( '— Nessuna —', 'design_scuole_italia' ),
+            'book'            => 'Libro / Biblioteca',
             'it-comment'      => 'Dialogo / Ascolto',
             'it-user'         => 'Persona',
             'it-calendar'     => 'Calendario',
