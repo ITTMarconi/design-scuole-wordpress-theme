@@ -4,7 +4,7 @@ $home_servizi_manuali = dsi_get_option("home_servizi_manuali", "homepage");
 
 ?>
 <div class="wrapper position-relative slided-top">
-    <div class="row variable-gutters mb-4">
+    <div class="row variable-gutters mb-4 services-grid">
         <?php
         $home_is_selezione_automatica_servizi = dsi_get_option("home_is_selezione_automatica_servizi", "homepage");
         if($home_is_selezione_automatica_servizi != "false"){

@@ -37,8 +37,14 @@
  * rather than half-empty. Custom CSS (not utilities) for the ::before accent
  * line and the coordinated hover/focus choreography.
  * ------------------------------------------------------------------------- */
+/* On desktop the cards size to their own content (no equal-height stretch),
+   so short services don't inflate the whole section and leave it looking
+   empty. The arrow stays pinned to the bottom of each card. */
+.home .services-grid {
+    align-items: flex-start;
+}
 .home .card-noicon {
-    min-height: 122px;
+    min-height: 84px;
     max-height: none;
     border: 1px solid var(--color-border);
     border-radius: 12px;
@@ -65,7 +71,7 @@
     flex-direction: column;
     align-items: stretch;
     height: 100%;
-    padding: 18px 20px;
+    padding: 14px 18px;
     position: relative;
     z-index: 1; /* keep content above the watermark */
 }
@@ -74,10 +80,10 @@
    that title-only cards would otherwise leave empty. */
 .home .card-noicon .svc-wm {
     position: absolute;
-    right: -14px;
-    bottom: -18px;
-    width: 120px;
-    height: 120px;
+    right: -12px;
+    bottom: -14px;
+    width: 104px;
+    height: 104px;
     color: var(--purplelight);
     fill: currentColor;
     opacity: 0.08;
@@ -111,9 +117,9 @@
 }
 .home .card-noicon .svc-arrow {
     align-self: flex-end;
-    margin-top: 14px;
-    width: 34px;
-    height: 34px;
+    margin-top: 10px;
+    width: 30px;
+    height: 30px;
     flex: 0 0 auto;
     border-radius: 50%;
     border: 1.5px solid var(--purplelight);
