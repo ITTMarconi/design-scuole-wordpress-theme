@@ -21,6 +21,35 @@
   splide, leaflet, scrollTo, ResponsiveDom, vallenato, easing — più `scuole.js`
   (logica propria del tema) e `marconi.js`.
 
+## 0bis. Coverage — usiamo **~6%** del CSS di BI ⭐
+
+Misura sul dev (selector-matching su `document.styleSheets`, pseudo-classi
+dinamiche rimosse), unione su 4 tipi di pagina (single circolare, home, ricerca
+con modali aperti, page-template "la-scuola"):
+
+| | Valore |
+|---|---|
+| Regole di stile totali in `bootstrap-italia.css` | **5183** |
+| Regole effettivamente usate (unione 4 pagine) | **297** |
+| **Percentuale usata** | **~5,7%** (curva in plateau: 207 → 237 → 276 → 297) |
+
+Ripartizione delle ~297 regole usate: componenti ~115, spacing ~45, griglia ~34,
+reset/base ~30, display/flex ~18, testo ~15. **È tutta qui** la nostra dipendenza
+reale dal CSS di BI.
+
+**Implicazioni:**
+- **~94% di BI è peso morto**: ~470 KB serviti per usarne ~6%. Un **purge/tree-shake**
+  (build step) ridurrebbe il file a ~30–50 KB **senza cambiare nulla** — vittoria
+  di performance immediata e indipendente dal lavoro sui layer.
+- **Ridimensiona la fatica**: "sostituire BI" non è una montagna — la superficie
+  vera è ~300 regole (griglia + spacing + pochi componenti).
+- **Caveat purge**: serve una **safelist** delle classi aggiunte da JS (es.
+  `.show`, `.is-active`, `.menu-open`, `.sticked-menu`, `.collapse`/`.collapsing`,
+  stati dei modali) che il matching statico non vede. Senza, il purge romperebbe
+  l'interattività.
+- **Caveat misura**: euristica (match dei selettori, non paint reale); con più
+  tipi di pagina e stati la % salirebbe un po', ma resta nettamente **<10%**.
+
 ## 1. Superficie CSS (per magnitudine)
 
 | Area | Occorrenze | Note |
@@ -72,6 +101,9 @@ Il markup usa convenzioni **Bootstrap 4** (`data-toggle` / `data-target` /
 
 ## 4. Raccomandazione
 
+0. **Purge come vittoria rapida** (vedi §0bis): usiamo ~6% di BI → un build step
+   di tree-shaking (con safelist delle classi aggiunte da JS) può tagliare ~470 KB
+   a ~30–50 KB **senza cambi visivi**, subito e indipendentemente dai layer.
 1. **`@layer` prima** (ADR-0003): mette BI in un layer basso così i nostri
    override vincono puliti mentre sostituiamo. Sblocca tutto il resto.
 2. **Vittorie facili**: icone (fatte), bottoni, card — già per metà nostre.
