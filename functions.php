@@ -237,7 +237,9 @@ function dsi_scripts() {
 	$dsi_bi_file   = file_exists( $dsi_bi_purged ) ? 'bootstrap-italia.purged.css' : 'bootstrap-italia.css';
 	wp_enqueue_style( 'dsi-boostrap-italia', get_template_directory_uri() . '/assets/css/' . $dsi_bi_file, [], '7.1');
 //	wp_enqueue_style( 'dsi-scuole', get_template_directory_uri() . '/assets/css/scuole.css');
-  wp_enqueue_style( 'itt-scuole-marconi', get_template_directory_uri() . '/assets/css/scuole-marconi.css', [], '7.1');
+	$marconi_css_path = get_template_directory() . '/assets/css/scuole-marconi.css';
+	$marconi_css_ver  = file_exists( $marconi_css_path ) ? filemtime( $marconi_css_path ) : '7.1';
+	wp_enqueue_style( 'itt-scuole-marconi', get_template_directory_uri() . '/assets/css/scuole-marconi.css', [], $marconi_css_ver );
 	wp_enqueue_style( 'dsi-overrides', get_template_directory_uri() . '/assets/css/overrides.css');
 	wp_enqueue_style( 'dsi-carousel-style', get_template_directory_uri() . '/assets/css/carousel-style-double.css');
 	wp_enqueue_style( 'dsi-splide-min', get_template_directory_uri() . '/assets/css/splide.min.css');
@@ -562,4 +564,3 @@ add_action( 'after_setup_theme', 'set_default_media_link_to_file' );
 function set_default_media_link_to_file() {
     update_option( 'image_default_link_type', 'file' );
 }
-
