@@ -15567,14 +15567,116 @@ body.page-id-292 #FiltroAtti .albo-filter-title::before {
 
 body.page-id-286 #FiltroAtti .albo-filter-categories li a,
 body.page-id-292 #FiltroAtti .albo-filter-categories li a {
+  align-items: center;
+  border: 1px solid var(--color-border);
+  border-radius: 0.35rem;
   color: var(--albo-accent);
+  display: flex;
+  gap: 0.65rem;
+  justify-content: space-between;
+  line-height: 1.25;
+  padding: 0.65rem 0.75rem 0.65rem calc(0.75rem + var(--albo-category-depth, 0rem));
+  text-decoration: none;
+}
+
+body.page-id-286 #FiltroAtti .albo-filter-categories ul,
+body.page-id-292 #FiltroAtti .albo-filter-categories ul {
+  display: grid;
+  gap: 0.55rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+body.page-id-286 #FiltroAtti .albo-filter-categories li,
+body.page-id-292 #FiltroAtti .albo-filter-categories li {
+  margin: 0;
+  padding: 0;
 }
 
 body.page-id-286 #FiltroAtti .albo-filter-categories li a:hover,
 body.page-id-286 #FiltroAtti .albo-filter-categories li a:focus-visible,
 body.page-id-292 #FiltroAtti .albo-filter-categories li a:hover,
 body.page-id-292 #FiltroAtti .albo-filter-categories li a:focus-visible {
+  background: rgba(2, 103, 36, 0.08);
+  border-color: rgba(2, 103, 36, 0.22);
   color: var(--albo-accent-hover);
+}
+
+body.page-id-286 #FiltroAtti .albo-filter-categories li a:focus-visible,
+body.page-id-292 #FiltroAtti .albo-filter-categories li a:focus-visible {
+  box-shadow: 0 0 0 0.2rem rgba(2, 103, 36, 0.18);
+  outline: 0;
+}
+
+body.page-id-286 #FiltroAtti .albo-filter-categories li.is-selected a,
+body.page-id-292 #FiltroAtti .albo-filter-categories li.is-selected a {
+  background: var(--albo-accent);
+  border-color: var(--albo-accent);
+  color: var(--color-text-on-brand);
+}
+
+body.page-id-286 #FiltroAtti .albo-filter-categories li.is-selected a::before,
+body.page-id-292 #FiltroAtti .albo-filter-categories li.is-selected a::before {
+  content: "✓";
+  font-weight: 700;
+  line-height: 1;
+}
+
+body.page-id-286 #FiltroAtti .albo-filter-category-name,
+body.page-id-292 #FiltroAtti .albo-filter-category-name {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+body.page-id-286 #FiltroAtti .albo-filter-category-count,
+body.page-id-292 #FiltroAtti .albo-filter-category-count {
+  align-items: center;
+  background: var(--color-surface-sunken);
+  border-radius: 999rem;
+  color: var(--color-heading);
+  display: inline-flex;
+  flex: 0 0 auto;
+  font-size: 0.85rem;
+  font-weight: 700;
+  justify-content: center;
+  min-width: 1.65rem;
+  padding: 0.2rem 0.45rem;
+}
+
+body.page-id-286 #FiltroAtti .albo-filter-categories li.is-selected .albo-filter-category-count,
+body.page-id-292 #FiltroAtti .albo-filter-categories li.is-selected .albo-filter-category-count {
+  background: rgba(255, 255, 255, 0.18);
+  color: var(--color-text-on-brand);
+}
+
+body.page-id-286 #FiltroAtti .albo-filter-category-summary,
+body.page-id-292 #FiltroAtti .albo-filter-category-summary {
+  align-items: center;
+  color: var(--color-heading);
+  display: flex;
+  flex-wrap: wrap;
+  font-size: 0.95rem;
+  font-weight: 700;
+  gap: 0.55rem;
+  justify-content: space-between;
+  margin-block-end: 0.75rem;
+}
+
+body.page-id-286 #FiltroAtti .albo-filter-category-clear,
+body.page-id-292 #FiltroAtti .albo-filter-category-clear {
+  color: var(--color-accent);
+  font-size: 0.9rem;
+  font-weight: 700;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.18em;
+}
+
+body.page-id-286 #FiltroAtti .albo-filter-category-clear:hover,
+body.page-id-286 #FiltroAtti .albo-filter-category-clear:focus-visible,
+body.page-id-292 #FiltroAtti .albo-filter-category-clear:hover,
+body.page-id-292 #FiltroAtti .albo-filter-category-clear:focus-visible {
+  color: var(--petrol-hover);
 }
 
 body.page-id-286 #FiltroAtti #filtra,
@@ -15666,6 +15768,310 @@ body.page-id-292 .Visalbo h3 {
   color: var(--color-heading);
   font-weight: 700;
   letter-spacing: 0;
+}
+
+body.page-id-286 #DatiAtto .albo-attachments-section,
+body.page-id-292 #DatiAtto .albo-attachments-section {
+  margin-block: 2rem 1.5rem;
+}
+
+body.page-id-286 #DatiAtto .albo-section-heading,
+body.page-id-292 #DatiAtto .albo-section-heading {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+  margin-block-end: 0.85rem;
+}
+
+body.page-id-286 #DatiAtto .albo-section-heading h3,
+body.page-id-292 #DatiAtto .albo-section-heading h3 {
+  color: var(--color-heading);
+  font-size: 1.45rem;
+  font-weight: 700;
+  line-height: 1.25;
+  margin: 0;
+}
+
+body.page-id-286 #DatiAtto .albo-section-count,
+body.page-id-292 #DatiAtto .albo-section-count {
+  background: rgba(2, 103, 36, 0.1);
+  border-radius: 999rem;
+  color: var(--albo-accent);
+  font-size: 0.9rem;
+  font-weight: 700;
+  line-height: 1;
+  padding: 0.35rem 0.65rem;
+}
+
+body.page-id-286 #DatiAtto .albo-attachment-list,
+body.page-id-292 #DatiAtto .albo-attachment-list {
+  display: grid;
+  gap: 0.9rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+body.page-id-286 #DatiAtto .albo-attachment-card,
+body.page-id-292 #DatiAtto .albo-attachment-card {
+  background: var(--color-surface-raised);
+  border: 1px solid var(--color-border);
+  border-left: 0.25rem solid var(--albo-accent);
+  border-radius: 0.5rem;
+  box-shadow: 0 0.5rem 1.4rem rgba(23, 50, 77, 0.08);
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  margin: 0;
+  padding: 1rem;
+}
+
+body.page-id-286 #DatiAtto .albo-attachment-icon,
+body.page-id-292 #DatiAtto .albo-attachment-icon {
+  align-items: center;
+  background: var(--color-surface-sunken);
+  border: 1px solid var(--color-border);
+  border-radius: 0.45rem;
+  color: var(--color-accent);
+  display: inline-flex;
+  font-size: 0.75rem;
+  font-weight: 700;
+  height: 2.75rem;
+  justify-content: center;
+  width: 2.75rem;
+}
+
+body.page-id-286 #DatiAtto .albo-attachment-icon img,
+body.page-id-292 #DatiAtto .albo-attachment-icon img {
+  height: 2rem;
+  object-fit: contain;
+  width: 2rem;
+}
+
+body.page-id-286 #DatiAtto .albo-attachment-body,
+body.page-id-292 #DatiAtto .albo-attachment-body {
+  min-width: 0;
+}
+
+body.page-id-286 #DatiAtto .albo-attachment-title,
+body.page-id-292 #DatiAtto .albo-attachment-title {
+  color: var(--color-heading);
+  font-size: 1.05rem;
+  font-weight: 700;
+  line-height: 1.35;
+  margin-block-end: 0.7rem;
+  overflow-wrap: anywhere;
+}
+
+body.page-id-286 #DatiAtto .albo-attachment-badge,
+body.page-id-292 #DatiAtto .albo-attachment-badge {
+  background: rgba(179, 17, 0, 0.1);
+  border-radius: 0.35rem;
+  color: var(--color-brand);
+  display: inline-flex;
+  font-size: 0.9rem;
+  font-weight: 700;
+  line-height: 1.2;
+  margin: 0 0 0.75rem;
+  padding: 0.35rem 0.55rem;
+}
+
+body.page-id-286 #DatiAtto .albo-attachment-meta,
+body.page-id-292 #DatiAtto .albo-attachment-meta {
+  display: grid;
+  gap: 0.75rem 1rem;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin: 0;
+}
+
+body.page-id-286 #DatiAtto .albo-attachment-meta > div,
+body.page-id-292 #DatiAtto .albo-attachment-meta > div {
+  min-width: 0;
+}
+
+body.page-id-286 #DatiAtto .albo-attachment-meta dt,
+body.page-id-292 #DatiAtto .albo-attachment-meta dt {
+  color: var(--color-text-muted);
+  font-size: 0.82rem;
+  font-weight: 700;
+  line-height: 1.2;
+  margin-block-end: 0.2rem;
+}
+
+body.page-id-286 #DatiAtto .albo-attachment-meta dd,
+body.page-id-292 #DatiAtto .albo-attachment-meta dd {
+  color: var(--color-text);
+  font-size: 0.98rem;
+  line-height: 1.35;
+  margin: 0;
+}
+
+body.page-id-286 #DatiAtto .albo-attachment-hash,
+body.page-id-292 #DatiAtto .albo-attachment-hash {
+  grid-column: 1 / -1;
+}
+
+body.page-id-286 #DatiAtto .albo-attachment-hash code,
+body.page-id-292 #DatiAtto .albo-attachment-hash code {
+  background: var(--color-surface-sunken);
+  border: 1px solid var(--color-border);
+  border-radius: 0.35rem;
+  color: var(--color-heading);
+  display: block;
+  font-family: "Roboto Mono", monospace;
+  font-size: 0.88rem;
+  line-height: 1.45;
+  overflow-wrap: anywhere;
+  padding: 0.55rem 0.65rem;
+  white-space: normal;
+}
+
+body.page-id-286 #DatiAtto .albo-attachment-missing,
+body.page-id-292 #DatiAtto .albo-attachment-missing {
+  background: var(--color-surface-sunken);
+  border: 1px solid var(--color-border);
+  border-radius: 0.35rem;
+  color: var(--color-text);
+  margin: 0;
+  padding: 0.65rem 0.75rem;
+}
+
+body.page-id-286 #DatiAtto .albo-attachment-actions,
+body.page-id-292 #DatiAtto .albo-attachment-actions {
+  align-content: start;
+  display: grid;
+  gap: 0.55rem;
+  justify-items: stretch;
+  min-width: 8rem;
+}
+
+body.page-id-286 #DatiAtto .albo-attachment-action,
+body.page-id-292 #DatiAtto .albo-attachment-action {
+  align-items: center;
+  border: 1px solid var(--color-accent);
+  border-radius: 0.35rem;
+  display: inline-flex;
+  font-size: 0.95rem;
+  font-weight: 700;
+  justify-content: center;
+  line-height: 1.2;
+  min-height: 2.35rem;
+  padding: 0.55rem 0.85rem;
+  text-decoration: none;
+}
+
+body.page-id-286 #DatiAtto .albo-attachment-action-primary,
+body.page-id-292 #DatiAtto .albo-attachment-action-primary {
+  background: var(--color-accent);
+  color: var(--color-text-on-brand);
+}
+
+body.page-id-286 #DatiAtto .albo-attachment-action-secondary,
+body.page-id-292 #DatiAtto .albo-attachment-action-secondary {
+  background: var(--color-surface);
+  color: var(--color-accent);
+}
+
+body.page-id-286 #DatiAtto .albo-attachment-action:hover,
+body.page-id-286 #DatiAtto .albo-attachment-action:focus-visible,
+body.page-id-292 #DatiAtto .albo-attachment-action:hover,
+body.page-id-292 #DatiAtto .albo-attachment-action:focus-visible {
+  background: var(--petrol-hover);
+  border-color: var(--petrol-hover);
+  color: var(--color-text-on-brand);
+}
+
+body.page-id-286 #DatiAtto .albo-attachment-action:focus-visible,
+body.page-id-292 #DatiAtto .albo-attachment-action:focus-visible {
+  box-shadow: 0 0 0 0.2rem rgba(63, 91, 110, 0.24);
+  outline: 0;
+}
+
+body.page-id-286 #DatiAtto .albo-attachment-verify,
+body.page-id-292 #DatiAtto .albo-attachment-verify {
+  color: var(--color-text-muted);
+  font-size: 0.85rem;
+  line-height: 1.3;
+  text-align: center;
+}
+
+body.page-id-286 #DatiAtto .albo-attachment-verify a,
+body.page-id-292 #DatiAtto .albo-attachment-verify a {
+  color: var(--color-accent);
+  font-weight: 700;
+}
+
+body.page-id-286 #DatiAtto .albo-integrity-note,
+body.page-id-292 #DatiAtto .albo-integrity-note {
+  align-items: flex-start;
+  background: var(--color-surface-sunken);
+  border: 1px solid var(--color-border);
+  border-left: 0.25rem solid var(--color-accent);
+  border-radius: 0.5rem;
+  color: var(--color-text);
+  display: flex;
+  gap: 0.85rem;
+  margin: 1.5rem 0 2rem;
+  padding: 1rem;
+}
+
+body.page-id-286 #DatiAtto .albo-integrity-note-icon,
+body.page-id-292 #DatiAtto .albo-integrity-note-icon {
+  align-items: center;
+  background: var(--color-accent);
+  border-radius: 50%;
+  color: var(--color-text-on-brand);
+  display: inline-flex;
+  flex: 0 0 auto;
+  font-family: "Roboto Mono", monospace;
+  font-size: 0.9rem;
+  font-weight: 700;
+  height: 1.75rem;
+  justify-content: center;
+  width: 1.75rem;
+}
+
+body.page-id-286 #DatiAtto .albo-integrity-note h3,
+body.page-id-292 #DatiAtto .albo-integrity-note h3 {
+  color: var(--color-heading);
+  font-size: 1.1rem;
+  font-weight: 700;
+  line-height: 1.25;
+  margin: 0 0 0.25rem;
+}
+
+body.page-id-286 #DatiAtto .albo-integrity-note p,
+body.page-id-292 #DatiAtto .albo-integrity-note p {
+  color: var(--color-text-muted);
+  font-size: 0.98rem;
+  line-height: 1.45;
+  margin: 0;
+}
+
+@media (max-width: 47.999rem) {
+  body.page-id-286 #DatiAtto .albo-attachment-card,
+  body.page-id-292 #DatiAtto .albo-attachment-card {
+    grid-template-columns: auto minmax(0, 1fr);
+  }
+
+  body.page-id-286 #DatiAtto .albo-attachment-actions,
+  body.page-id-292 #DatiAtto .albo-attachment-actions {
+    grid-column: 1 / -1;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    min-width: 0;
+  }
+
+  body.page-id-286 #DatiAtto .albo-attachment-verify,
+  body.page-id-292 #DatiAtto .albo-attachment-verify {
+    grid-column: 1 / -1;
+    text-align: left;
+  }
+
+  body.page-id-286 #DatiAtto .albo-attachment-meta,
+  body.page-id-292 #DatiAtto .albo-attachment-meta {
+    grid-template-columns: 1fr;
+  }
 }
 
 body.page-id-286 .albo-pagination-block,
