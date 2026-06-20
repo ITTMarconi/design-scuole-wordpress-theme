@@ -4,10 +4,12 @@
 /* Create your own custom container name */
 @utility wrapper {
   @apply container;
-  
-  /* You can optionally append default behaviors here */
   margin-inline: auto;
-  padding-inline: 1rem;
+  padding-inline: 1.5rem;
+
+  @media (min-width: 48rem) and (max-width: 79.999rem) {
+    max-width: 80rem;
+  }
 }
 
 /* Restore Bootstrap Italia container — Tailwind's .container conflicts */

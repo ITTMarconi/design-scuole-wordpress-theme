@@ -10462,34 +10462,6 @@ svg.leaflet-image-layer.leaflet-interactive path {
 #main-wrapper.sticked-menu {
   padding-top: 95px;
 }
-.container {
-  max-width: 100%;
-}
-@media (max-width: 767.98px) {
-  .container {
-    padding-left: 6px;
-    padding-right: 6px;
-  }
-}
-@media (min-width: 768px) and (max-width: 991.98px) {
-  .container {
-    padding-left: 10px;
-    padding-right: 10px;
-  }
-}
-@media (min-width: 992px) and (max-width: 1199.98px) {
-  .container {
-    padding-left: 10px;
-    padding-right: 10px;
-  }
-}
-@media (min-width: 1200px) {
-  .container {
-    max-width: 1200px;
-    padding-left: 14px;
-    padding-right: 14px;
-  }
-}
 .section {
   padding: 0;
 }
@@ -11539,6 +11511,35 @@ button.icon-text {
 #pre-header button.icon-text {
   color: var(--pre-header-fg);
 }
+@media (min-width: 1200px) and (max-width: 1599.98px) {
+  #pre-header .row {
+    gap: 0.75rem;
+  }
+  #pre-header .grow {
+    min-width: 0;
+  }
+  #pre-header .header-utils-wrapper {
+    flex: 0 0 auto;
+    min-width: 0;
+  }
+  #pre-header .header-utils {
+    gap: 0.75rem;
+  }
+  #pre-header .header-utils .icon-text,
+  #pre-header .header-utils > a.dropdown-toggle {
+    padding-right: 0 !important;
+  }
+  #pre-header .header-utils .icon-text span,
+  #pre-header .header-utils > a.dropdown-toggle > p {
+    display: none !important;
+  }
+  #pre-header .header-utils .avatar-wrapper {
+    margin-right: 0;
+  }
+  #pre-header .header-notification-alert {
+    margin-right: 0.25rem;
+  }
+}
 .header-top {
   padding-top: 5px;
   padding-bottom: 20px;
@@ -11851,12 +11852,12 @@ button.icon-text {
   /* Explicit height so the bar can ANIMATE closed when the header becomes
      sticky: the JS moves the nav into .sticky-main-nav, which collapses a
      height:auto bar instantly (content-based tricks like max-height / grid
-     1fr->0fr don't work once the nav is gone). Expressed in rem so it scales
-     with the font above, instead of clipping when the user enlarges text.
-     Desktop-only bar (.d-xl-block), single nav row. overflow stays visible
+     1fr->0fr don't work once the nav is gone). Keep this in px because the
+     root font size changes at desktop breakpoints while the nav row remains
+     47px tall. Desktop-only bar (.d-xl-block), single nav row. overflow stays visible
      here so the mega-menu dropdowns are not clipped; overflow:hidden is
      applied only in the sticky (collapsing) state below. */
-  height: 2.9375rem; /* ~47px */
+  height: 47px;
   transition: height 0.4s ease, opacity 0.35s ease, padding 0.4s ease;
 }
 #sub-nav::after {
@@ -11946,6 +11947,11 @@ button.icon-text {
   margin-top: -20px;
 }
 #sub-nav .nav-container {
+  align-items: center;
+  display: flex;
+  gap: 1rem;
+  justify-content: space-between;
+  min-width: 0;
   position: inherit;
 }
 #sub-nav .nav-container::after {
@@ -11953,14 +11959,46 @@ button.icon-text {
   clear: both;
   content: "";
 }
+#sub-nav .nav-container > nav {
+  align-items: center;
+  display: flex;
+  min-width: 0;
+}
 #sub-nav .nav-container .nav-list-primary {
-  float: left;
+  flex: 0 0 auto;
+  flex-direction: row;
+  float: none;
+  line-height: normal;
+  padding: 0;
 }
 #sub-nav .nav-container .nav-list-secondary {
-  float: right;
+  flex: 0 1 auto;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  float: none;
   font-size: 0.95rem;
+  line-height: normal;
+  margin-left: auto;
   margin-top: 4px;
+  min-width: 0;
+  padding: 0;
   font-weight: 400;
+}
+#sub-nav .nav-container .nav-list-secondary > li {
+  flex: 0 0 auto;
+  white-space: nowrap;
+}
+@media (min-width: 1200px) and (max-width: 1599.98px) {
+  #sub-nav .nav-container {
+    gap: 0.75rem;
+  }
+  #sub-nav .nav-container .nav-list-secondary {
+    font-size: 0.9rem;
+  }
+  #sub-nav .nav-container .nav-list-secondary > li > a {
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+  }
 }
 #sub-nav .nav-container .nav-list-secondary li:last-child {
   font-weight: 600;
