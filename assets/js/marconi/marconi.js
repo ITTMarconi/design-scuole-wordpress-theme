@@ -1,5 +1,35 @@
 console.log("Enter Marconi Script");
 
+// Apply configurable hero video speed and loop delay.
+jQuery(function($) {
+	$('.section-hero-marconi video[data-playback-rate]').each(function() {
+		var video = this;
+		var setPlaybackRate = function() {
+			var speed = parseFloat(video.getAttribute('data-playback-rate'));
+			if (isFinite(speed) && speed > 0) {
+				video.defaultPlaybackRate = speed;
+				video.playbackRate = speed;
+			}
+		};
+		var loopDelay = parseFloat(video.getAttribute('data-loop-delay'));
+
+		setPlaybackRate();
+		video.addEventListener('loadedmetadata', setPlaybackRate);
+
+		if (isFinite(loopDelay) && loopDelay > 0) {
+			video.addEventListener('ended', function() {
+				window.setTimeout(function() {
+					video.currentTime = 0;
+					var playPromise = video.play();
+					if (playPromise && 'function' === typeof playPromise.catch) {
+						playPromise.catch(function() {});
+					}
+				}, loopDelay * 1000);
+			});
+		}
+	});
+});
+
 function showHero(evt) {
   //evt.preventDefault();
   evt.stopPropagation();

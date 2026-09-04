@@ -7,6 +7,15 @@ function dsi_register_main_options_metabox()
 {
   $prefix = '';
 
+  // Keep media pickers aligned with the MIME types enabled by WordPress.
+  $allowed_mime_types = array_values( get_allowed_mime_types() );
+  $allowed_image_mime_types = array_values( array_unique( array_filter( $allowed_mime_types, function ( $mime_type ) {
+    return 0 === strpos( $mime_type, 'image/' );
+  } ) ) );
+  $allowed_video_mime_types = array_values( array_unique( array_filter( $allowed_mime_types, function ( $mime_type ) {
+    return 0 === strpos( $mime_type, 'video/' );
+  } ) ) );
+
   $args = array(
     'id'           => 'dsi_options_header',
     'title'        => esc_html__('Configurazione', 'design_scuole_italia'),
@@ -668,11 +677,7 @@ function dsi_register_main_options_metabox()
       'add_upload_file_text' => 'Aggiungi file' // Change upload button text. Default: "Add or Upload File"
     ),
     'query_args' => array(
-      'type' => array(
-        'image/gif',
-        'image/jpeg',
-        'image/png',
-      ),
+      'type' => $allowed_image_mime_types,
     ),
     'preview_size' => 'banner',
   ));
@@ -826,11 +831,7 @@ function dsi_register_main_options_metabox()
         'add_upload_file_text' => 'Aggiungi video' // Change upload button text. Default: "Add or Upload File"
       ),
       'query_args' => array(
-        'type' => array(
-          'video/mp4',
-          'video/qicktime',
-          'video/x-msvideo',
-        ),
+        'type' => $allowed_video_mime_types,
       ),
       'preview_size' => 'large', // Image size to use when previewing in the admin.   Default: 'medium'
     )
@@ -850,11 +851,7 @@ function dsi_register_main_options_metabox()
         'add_upload_file_text' => 'Aggiungi cover' // Change upload button text. Default: "Add or Upload File"
       ),
       'query_args' => array(
-        'type' => array(
-          'image/gif',
-          'image/jpeg',
-          'image/png',
-        ),
+        'type' => $allowed_image_mime_types,
       ),
       'preview_size' => 'large', // Image size to use when previewing in the admin.   Default: 'medium'
     )
@@ -966,7 +963,7 @@ function dsi_register_main_options_metabox()
   $main_options->add_field(array(
     'id' => $prefix . 'immagine',
     'name'        => __('Immagine', 'design_scuole_italia'),
-    'desc' => __('Immagine di presentazione della scuola', 'design_scuole_italia'),
+    'desc' => __('Immagine di presentazione della scuola, usata come poster e fallback del video hero', 'design_scuole_italia'),
     'type'    => 'file',
     'options' => array(
       'url' => false, // Hide the text input for the url
@@ -976,15 +973,56 @@ function dsi_register_main_options_metabox()
     ),
     // query_args are passed to wp.media's library query.
     'query_args' => array(
-      'type' => array(
-        'image/gif',
-        'image/jpeg',
-        'image/png',
-      ),
+      'type' => $allowed_image_mime_types,
     ),
     'preview_size' => 'medium', // Image size to use when previewing in the admin.
     'attributes'    => array(
       'required'    => 'required'
+    ),
+  ));
+
+  $main_options->add_field(array(
+    'id' => $prefix . 'video_hero',
+    'name'        => __('Video hero', 'design_scuole_italia'),
+    'desc' => __('Video locale da usare come sfondo hero. Il campo Immagine viene usato come poster e fallback.', 'design_scuole_italia'),
+    'type'    => 'file',
+    'options' => array(
+      'url' => false, // Hide the text input for the url
+    ),
+    'text'    => array(
+      'add_upload_file_text' => 'Aggiungi video'
+    ),
+    'query_args' => array(
+      'type' => $allowed_video_mime_types,
+    ),
+    'preview_size' => 'large',
+  ));
+
+  $main_options->add_field(array(
+    'id' => $prefix . 'video_hero_speed',
+    'name' => __('Velocità video hero', 'design_scuole_italia'),
+    'desc' => __('Velocità di riproduzione del video hero. 1 è la velocità normale.', 'design_scuole_italia'),
+    'type' => 'text_small',
+    'default' => '1',
+    'attributes' => array(
+      'type' => 'number',
+      'min' => '0.25',
+      'max' => '2',
+      'step' => '0.05',
+    ),
+  ));
+
+  $main_options->add_field(array(
+    'id' => $prefix . 'video_hero_loop_delay',
+    'name' => __('Pausa tra i cicli del video hero (secondi)', 'design_scuole_italia'),
+    'desc' => __('Secondi di pausa prima di ripetere il video. 0 ripete senza pausa.', 'design_scuole_italia'),
+    'type' => 'text_small',
+    'default' => '0',
+    'attributes' => array(
+      'type' => 'number',
+      'min' => '0',
+      'max' => '60',
+      'step' => '1',
     ),
   ));
 
