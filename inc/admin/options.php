@@ -223,6 +223,42 @@ function dsi_register_main_options_metabox()
     'type' => 'title',
   ));
 
+  // @customization Marconi: header of the "In evidenza" panel in the home hero.
+  // Rows of the panel are the messages below with Posizione = "Pannello In evidenza".
+  $alerts_options->add_field(array(
+    'id'   => $prefix . 'evidenza_istruzioni',
+    'name' => __('Pannello «In evidenza»', 'design_scuole_italia'),
+    'desc' => __('Il pannello accanto al video in home compare quando almeno un messaggio ha posizione «Pannello In evidenza» (massimo 3).', 'design_scuole_italia'),
+    'type' => 'title',
+  ));
+
+  $alerts_options->add_field(array(
+    'id'      => $prefix . 'evidenza_occhiello',
+    'name'    => __('Occhiello', 'design_scuole_italia'),
+    'type'    => 'text',
+    'default' => __('In evidenza', 'design_scuole_italia'),
+  ));
+
+  $alerts_options->add_field(array(
+    'id'   => $prefix . 'evidenza_titolo',
+    'name' => __('Titolo del pannello', 'design_scuole_italia'),
+    'desc' => __('Es. «Orientamento 2026-2027»', 'design_scuole_italia'),
+    'type' => 'text',
+  ));
+
+  $alerts_options->add_field(array(
+    'id'   => $prefix . 'evidenza_link_testo',
+    'name' => __('Testo del link finale', 'design_scuole_italia'),
+    'desc' => __('Es. «Tutte le iniziative di orientamento». Vuoto = nessun link.', 'design_scuole_italia'),
+    'type' => 'text',
+  ));
+
+  $alerts_options->add_field(array(
+    'id'   => $prefix . 'evidenza_link_url',
+    'name' => __('URL del link finale', 'design_scuole_italia'),
+    'type' => 'text_url',
+  ));
+
   $alerts_group_id = $alerts_options->add_field(array(
     'id'           => $prefix . 'messages',
     'type'        => 'group',
@@ -236,8 +272,30 @@ function dsi_register_main_options_metabox()
     ),
   ));
 
+  // @customization Marconi: where the message is shown and which content it points to.
+  $alerts_options->add_group_field($alerts_group_id, array(
+    'name'    => __('Posizione', 'design_scuole_italia'),
+    'id'      => 'posizione_message',
+    'type'    => 'radio_inline',
+    'options' => array(
+      'barra'    => __('Barra di avviso sul video', 'design_scuole_italia'),
+      'evidenza' => __('Pannello «In evidenza»', 'design_scuole_italia'),
+    ),
+    'default' => 'barra',
+  ));
+
+  $alerts_options->add_group_field($alerts_group_id, array(
+    'name'             => __('Contenuto collegato', 'design_scuole_italia'),
+    'desc'             => __('Articolo o evento. I campi lasciati vuoti (testo, sottotitolo, collegamento, data fine) si prendono da qui. Per un evento il riquadro mostra giorno e mese di inizio.', 'design_scuole_italia'),
+    'id'               => 'post_message',
+    'type'             => 'select',
+    'show_option_none' => __('— Nessuno —', 'design_scuole_italia'),
+    'options_cb'       => 'marconi_avvisi_post_options',
+  ));
+
   $alerts_options->add_group_field($alerts_group_id, array(
     'name'    => 'Selezione colore del messaggio',
+    'desc'    => __('Nel pannello «In evidenza» è il colore del riquadro con data o icona (Rosso = riquadro bianco, Trasparente = solo bordo).', 'design_scuole_italia'),
     'id'      => 'colore_message',
     'type'    => 'radio_inline',
     'options' => array(
@@ -253,6 +311,7 @@ function dsi_register_main_options_metabox()
 
   $alerts_options->add_group_field($alerts_group_id, array(
     'name' => 'Visualizza icona',
+    'desc' => __('Nel pannello «In evidenza»: il riquadro mostra la data di inizio solo se il contenuto collegato è un evento; spunta per mostrare comunque l\'icona. Articoli e link mostrano sempre l\'icona.', 'design_scuole_italia'),
     'id'   => 'icona_message',
     'type' => 'checkbox',
   ));
@@ -260,17 +319,20 @@ function dsi_register_main_options_metabox()
   $alerts_options->add_group_field($alerts_group_id, array(
     'id' => $prefix . 'data_message',
     'name'        => __('Data fine', 'design_scuole_italia'),
+    'desc' => __('Nel pannello «In evidenza», se vuota: fine dell\'evento collegato, oppure 30 giorni dalla pubblicazione dell\'articolo.', 'design_scuole_italia'),
     'type' => 'text_date',
     'date_format' => 'd-m-Y',
-    'data-datepicker' => json_encode(array(
-      'yearRange' => '-100:+0',
-    )),
+    'attributes' => array(
+      'data-datepicker' => json_encode(array(
+        'yearRange' => '-1:+2',
+      )),
+    ),
   ));
 
   $alerts_options->add_group_field($alerts_group_id, array(
     'id' => $prefix . 'testo_message',
     'name'        => __('Testo', 'design_scuole_italia'),
-    'desc' => __('Massimo 140 caratteri', 'design_scuole_italia'),
+    'desc' => __('Massimo 140 caratteri. Nel pannello «In evidenza» è il titolo breve; se vuoto si usa il titolo del contenuto collegato.', 'design_scuole_italia'),
     'type' => 'textarea_small',
     'attributes'    => array(
       'rows'  => 3,
@@ -283,6 +345,25 @@ function dsi_register_main_options_metabox()
     'name'        => __('Collegamento', 'design_scuole_italia'),
     'desc' => __('Link al una pagina di approfondimento anche esterna al sito', 'design_scuole_italia'),
     'type' => 'text_url',
+  ));
+
+  $alerts_options->add_group_field($alerts_group_id, array(
+    'id'   => 'sottotitolo_message',
+    'name' => __('Sottotitolo (pannello «In evidenza»)', 'design_scuole_italia'),
+    'desc' => __('Riga breve sotto il titolo. Se vuoto: descrizione del contenuto collegato, troncata.', 'design_scuole_italia'),
+    'type' => 'text',
+    'attributes' => array(
+      'maxlength' => '80',
+    ),
+  ));
+
+  $alerts_options->add_group_field($alerts_group_id, array(
+    'id'               => 'icona_evidenza',
+    'name'             => __('Icona (pannello «In evidenza»)', 'design_scuole_italia'),
+    'desc'             => __('Usata quando il riquadro non mostra una data (articoli e link). Vuota = icona predefinita.', 'design_scuole_italia'),
+    'type'             => 'select',
+    'show_option_none' => __('— Predefinita —', 'design_scuole_italia'),
+    'options_cb'       => 'marconi_avvisi_icon_options',
   ));
 
   $alerts_options->add_group_field($alerts_group_id, array(

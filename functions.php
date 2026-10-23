@@ -51,6 +51,7 @@ if ( ! function_exists ( 'dsi_get_tipologia_articoli_options' ) ) {
  */
 require get_template_directory() . '/inc/utils.php';
 require get_template_directory() . '/inc/marconi-servizio-icons.php';
+require get_template_directory() . '/inc/marconi-avvisi.php';
 
 /**
  * Notifications functions
@@ -374,7 +375,7 @@ add_action( 'pre_get_posts', 'add_tags_to_all_content_types' );
 //@customization Enqueue scripts from custom javascript file
 function marconi_scripts() {
 	wp_enqueue_script('jquery');
-	wp_enqueue_script( 'marconi-js', get_template_directory_uri() . '/assets/js/marconi/marconi.js', array(), '0.4', true);
+	wp_enqueue_script( 'marconi-js', get_template_directory_uri() . '/assets/js/marconi/marconi.js', array(), filemtime( get_template_directory() . '/assets/js/marconi/marconi.js' ), true);
 }
 add_action( 'wp_enqueue_scripts', 'marconi_scripts' );
 

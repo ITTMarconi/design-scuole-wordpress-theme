@@ -21,6 +21,21 @@ $hero_video_loop_delay = max( 0, min( 60, $hero_video_loop_delay ) );
 $hero_video_type_data  = wp_check_filetype( (string) wp_parse_url( $hero_video_url, PHP_URL_PATH ) );
 $hero_video_type      = ! empty( $hero_video_type_data['type'] ) ? $hero_video_type_data['type'] : 'video/mp4';
 $hero_video_available = '' !== $hero_video_url;
+
+// @customization Marconi: "In evidenza" panel beside the video (Option B).
+$avvisi_evidenza = function_exists( 'marconi_get_avvisi' ) ? marconi_get_avvisi( 'evidenza' ) : array();
+if ( ! empty( $avvisi_evidenza ) ) {
+    set_query_var( 'marconi_hero_evidenza', true );
+    get_template_part( 'template-parts/hero/home-evidenza', null, array(
+        'avvisi'                => $avvisi_evidenza,
+        'img_identita'          => $img_identita,
+        'hero_video_url'        => $hero_video_url,
+        'hero_video_type'       => $hero_video_type,
+        'hero_video_speed'      => $hero_video_speed,
+        'hero_video_loop_delay' => $hero_video_loop_delay,
+    ) );
+    return;
+}
 ?>
 <section class="section bg-redbrown section-hero-marconi section-hero-left justify-content-center align-items-center"
          style="min-height: <?php echo intval($img_altezza); ?>px;">

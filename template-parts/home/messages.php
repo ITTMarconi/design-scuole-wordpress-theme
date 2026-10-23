@@ -2,6 +2,8 @@
 <?php foreach($messages as $message): ?>
     <?php
 
+    // @customization Marconi: "In evidenza" entries are rendered by template-parts/home/evidenza.php
+    if(function_exists('marconi_avviso_posizione') && marconi_avviso_posizione($message) === 'evidenza') continue;
     if(trim($message['testo_message']) == "") continue;
     $message_date = strtotime($message['data_message']);
     $now = strtotime("now");

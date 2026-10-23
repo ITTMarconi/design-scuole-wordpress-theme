@@ -2,7 +2,7 @@ console.log("Enter Marconi Script");
 
 // Apply configurable hero video speed and loop delay.
 jQuery(function($) {
-	$('.section-hero-marconi video[data-playback-rate]').each(function() {
+	$('.section-hero-marconi video[data-playback-rate], .marconi-hero video[data-playback-rate]').each(function() {
 		var video = this;
 		var setPlaybackRate = function() {
 			var speed = parseFloat(video.getAttribute('data-playback-rate'));
@@ -16,9 +16,50 @@ jQuery(function($) {
 		setPlaybackRate();
 		video.addEventListener('loadedmetadata', setPlaybackRate);
 
+		// prefers-reduced-motion: show the poster image instead of the video
+		// (CSS hides the video; here we stop playback and the download).
+		var reduceMotion = window.matchMedia ? window.matchMedia('(prefers-reduced-motion: reduce)') : null;
+		var playVideo = function() {
+			var playPromise = video.play();
+			if (playPromise && 'function' === typeof playPromise.catch) {
+				playPromise.catch(function() {});
+			}
+		};
+		var applyMotionPreference = function() {
+			var sources = video.querySelectorAll('source');
+			if (reduceMotion && reduceMotion.matches) {
+				video.pause();
+				sources.forEach(function(source) {
+					if (source.getAttribute('src')) {
+						source.setAttribute('data-src', source.getAttribute('src'));
+						source.removeAttribute('src');
+					}
+				});
+				video.load();
+			} else if (video.querySelector('source[data-src]')) {
+				sources.forEach(function(source) {
+					source.setAttribute('src', source.getAttribute('data-src'));
+					source.removeAttribute('data-src');
+				});
+				video.load();
+				playVideo();
+			}
+		};
+		applyMotionPreference();
+		if (reduceMotion) {
+			if (reduceMotion.addEventListener) {
+				reduceMotion.addEventListener('change', applyMotionPreference);
+			} else if (reduceMotion.addListener) {
+				reduceMotion.addListener(applyMotionPreference);
+			}
+		}
+
 		if (isFinite(loopDelay) && loopDelay > 0) {
 			video.addEventListener('ended', function() {
 				window.setTimeout(function() {
+					if (reduceMotion && reduceMotion.matches) {
+						return;
+					}
 					video.currentTime = 0;
 					var playPromise = video.play();
 					if (playPromise && 'function' === typeof playPromise.catch) {
@@ -29,6 +70,10 @@ jQuery(function($) {
 		}
 	});
 });
+
+// iOS Safari applies :active only when a touchstart listener exists (press feedback
+// on the "Accesso rapido" bar). Passive: does not delay scrolling.
+document.addEventListener('touchstart', function() {}, { passive: true });
 
 function showHero(evt) {
   //evt.preventDefault();

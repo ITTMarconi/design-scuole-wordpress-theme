@@ -41,16 +41,16 @@ redbrown:
     - bd: var(--redbrown);
   -hover/focus
     - fg: #fff
-    - bg: #b6293f
-    - bd: #ab273b
+    - bg: var(--redbrown-dark)
+    - bd: var(--redbrown-border)
   -disabled
     - fg: #fff
     - bg: var(--redbrown);
     - bd: var(--redbrown);
   -active
     - fg: #fff
-    - bg: #ab273b
-    - bd: #a12437
+    - bg: var(--redbrown-active)
+    - bd: var(--redbrown-active-border)
 
 purplelight
   -normal
@@ -136,6 +136,7 @@ Old bluelectric: new #6B0DDE #250DDE #4B21F2
   --rosso-logo-marconi-original: #e31e24; /* logo 2023 gianni CroW  4.69:1  (WCAG AA small text AAA large text) */
   --rosso-logo-marconi-wcag: #b31100; /* #B4060C possibili vasriazioni > 7:1  (WCAG AAA small text AAA large text) */
   --rosso-logo-marconi: #e31e24; /* CroW 4.69:1 AA/AAA*/
+  --rosso-marconi: #A60013; /* rosso interfaccia (design hero B): bianco sopra ~8:1, AAA */
 
   /* definizione del sistema di colori */
   --white: #fff;
@@ -144,12 +145,12 @@ Old bluelectric: new #6B0DDE #250DDE #4B21F2
   --dark: #17324d;
   --white-alpha: rgba(255, 255, 255, 0.15);
   --black-alpha: rgba(0, 0, 0, 0.075);
-  --redbrown: var(--rosso-logo-marconi-wcag);
-  --redbrown-dark: #b6293f;
-  --redbrown-border: #ab273b;
-  --redbrown-active: #ab273b;
-  --redbrown-active-border: #a12437;
-  --redbrown-alpha: rgba(209, 52, 76, 0.5);
+  --redbrown: var(--rosso-marconi); /* prima: var(--rosso-logo-marconi-wcag) #b31100 */
+  --redbrown-dark: #BA0015; /* hover: +4% luminosità rispetto a --rosso-marconi (era #b6293f su #A62639), bianco 6.8:1 */
+  --redbrown-border: #AB0014; /* +1% (era #ab273b), bianco 7.7:1 */
+  --redbrown-active: #AB0014; /* +1% (era #ab273b) */
+  --redbrown-active-border: #A10012; /* -1% (era #a12437), bianco 8.3:1 */
+  --redbrown-alpha: rgba(223, 0, 26, 0.5); /* anello focus: +11% luminosità (era rgba(209, 52, 76, 0.5) da #d1344c) */
   --purplelight: #9217ab;
   --purplelight-dark: #9518ae;
   --purplelight-border: #8c17a3;
@@ -1833,15 +1834,15 @@ fieldset:disabled a.btn {
 }
 .btn-redbrown:hover {
   color: #fff;
-  background-color: #b6293f;
-  border-color: #ab273b;
+  background-color: var(--redbrown-dark);
+  border-color: var(--redbrown-border);
 }
 .btn-redbrown.focus,
 .btn-redbrown:focus {
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.15),
     0 1px 1px rgba(0, 0, 0, 0.075),
-    0 0 0 0.2rem rgba(209, 52, 76, 0.5);
+    0 0 0 0.2rem var(--redbrown-alpha);
 }
 .btn-redbrown.disabled,
 .btn-redbrown:disabled {
@@ -1853,15 +1854,15 @@ fieldset:disabled a.btn {
 .btn-redbrown:not(:disabled):not(.disabled):active,
 .show > .btn-redbrown.dropdown-toggle {
   color: #fff;
-  background-color: #ab273b;
-  border-color: #a12437;
+  background-color: var(--redbrown-active);
+  border-color: var(--redbrown-active-border);
 }
 .btn-redbrown:not(:disabled):not(.disabled).active:focus,
 .btn-redbrown:not(:disabled):not(.disabled):active:focus,
 .show > .btn-redbrown.dropdown-toggle:focus {
   box-shadow:
     inset 0 3px 5px rgba(0, 0, 0, 0.125),
-    0 0 0 0.2rem rgba(209, 52, 76, 0.5);
+    0 0 0 0.2rem var(--redbrown-alpha);
 }
 .btn-purplelight {
   color: #fff;
@@ -2483,7 +2484,7 @@ fieldset:disabled a.btn {
 .btn-outline-redbrown:focus {
   box-shadow:
     inset 0 0 0 1px var(--redbrown),
-    0 0 0 0.2rem rgba(209, 52, 76, 0.5);
+    0 0 0 0.2rem var(--redbrown-alpha);
 }
 .btn-outline-redbrown.disabled,
 .btn-outline-redbrown:disabled {
@@ -2503,7 +2504,7 @@ fieldset:disabled a.btn {
 .show > .btn-outline-redbrown.dropdown-toggle:focus {
   box-shadow:
     inset 0 3px 5px rgba(0, 0, 0, 0.125),
-    0 0 0 0.2rem rgba(209, 52, 76, 0.5);
+    0 0 0 0.2rem var(--redbrown-alpha);
 }
 .btn-outline-purplelight {
   color: var(--purplelight);
@@ -3303,12 +3304,12 @@ a.badge-petrol:focus {
 a.badge-redbrown:focus,
 a.badge-redbrown:hover {
   color: #fff;
-  background-color: #ab273b;
+  background-color: var(--redbrown-active);
 }
 a.badge-redbrown.focus,
 a.badge-redbrown:focus {
   outline: 0;
-  box-shadow: 0 0 0 0.2rem rgba(209, 52, 76, 0.5);
+  box-shadow: 0 0 0 0.2rem var(--redbrown-alpha);
 }
 .badge-purplelight {
   color: #fff;
@@ -3622,7 +3623,7 @@ a.bg-redbrown:focus,
 a.bg-redbrown:hover,
 button.bg-redbrown:focus,
 button.bg-redbrown:hover {
-  background-color: #ab273b !important;
+  background-color: var(--redbrown-active) !important;
 }
 .bg-purplelight {
   background-color: var(--purplelight) !important;
@@ -5208,8 +5209,8 @@ h4 {
 }
 .badge-redbrown:hover {
   color: #fff;
-  background-color: #b6293f;
-  border-color: #ab273b;
+  background-color: var(--redbrown-dark);
+  border-color: var(--redbrown-border);
 }
 .badge-redbrown.focus,
 .badge-redbrown:focus {
@@ -5228,8 +5229,8 @@ h4 {
 .badge-redbrown:not(:disabled):not(.disabled):active,
 .show > .badge-redbrown.dropdown-toggle {
   color: #fff;
-  background-color: #ab273b;
-  border-color: #a12437;
+  background-color: var(--redbrown-active);
+  border-color: var(--redbrown-active-border);
 }
 .badge-redbrown:not(:disabled):not(.disabled).active:focus,
 .badge-redbrown:not(:disabled):not(.disabled):active:focus,
@@ -6177,7 +6178,7 @@ h4 {
 }
 .badge-outline-redbrown.focus,
 .badge-outline-redbrown:focus {
-  box-shadow: 0 0 0 0.2rem rgba(209, 52, 76, 0.5);
+  box-shadow: 0 0 0 0.2rem var(--redbrown-alpha);
 }
 .badge-outline-redbrown.disabled,
 .badge-outline-redbrown:disabled {
@@ -6196,7 +6197,7 @@ h4 {
 .show > .badge-outline-redbrown.dropdown-toggle:focus {
   box-shadow:
     inset 0 3px 5px rgba(0, 0, 0, 0.125),
-    0 0 0 0.2rem rgba(209, 52, 76, 0.5);
+    0 0 0 0.2rem var(--redbrown-alpha);
 }
 .badge-outline-purplelight {
   color: var(--purplelight);
@@ -14572,6 +14573,14 @@ button.icon-text {
   z-index: 0;
 }
 
+/* prefers-reduced-motion: niente video, resta l'immagine poster sottostante
+   (marconi.js ferma anche riproduzione e download) */
+@media (prefers-reduced-motion: reduce) {
+  video.section-hero-marconi__bg {
+    display: none;
+  }
+}
+
 /* Hero Text Customization */
 
 .section-hero-marconi::before {
@@ -16475,5 +16484,527 @@ body.page-id-292 .tabalbo a:focus {
   body.page-id-286 .tabalbo td,
   body.page-id-292 .tabalbo td {
     grid-template-columns: 1fr;
+  }
+}
+
+/* =============================================================
+   Home hero "Opzione B": pannello «In evidenza» accanto al video
+   + barra «Accesso rapido» (template-parts/hero/home-evidenza.php,
+   template-parts/home/pulsanti.php).
+   Breakpoint allineati a Tailwind: md 48rem, lg 64rem, xl 80rem, 2xl 96rem.
+   CSS non in layer per vincere sugli stili di Bootstrap Italia (a, h2, ul).
+   ============================================================= */
+.marconi-hero {
+  --marconi-hero-line: rgba(255, 255, 255, 0.18);
+  display: flex;
+  flex-direction: column;
+  background-color: var(--redbrown);
+  color: #fff;
+}
+
+.marconi-hero__panel {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 28px 16px 64px;
+  box-sizing: border-box;
+}
+
+.marconi-hero__heading {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.marconi-hero .marconi-hero__eyebrow {
+  margin: 0;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #f2c200; /* 4.75:1 su --rosso-marconi: richiede un rosso scuro come #A60013 */
+}
+
+.marconi-hero .marconi-hero__title {
+  margin: 0;
+  font-size: 26px;
+  line-height: 1.1;
+  font-weight: 700;
+  letter-spacing: normal;
+  color: #fff;
+}
+
+.marconi-hero .marconi-hero__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.marconi-hero .marconi-hero__list > li {
+  margin: 0;
+  border-top: 1px solid var(--marconi-hero-line);
+}
+
+.marconi-hero .marconi-hero__list > li:last-child {
+  border-bottom: 1px solid var(--marconi-hero-line);
+}
+
+.marconi-hero .marconi-hero__item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 0;
+  color: #fff;
+  text-decoration: none;
+}
+
+.marconi-hero .marconi-hero__item:hover,
+.marconi-hero .marconi-hero__item:focus {
+  color: #fff;
+  text-decoration: none;
+}
+
+.marconi-hero .marconi-hero__item:hover .marconi-hero__item-title {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.marconi-hero a:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 3px;
+  box-shadow: none;
+}
+
+.marconi-hero__badge {
+  flex: 0 0 56px;
+  height: 56px;
+  border-radius: 6px;
+  background: #fff;
+  color: var(--redbrown);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  line-height: 1;
+}
+
+.marconi-hero__badge time {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Colore del riquadro = «Selezione colore del messaggio» dell'avviso.
+   Rosso su pannello rosso sparirebbe: diventa bianco con contenuto rosso. */
+.marconi-hero__badge--red {
+  background: #fff;
+  color: var(--redbrown);
+}
+
+.marconi-hero__badge--yellow {
+  background: #f2c200;
+  color: #1b2b3a;
+}
+
+.marconi-hero__badge--green {
+  background: #0e8a5f;
+  color: #fff;
+}
+
+.marconi-hero__badge--blue {
+  background: var(--bluelectric);
+  color: #fff;
+}
+
+.marconi-hero__badge--purple {
+  background: var(--purplelight);
+  color: #fff;
+}
+
+.marconi-hero__badge--transparent {
+  background: transparent;
+  color: #fff;
+  border: 2px solid rgba(255, 255, 255, 0.5);
+}
+
+.marconi-hero__badge--icon svg {
+  width: 26px;
+  height: 26px;
+}
+
+.marconi-hero__badge-day {
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.marconi-hero__badge-month {
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  margin-top: 3px;
+}
+
+.marconi-hero__text {
+  flex: 1 1 auto;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.marconi-hero__item-title {
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.marconi-hero__item-sub {
+  font-size: 14px;
+  line-height: 1.35;
+}
+
+.marconi-hero__item-meta {
+  font-size: 13px;
+  line-height: 1.35;
+  opacity: 0.9;
+}
+
+.marconi-hero__arrow {
+  flex: 0 0 auto;
+  width: 20px;
+  height: 20px;
+}
+
+.marconi-hero .marconi-hero__more {
+  align-self: flex-start;
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  font-size: 15px;
+  font-weight: 600;
+  color: #fff;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.marconi-hero .marconi-hero__more:hover {
+  color: #fff;
+  text-decoration-thickness: 2px;
+}
+
+.marconi-hero__media {
+  order: -1;
+  position: relative;
+  height: 200px;
+  overflow: hidden;
+  background: #111b25;
+}
+
+.marconi-hero__messages {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 2;
+}
+
+/* Barra «Accesso rapido» sovrapposta al pannello */
+.marconi-accesso {
+  position: relative;
+  z-index: 3;
+  margin-top: -40px;
+  margin-bottom: 2rem;
+  padding-inline: 16px; /* come il pannello su mobile */
+}
+
+.marconi-accesso .marconi-accesso__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1px;
+  background: #fff;
+  border: 1px solid #e3e7eb;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 6px 20px rgba(18, 32, 48, 0.12);
+}
+
+.marconi-accesso .marconi-accesso__list > li {
+  margin: 0;
+  box-shadow: 0 0 0 1px #e3e7eb; /* righe divisorie: la cella vuota resta bianca */
+}
+
+.marconi-accesso .marconi-accesso__item {
+  --marconi-accesso-tint: #fdf0f1; /* fallback di color-mix */
+  --marconi-accesso-tint: color-mix(in srgb, var(--redbrown) 6%, #fff);
+  --marconi-accesso-press: color-mix(in srgb, var(--redbrown) 12%, #fff);
+  position: relative;
+  height: 100%;
+  min-height: 84px;
+  padding: 8px 4px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  background: #fff;
+  color: #1b2b3a;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.2;
+  text-align: center;
+  text-decoration: none;
+  -webkit-tap-highlight-color: transparent; /* sostituito dallo stato :active */
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease,
+    transform 0.15s ease;
+}
+
+/* barra rossa che cresce dal centro sul bordo inferiore */
+.marconi-accesso .marconi-accesso__item::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  right: 50%;
+  bottom: 0;
+  height: 3px;
+  background: var(--redbrown);
+  transition:
+    left 0.25s ease,
+    right 0.25s ease;
+}
+
+.marconi-accesso .marconi-accesso__item .fa {
+  font-size: 24px;
+  color: var(--redbrown);
+  transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1); /* leggero rimbalzo */
+}
+
+.marconi-accesso .marconi-accesso__item:hover,
+.marconi-accesso .marconi-accesso__item:focus {
+  color: #1b2b3a;
+  text-decoration: none;
+}
+
+/* Hover solo con mouse/trackpad: sui touch resterebbe «appiccicato» dopo il tap.
+   :focus-visible (tastiera) riceve lo stesso feedback. */
+@media (hover: hover) and (pointer: fine) {
+  .marconi-accesso .marconi-accesso__item:hover {
+    background: var(--marconi-accesso-tint);
+    color: var(--redbrown);
+  }
+
+  .marconi-accesso .marconi-accesso__item:hover::after {
+    left: 0;
+    right: 0;
+  }
+
+  .marconi-accesso .marconi-accesso__item:hover .fa {
+    transform: translateY(-3px) scale(1.15);
+  }
+}
+
+.marconi-accesso .marconi-accesso__item:focus-visible {
+  outline: 2px solid var(--redbrown);
+  outline-offset: -4px;
+  box-shadow: none;
+  background: var(--marconi-accesso-tint);
+  color: var(--redbrown);
+}
+
+.marconi-accesso .marconi-accesso__item:focus-visible::after {
+  left: 0;
+  right: 0;
+}
+
+.marconi-accesso .marconi-accesso__item:focus-visible .fa {
+  transform: translateY(-3px) scale(1.15);
+}
+
+/* Pressione (touch e click): risposta immediata al tap */
+.marconi-accesso .marconi-accesso__item:active {
+  background: var(--marconi-accesso-press);
+  color: var(--redbrown);
+  transform: scale(0.97);
+  transition-duration: 0.05s;
+}
+
+.marconi-accesso .marconi-accesso__item:active::after {
+  left: 0;
+  right: 0;
+  transition-duration: 0.1s;
+}
+
+.marconi-accesso .marconi-accesso__item:active .fa {
+  transform: scale(0.9);
+  transition-duration: 0.08s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marconi-accesso .marconi-accesso__item,
+  .marconi-accesso .marconi-accesso__item::after,
+  .marconi-accesso .marconi-accesso__item .fa {
+    transition: none;
+  }
+
+  .marconi-accesso .marconi-accesso__item .fa,
+  .marconi-accesso .marconi-accesso__item:hover .fa,
+  .marconi-accesso .marconi-accesso__item:focus-visible .fa,
+  .marconi-accesso .marconi-accesso__item:active,
+  .marconi-accesso .marconi-accesso__item:active .fa {
+    transform: none;
+  }
+}
+
+@media (min-width: 48rem) {
+  .marconi-hero {
+    flex-direction: row;
+  }
+
+  .marconi-hero__panel {
+    flex: 0 0 420px;
+    gap: 18px;
+    padding: 36px 28px 84px;
+  }
+
+  .marconi-hero .marconi-hero__title {
+    font-size: 28px;
+  }
+
+  .marconi-hero .marconi-hero__item {
+    gap: 16px;
+  }
+
+  .marconi-hero__badge {
+    flex-basis: 60px;
+    height: 60px;
+  }
+
+  .marconi-hero__badge-day {
+    font-size: 22px;
+  }
+
+  .marconi-hero__item-title {
+    font-size: 19px;
+  }
+
+  .marconi-hero__media {
+    order: 0;
+    flex: 1 1 auto;
+    min-width: 0;
+    height: auto;
+    min-height: 540px;
+  }
+
+  .marconi-hero__media .section-hero-marconi__bg {
+    object-position: 60% center;
+  }
+
+  .marconi-accesso {
+    margin-top: -46px;
+    padding-inline: 1.5rem;
+  }
+
+  .marconi-accesso .marconi-accesso__list {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    box-shadow: 0 6px 24px rgba(18, 32, 48, 0.12);
+  }
+
+  .marconi-accesso .marconi-accesso__item {
+    min-height: 92px;
+    padding: 10px 6px;
+    gap: 8px;
+  }
+}
+
+@media (min-width: 64rem) {
+  .marconi-accesso .marconi-accesso__list {
+    grid-template-columns: repeat(auto-fit, minmax(96px, 1fr));
+  }
+}
+
+@media (min-width: 80rem) {
+  /* pannello largo quanto serve al testo; il video occupa il resto */
+  .marconi-hero__panel {
+    flex: 0 0 560px;
+    gap: 24px;
+    padding: 48px 40px 88px 56px;
+  }
+
+  .marconi-hero .marconi-hero__eyebrow {
+    font-size: 13px;
+  }
+
+  .marconi-hero__heading {
+    gap: 6px;
+  }
+
+  .marconi-hero .marconi-hero__title {
+    font-size: 34px;
+  }
+
+  .marconi-hero .marconi-hero__item {
+    gap: 20px;
+    padding: 18px 0;
+  }
+
+  .marconi-hero__badge {
+    flex-basis: 72px;
+    height: 72px;
+  }
+
+  .marconi-hero__badge--icon svg {
+    width: 30px;
+    height: 30px;
+  }
+
+  .marconi-hero__badge-day {
+    font-size: 26px;
+  }
+
+  .marconi-hero__badge-month {
+    font-size: 13px;
+    margin-top: 4px;
+  }
+
+  .marconi-hero__text {
+    gap: 4px;
+  }
+
+  .marconi-hero__item-title {
+    font-size: 22px;
+  }
+
+  .marconi-hero__item-sub {
+    font-size: 15px;
+  }
+
+  .marconi-hero__arrow {
+    width: 22px;
+    height: 22px;
+  }
+
+  .marconi-hero .marconi-hero__more {
+    font-size: 16px;
+  }
+
+  .marconi-hero__media {
+    min-height: 560px;
+  }
+
+  .marconi-hero__media .section-hero-marconi__bg {
+    object-position: center;
+  }
+
+  .marconi-accesso .marconi-accesso__item {
+    font-size: 14px;
+  }
+
+  .marconi-accesso .marconi-accesso__item .fa {
+    font-size: 26px;
   }
 }
