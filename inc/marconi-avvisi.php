@@ -219,3 +219,15 @@ if ( ! function_exists( 'marconi_get_avvisi' ) ) {
 		return 'evidenza' === $posizione ? array_slice( $avvisi, 0, 3 ) : $avvisi;
 	}
 }
+
+/*
+ * Expired avvisi are hidden at render time (template-parts/home/messages.php,
+ * marconi_get_avvisi()), never deleted. The upstream daily cron
+ * dsi_check_cron_options() (inc/admin/options.php) deleted them instead, and
+ * it also removed every message with an empty "Data fine" (strtotime('') is
+ * false, and false <= now) and rewrote home_messages with the messages only,
+ * dropping the "In evidenza" panel fields.
+ */
+add_action( 'init', function () {
+	remove_action( 'dsi_cron_options', 'dsi_check_cron_options' );
+} );
